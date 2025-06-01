@@ -13,6 +13,8 @@ public class DashboardServiceController {
 	
 	//TODO CREAZIONE CLIENT PER RICHIAMARE I VARI SERVIZI ESPOSTI DA AGRIFLUX-BATCH
 	
+	//TEST COMMIT
+	
 	private final DashboardServiceImpl dashboardService;
 	
 	public DashboardServiceController(DashboardServiceImpl dashboardService) {
