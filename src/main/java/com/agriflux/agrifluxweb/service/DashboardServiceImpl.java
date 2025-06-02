@@ -1,9 +1,13 @@
 package com.agriflux.agrifluxweb.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -25,10 +29,15 @@ public class DashboardServiceImpl implements DashboardService {
 	public List<ColturaDTO> findAllColtureSortById() {
 		
 		String url = batchUrl + "/colture";
-        ResponseEntity<ColturaDTO[]> response = restTemplate.getForEntity(url, ColturaDTO[].class);
 		
-        //TODO MODIFICA UTILIZZANDO EXCHANGE
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
         
-		return Arrays.asList(response.getBody());
+		ResponseEntity<List<ColturaDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<List<ColturaDTO>>() {
+				});
+        
+		return response.getBody();
 	}
 }

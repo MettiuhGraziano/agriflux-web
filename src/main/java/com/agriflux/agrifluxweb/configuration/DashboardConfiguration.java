@@ -22,4 +22,9 @@ public class DashboardConfiguration {
     String batchServiceBaseUrl() {
         return BASE_URL;
     }
+    
+    @Bean
+    DateFormatter dateFormatter() {
+    	return new DateFormatter();
+    }
 }

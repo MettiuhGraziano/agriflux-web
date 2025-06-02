@@ -2,25 +2,31 @@ package com.agriflux.agrifluxweb.controller;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.agriflux.agrifluxweb.model.ColturaDTO;
 import com.agriflux.agrifluxweb.service.DashboardService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
-@RestController("api/dashboard")
-public class DashboardServiceController implements DashboardService {
+@Controller
+public class DashboardController implements DashboardService {
 	
-	//TODO CREAZIONE CLIENT API SERVIZI REST ESPOSTI DA AGRIFLUX-BATCH
+	//TODO Controller utilizzato da THYMELEAF per la gestione e comunicazione tra le pagine html
 	
 	private final DashboardServiceImpl dashboardServiceImpl;
 	
-	public DashboardServiceController(DashboardServiceImpl dashboardService) {
+	public DashboardController(DashboardServiceImpl dashboardService) {
 		this.dashboardServiceImpl = dashboardService;
 	}
 	
-	@GetMapping("/colture")
+	@GetMapping("/")
+	public String home() {
+	    return "home";
+	}
+	
+	@ModelAttribute(name = "colture")
 	public List<ColturaDTO> findAllColtureSortById(){
 		return dashboardServiceImpl.findAllColtureSortById();
 	}

@@ -6,5 +6,10 @@ import com.agriflux.agrifluxweb.model.ColturaDTO;
 
 public interface DashboardService {
 	
+	/**
+	 * Metodo che torna la lista di Colture ordinate in modo ASCENDENTE tramite l'ID
+	 * 
+	 * @return List di ColtureDTO
+	 */
 	List<ColturaDTO> findAllColtureSortById();
 }
