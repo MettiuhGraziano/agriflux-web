@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.agriflux.agrifluxweb.model.ColturaDTO;
-import com.agriflux.agrifluxweb.service.DashboardService;
+import com.agriflux.agrifluxshared.dto.ColturaDTO;
+import com.agriflux.agrifluxshared.service.AgrifluxDataService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
 @RestController("api/dashboard")
-public class DashboardServiceController implements DashboardService {
+public class DashboardServiceController implements AgrifluxDataService {
 	
 	//TODO CREAZIONE CLIENT API SERVIZI REST ESPOSTI DA AGRIFLUX-BATCH
 	
@@ -21,7 +21,7 @@ public class DashboardServiceController implements DashboardService {
 	}
 	
 	@GetMapping("/colture")
-	public List<ColturaDTO> findAllColtureSortById(){
-		return dashboardServiceImpl.findAllColtureSortById();
+	public List<ColturaDTO> findAllColturaSortById(){
+		return dashboardServiceImpl.findAllColturaSortById();
 	}
 }

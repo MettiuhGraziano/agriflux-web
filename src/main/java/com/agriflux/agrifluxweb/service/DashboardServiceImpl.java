@@ -12,10 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.agriflux.agrifluxweb.model.ColturaDTO;
+import com.agriflux.agrifluxshared.dto.ColturaDTO;
+import com.agriflux.agrifluxshared.service.AgrifluxDataService;
 
 @Service
-public class DashboardServiceImpl implements DashboardService {
+public class DashboardServiceImpl implements AgrifluxDataService {
 	
 	private final RestTemplate restTemplate;
 	private final String batchUrl;
@@ -26,7 +27,7 @@ public class DashboardServiceImpl implements DashboardService {
 	}
 
 	@Override
-	public List<ColturaDTO> findAllColtureSortById() {
+	public List<ColturaDTO> findAllColturaSortById() {
 		
 		String url = batchUrl + "/colture";
 		

@@ -6,12 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.agriflux.agrifluxweb.model.ColturaDTO;
-import com.agriflux.agrifluxweb.service.DashboardService;
+import com.agriflux.agrifluxshared.dto.ColturaDTO;
+import com.agriflux.agrifluxshared.service.AgrifluxDataService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
 @Controller
-public class DashboardController implements DashboardService {
+public class DashboardController implements AgrifluxDataService {
 	
 	//TODO Controller utilizzato da THYMELEAF per la gestione e comunicazione tra le pagine html
 	
@@ -27,7 +27,7 @@ public class DashboardController implements DashboardService {
 	}
 	
 	@ModelAttribute(name = "colture")
-	public List<ColturaDTO> findAllColtureSortById(){
-		return dashboardServiceImpl.findAllColtureSortById();
+	public List<ColturaDTO> findAllColturaSortById(){
+		return dashboardServiceImpl.findAllColturaSortById();
 	}
 }
