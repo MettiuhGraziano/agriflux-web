@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>AgriFlux Dashboard</title>
+	<link rel="stylesheet" data-th-href="@{/css/dashboard.css}">
+</head>
+
+<body>
+	<!-- Sidebar -->
+	<div class="sidebar">
+	
+		<!-- Logo -->
+		<div class="logo text-center">
+			<img data-th-src="@{/images/logo.png}" alt="AgriFlux Logo">
+		</div>
+	
+		<!-- Utente -->
+		<div class="user text-center">
+			<a data-th-text="'Utente: ' + ${username}"></a>
+		</div>
+	
+		<!-- Menu -->
+		<div class="menu">
+			<a data-th-href="@{/dashboard}">Dashboard</a>
+			
+			<div class="submenu">Monitoraggio
+				<i class="fa fa-caret-down"></i>
+			</div>
+			<div class="submenu-container">
+				<a href="#">Coltivazione</a>
+				<a href="#">Produzione</a>
+				<a href="#">Ambiente</a>
+				<a href="#">Terreno</a>
+			</div>
+			
+			<a href="#">KPI</a>
+			
+			<a href="#">Logout</a>
+		</div>
+	
+		<div class="footer">
+			© 2025 AgriFlux – Dati agricoli<br>
+			Tutti i diritti riservati
+		</div>
+		<!-- <div class="footer text-center" th:insert="~{footer :: footer}"></div> -->
+	
+	</div>
+	
+	<script>
+		var dropdown = document.getElementsByClassName("submenu");
+		var i;
+
+		for (i = 0; i < dropdown.length; i++) {
+			dropdown[i].addEventListener("click", function () {
+				this.classList.toggle("active");
+				var dropdownContent = this.nextElementSibling;
+				if (dropdownContent.style.display === "block") {
+					dropdownContent.style.display = "none";
+				} else {
+					dropdownContent.style.display = "block";
+				}
+			});
+		}
+	</script>
+	
+	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">AgriFlux</a>
+		</div>
+	</nav>
+	
+	<div class="container mt-4">
+		<h1 class="mb-4">"Benvenuto nella dashboard AgriFlux"</h1>
+	
+		<div class="colturelist" th:unless="${#lists.isEmpty(colture)}">
+	
+			<h2 th:text="#{title.list}">Colture inserite</h2>
+	
+			<table>
+				<thead>
+					<tr>
+						<th th:text="#{coltura.id}"></th>
+						<th th:text="#{coltura.prodotto}"></th>
+						<th th:text="#{coltura.prezzo}"></th>
+						<th th:text="#{coltura.dataSemina}"></th>
+						<th th:text="#{coltura.dataRaccolto}"></th>
+					</tr>
+				</thead>
+	
+				<tbody>
+					<tr th:each="coltura : ${colture}">
+						<td th:text="${{coltura.idColtura}}"></td>
+						<td th:text="${{coltura.prodottoColtivato}}"></td>
+						<td th:text="${{coltura.prezzoKg}}"></td>
+						<td th:text="${{coltura.dataSemina}}"></td>
+						<td th:text="${{coltura.dataRaccolto}}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>-->
+		
+</body>
+
+</html>
