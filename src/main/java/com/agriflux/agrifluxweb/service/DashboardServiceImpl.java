@@ -48,25 +48,65 @@ public class DashboardServiceImpl implements AgrifluxDataService {
 
 	@Override
 	public List<AmbienteDTO> findAllAmbienteSortById() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String url = batchUrl + "/datiAmbientali";
+		
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+        
+		ResponseEntity<List<AmbienteDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<List<AmbienteDTO>>() {
+				});
+        
+		return response.getBody();
 	}
 
 	@Override
 	public List<MorfologiaDTO> findAllMorfologiaSortById() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String url = batchUrl + "/datiMorfologici";
+		
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+        
+		ResponseEntity<List<MorfologiaDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<List<MorfologiaDTO>>() {
+				});
+        
+		return response.getBody();
 	}
 
 	@Override
 	public List<TerrenoDTO> findAllTerrenoSortById() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String url = batchUrl + "/datiTerreni";
+		
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+        
+		ResponseEntity<List<TerrenoDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<List<TerrenoDTO>>() {
+				});
+        
+		return response.getBody();
 	}
 
 	@Override
 	public List<ProduzioneDTO> findAllProduzioneSortById() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String url = batchUrl + "/datiProduzione";
+		
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+        
+		ResponseEntity<List<ProduzioneDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<List<ProduzioneDTO>>() {
+				});
+        
+		return response.getBody();
 	}
 }

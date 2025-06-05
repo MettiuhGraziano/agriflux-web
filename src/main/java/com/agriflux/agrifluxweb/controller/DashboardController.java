@@ -1,22 +1,14 @@
 package com.agriflux.agrifluxweb.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.agriflux.agrifluxshared.dto.AmbienteDTO;
-import com.agriflux.agrifluxshared.dto.ColturaDTO;
-import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
-import com.agriflux.agrifluxshared.dto.TerrenoDTO;
-import com.agriflux.agrifluxshared.service.AgrifluxDataService;
+import com.agriflux.agrifluxweb.service.DashboardService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
 @Controller
-public class DashboardController implements AgrifluxDataService {
+public class DashboardController implements DashboardService {
 	
 	//TODO Controller utilizzato da THYMELEAF per la gestione e comunicazione tra le pagine html
 	
@@ -26,39 +18,51 @@ public class DashboardController implements AgrifluxDataService {
 		this.dashboardServiceImpl = dashboardService;
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/Agriflux")
+	public String homepage(Model model) {
+		model.addAttribute("username", "Admin");
+	    return "homepage";
+	}
+	
+	@GetMapping("/dashboard")
 	public String dashboard(Model model) {
 		model.addAttribute("username", "Admin");
 	    return "dashboard";
 	}
 	
 	@Override
-	@ModelAttribute(name = "colture")
-	public List<ColturaDTO> findAllColturaSortById(){
-		return dashboardServiceImpl.findAllColturaSortById();
+	@GetMapping("/coltura")
+	public String getAllColtureSortById(Model model){
+		model.addAttribute("colture", dashboardServiceImpl.findAllColturaSortById());
+	    return "fragments/coltura :: colturaPage";
 	}
 
 	@Override
-	public List<AmbienteDTO> findAllAmbienteSortById() {
-		// TODO Auto-generated method stub
-		return null;
+	@GetMapping("/ambiente")
+	public String getAllAmbienteSortById(Model model) {
+		model.addAttribute("ambienti", dashboardServiceImpl.findAllAmbienteSortById());
+	    return "fragments/ambiente :: ambientePage";
 	}
 
 	@Override
-	public List<MorfologiaDTO> findAllMorfologiaSortById() {
-		// TODO Auto-generated method stub
-		return null;
+	@GetMapping("/morfologia")
+	public String getAllMorfologieSortById(Model model) {
+		model.addAttribute("morfologie", dashboardServiceImpl.findAllMorfologiaSortById());
+	    return "fragments/morfologia :: morfologiaPage";
 	}
 
 	@Override
-	public List<TerrenoDTO> findAllTerrenoSortById() {
-		// TODO Auto-generated method stub
-		return null;
+	@GetMapping("/terreno")
+	public String getAllTerreniSortById(Model model) {
+		model.addAttribute("terreni", dashboardServiceImpl.findAllTerrenoSortById());
+		model.addAttribute("morfologie", dashboardServiceImpl.findAllMorfologiaSortById());
+	    return "fragments/terreno :: terrenoPage";
 	}
 
 	@Override
-	public List<ProduzioneDTO> findAllProduzioneSortById() {
-		// TODO Auto-generated method stub
-		return null;
+	@GetMapping("/produzione")
+	public String getAllProduzioniSortById(Model model) {
+		model.addAttribute("produzioni", dashboardServiceImpl.findAllProduzioneSortById());
+	    return "fragments/produzione :: produzionePage";
 	}
 }

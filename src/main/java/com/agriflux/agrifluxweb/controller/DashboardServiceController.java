@@ -33,28 +33,25 @@ public class DashboardServiceController implements AgrifluxDataService {
 	@Override
 	@GetMapping("/datiAmbientali")
 	public List<AmbienteDTO> findAllAmbienteSortById() {
-		// TODO Auto-generated method stub
-		return null;
+		return dashboardServiceImpl.findAllAmbienteSortById();
 	}
 
 	@Override
 	@GetMapping("/datiMorfologici")
 	public List<MorfologiaDTO> findAllMorfologiaSortById() {
-		// TODO Auto-generated method stub
-		return null;
+		return dashboardServiceImpl.findAllMorfologiaSortById();
 	}
 
 	@Override
 	@GetMapping("/datiTerreni")
 	public List<TerrenoDTO> findAllTerrenoSortById() {
-		// TODO Auto-generated method stub
-		return null;
+		return dashboardServiceImpl.findAllTerrenoSortById();
 	}
 
 	@Override
 	@GetMapping("/datiProduzione")
 	public List<ProduzioneDTO> findAllProduzioneSortById() {
-		// TODO Auto-generated method stub
-		return null;
+		return dashboardServiceImpl.findAllProduzioneSortById();
 	}
+	
 }
