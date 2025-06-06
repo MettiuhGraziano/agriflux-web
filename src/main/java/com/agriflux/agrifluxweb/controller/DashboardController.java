@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.agriflux.agrifluxweb.service.DashboardService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
+/**
+ * Controller per la gestione, comunicazione e recupero dati tra pagine html
+ */
 @Controller
 public class DashboardController implements DashboardService {
 	

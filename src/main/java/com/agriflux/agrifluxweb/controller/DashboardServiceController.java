@@ -13,10 +13,11 @@ import com.agriflux.agrifluxshared.dto.TerrenoDTO;
 import com.agriflux.agrifluxshared.service.AgrifluxDataService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
+/**
+ * Client API servizi Rest esposti da Agriflux-Batch
+ */
 @RestController("api/dashboard")
 public class DashboardServiceController implements AgrifluxDataService {
-	
-	//TODO CREAZIONE CLIENT API SERVIZI REST ESPOSTI DA AGRIFLUX-BATCH
 	
 	private final DashboardServiceImpl dashboardServiceImpl;
 	
