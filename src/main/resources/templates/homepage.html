@@ -27,7 +27,7 @@
 					</div>
 			
 					<span class="navbar-text mt-3 mx-auto">
-						<a data-th-text="'Utente: ' + ${username}"></a>
+						<a data-th-text="'Utente: ' + ${session.username}"></a>
 					</span>
 			
 					<hr class="border border-dark border-1">
@@ -64,6 +64,10 @@
 							<button id="pills-kpi-tab" class="nav-link btn custom-btn-sidebar" data-bs-toggle="pill"
 								data-bs-target="#pills-kpi" type="button" role="tab" aria-controls="pills-kpi" aria-selected="false"
 								data-th-text="KPI"></button>
+						</li>
+						
+						<li class="nav-item mx-auto" role="presentation">
+							<a id="pills-logout-tab" class="nav-link custom-btn-sidebar" data-th-href="@{/logout}" role="tab" data-th-text="Logout"></a>
 						</li>
 			
 					</ul>

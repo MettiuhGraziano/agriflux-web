@@ -3,9 +3,13 @@ package com.agriflux.agrifluxweb.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.agriflux.agrifluxweb.service.DashboardService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
+
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Controller per la gestione, comunicazione e recupero dati tra pagine html
@@ -13,23 +17,31 @@ import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 @Controller
 public class DashboardController implements DashboardService {
 	
-	//TODO Controller utilizzato da THYMELEAF per la gestione e comunicazione tra le pagine html
-	
 	private final DashboardServiceImpl dashboardServiceImpl;
 	
 	public DashboardController(DashboardServiceImpl dashboardService) {
 		this.dashboardServiceImpl = dashboardService;
 	}
 	
-	@GetMapping("/Agriflux")
-	public String homepage(Model model) {
-		model.addAttribute("username", "Admin");
+	@GetMapping("/login")
+	public String login() {
+	    return "login";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+	    session.invalidate();
+	    return "redirect:/login";
+	}
+	
+	@PostMapping("/homepage")
+	public String homepage(@RequestParam() String username, HttpSession session) {
+		session.setAttribute("username", username);
 	    return "homepage";
 	}
 	
 	@GetMapping("/dashboard")
-	public String dashboard(Model model) {
-		model.addAttribute("username", "Admin");
+	public String dashboard() {
 	    return "dashboard";
 	}
 	
