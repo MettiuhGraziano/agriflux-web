@@ -13,4 +13,4 @@ function changeBg() {
 }
 
 changeBg(); // Mostra il primo sfondo
-setInterval(changeBg, 5000); // Cambia ogni 5 secondi
+setInterval(changeBg, 4500); // Cambia ogni 4.5 secondi

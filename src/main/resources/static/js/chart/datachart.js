@@ -18,6 +18,7 @@ document.getElementById('pills-colture-tab').addEventListener('click', function(
 		if (!$.fn.DataTable.isDataTable('#coltura-datatable')) {
 			new DataTable('#coltura-datatable', {
 				responsive: true,
+				ordering: true,
 				language: {
 					entries: {
 						_: 'colture',
@@ -26,6 +27,33 @@ document.getElementById('pills-colture-tab').addEventListener('click', function(
 				}
 			});
 		}
+
+		const container = document.getElementById("coltura-chart-container1");
+		let dataChart = container.getAttribute("data-chart");
+		const colturaChartData = JSON.parse(dataChart);
+		const labels = Object.keys(colturaChartData);
+		const values = Object.values(colturaChartData);
+		const ctx = document.getElementById('colturaBarChart').getContext('2d');
+
+		new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: labels,
+				datasets: [{
+					label: 'Numero Colture Totali',
+					data: values,
+					borderWidth: 2
+				}]
+			},
+			options: {
+				responsive: true,
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				}
+			}
+		});
 	}, 100); // aspetta che il fragment sia stato inserito nel DOM
 });
 

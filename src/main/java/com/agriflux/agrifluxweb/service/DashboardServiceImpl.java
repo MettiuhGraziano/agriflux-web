@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.agriflux.agrifluxshared.dto.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.ColturaDTO;
+import com.agriflux.agrifluxshared.dto.ColturaGroupByProdottoDTO;
 import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.TerrenoDTO;
@@ -105,6 +106,22 @@ public class DashboardServiceImpl implements AgrifluxDataService {
         
 		ResponseEntity<List<ProduzioneDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
 				new ParameterizedTypeReference<List<ProduzioneDTO>>() {
+				});
+        
+		return response.getBody();
+	}
+
+	@Override
+	public List<ColturaGroupByProdottoDTO> countColtureGroupByProdotto() {
+		
+		String url = batchUrl + "/numeroColtureRaggruppateByProdotto";
+		
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+        
+		ResponseEntity<List<ColturaGroupByProdottoDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<List<ColturaGroupByProdottoDTO>>() {
 				});
         
 		return response.getBody();

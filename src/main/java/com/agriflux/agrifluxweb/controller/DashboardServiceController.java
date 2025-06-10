@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.agriflux.agrifluxshared.dto.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.ColturaDTO;
+import com.agriflux.agrifluxshared.dto.ColturaGroupByProdottoDTO;
 import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.TerrenoDTO;
@@ -16,7 +17,7 @@ import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 /**
  * Client API servizi Rest esposti da Agriflux-Batch
  */
-@RestController("api/dashboard")
+@RestController("api/batch")
 public class DashboardServiceController implements AgrifluxDataService {
 	
 	private final DashboardServiceImpl dashboardServiceImpl;
@@ -53,6 +54,12 @@ public class DashboardServiceController implements AgrifluxDataService {
 	@GetMapping("/datiProduzione")
 	public List<ProduzioneDTO> findAllProduzioneSortById() {
 		return dashboardServiceImpl.findAllProduzioneSortById();
+	}
+
+	@Override
+	@GetMapping("/numeroColtureRaggruppateByProdotto")
+	public List<ColturaGroupByProdottoDTO> countColtureGroupByProdotto() {
+		return dashboardServiceImpl.countColtureGroupByProdotto();
 	}
 	
 }

@@ -7,38 +7,61 @@
 </head>
 
 <body>
-	<div th:fragment="colturaPage">
-
-		<h1 class="mb-4">Dati Agriflux relativi alle Colture</h1>
-
-		<div class="colturelist" th:unless="${#lists.isEmpty(colture)}">
-
-			<h2 th:text="#{title.coltura}"></h2>
-
-			<table id="coltura-datatable" class="table dt-responsive nowrap table-hover table-bordered w-100">
-				<thead>
-					<tr>
-						<th th:text="#{utils.id}"></th>
-						<th th:text="#{coltura.prodotto}"></th>
-						<th th:text="#{coltura.prezzo}"></th>
-						<th th:text="#{coltura.dataSemina}"></th>
-						<th th:text="#{coltura.dataRaccolto}"></th>
-					</tr>
-				</thead>
-
-				<tbody class="table-group-divider">
-					<tr th:each="coltura : ${colture}">
-						<td th:text="${{coltura.idColtura}}"></td>
-						<td th:text="${{coltura.prodottoColtivato}}"></td>
-						<td th:text="${{coltura.prezzoKg}}"></td>
-						<td th:text="${{coltura.dataSemina}}"></td>
-						<td th:text="${{coltura.dataRaccolto}}"></td>
-					</tr>
-				</tbody>
-			</table>
-
+	<div class="container-fluid py-4" th:fragment="colturaPage">
+		<div class="card mb-3">
+			<div class="card-header">
+				 Tabella Colture
+			</div>
+			<div class="card-body">
+				<div class="table-responsive" th:unless="${#lists.isEmpty(colture)}">
+		
+					<table id="coltura-datatable" class="table table-bordered table-hover table-sm">
+						<thead>
+							<tr>
+								<th class="text-center" th:text="#{utils.id}"></th>
+								<th class="text-center" th:text="#{coltura.prodotto}"></th>
+								<th class="text-center" th:text="#{coltura.prezzo}"></th>
+								<th class="text-center" th:text="#{coltura.dataSemina}"></th>
+								<th class="text-center" th:text="#{coltura.dataRaccolto}"></th>
+							</tr>
+						</thead>
+		
+						<tbody class="table-group-divider">
+							<tr th:each="coltura : ${colture}">
+								<td class="text-center" th:text="${{coltura.idColtura}}"></td>
+								<td class="text-center" th:text="${{coltura.prodottoColtivato}}"></td>
+								<td class="text-center" th:text="${{coltura.prezzoKg}}"></td>
+								<td class="text-center" th:text="${{coltura.dataSemina}}"></td>
+								<td class="text-center" th:text="${{coltura.dataRaccolto}}"></td>
+							</tr>
+						</tbody>
+					</table>
+		
+				</div>
+			</div>
 		</div>
 
+		<div class="card mb-3">
+			<div class="card-body">
+				<div id="coltura-chart-container1" class="chart-container col-md-6 mb-3 mb-md-0 p-3 border rounded"
+					th:data-chart="${colturaChartData}">
+					<canvas id="colturaBarChart" height="200"></canvas>
+				</div>
+		
+				<div class="chart-container col-md-6 p-3 bg-white border rounded shadow-sm" th:data-chart="${colturaChartData}">
+					<!-- <canvas id="secondoBarChart" height="200"></canvas> -->
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="card mb-3">
+			 <div class="custom-chart col-md-6 mb-3 mb-md-0" id="chart-container3" th:data-chart="${terzoChartData}">
+						<canvas id="terzoBarChart" height="200"></canvas>
+					</div>
+					<div class="custom-chart col-md-6" id="chart-container4" th:data-chart="${quartoChartData}">
+						<canvas id="quartoBarChart" height="200"></canvas>
+					</div> 
+		</div> -->
 	</div>
 </body>
 

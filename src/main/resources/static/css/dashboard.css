@@ -14,7 +14,7 @@
 .custom-btn-sidebar {
 	background-color: #3E8E41;
 	/* cambia questo a piacere */
-	color: #D4FFD6;
+	color: #D4FFD6 !important;
 	border: none;
 }
 
@@ -34,4 +34,21 @@
 
 .navbar-text {
 	color: #D4FFD6 !important;
+}
+
+.tab-content {
+	background-color: rgb(192, 192, 192);
+}
+
+.chart-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+	width: 100% !important;
+	height: auto !important;
 }
