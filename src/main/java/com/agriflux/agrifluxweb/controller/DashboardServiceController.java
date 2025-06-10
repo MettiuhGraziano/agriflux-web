@@ -1,29 +1,29 @@
 package com.agriflux.agrifluxweb.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.agriflux.agrifluxshared.dto.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.ColturaDTO;
-import com.agriflux.agrifluxshared.dto.ColturaGroupByProdottoDTO;
 import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.TerrenoDTO;
-import com.agriflux.agrifluxshared.service.AgrifluxDataService;
+import com.agriflux.agrifluxweb.service.DashboardService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
 /**
  * Client API servizi Rest esposti da Agriflux-Batch
  */
 @RestController("api/batch")
-public class DashboardServiceController implements AgrifluxDataService {
+public class DashboardServiceController implements DashboardService {
 	
 	private final DashboardServiceImpl dashboardServiceImpl;
 	
-	public DashboardServiceController(DashboardServiceImpl dashboardService) {
-		this.dashboardServiceImpl = dashboardService;
+	public DashboardServiceController(DashboardServiceImpl dashboardServiceImpl) {
+		this.dashboardServiceImpl = dashboardServiceImpl;
 	}
 	
 	@Override
@@ -57,8 +57,8 @@ public class DashboardServiceController implements AgrifluxDataService {
 	}
 
 	@Override
-	@GetMapping("/numeroColtureRaggruppateByProdotto")
-	public List<ColturaGroupByProdottoDTO> countColtureGroupByProdotto() {
+	@GetMapping("/countColtureGroupByProdotto")
+	public Map<String, Long> countColtureGroupByProdotto() {
 		return dashboardServiceImpl.countColtureGroupByProdotto();
 	}
 	
