@@ -8,16 +8,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.agriflux.agrifluxshared.dto.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.ColturaDTO;
+import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.TerrenoDTO;
 import com.agriflux.agrifluxweb.service.DashboardService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 /**
  * Client API servizi Rest esposti da Agriflux-Batch
  */
 @RestController("api/batch")
+@Tag(name = "Dashboard Service Controller", description = "Client API servizi Rest esposti da Agriflux-Batch per alimentare Tabelle e Grafici")
 public class DashboardServiceController implements DashboardService {
 	
 	private final DashboardServiceImpl dashboardServiceImpl;
@@ -58,8 +63,15 @@ public class DashboardServiceController implements DashboardService {
 
 	@Override
 	@GetMapping("/getColtureGroupByProdotto")
+	@Operation(summary = "Conta le colture raggruppate per tipologia di prodotto", description = "Restituisce una mappa in cui la chiave è il nome della coltura e il valore è il numero di occorrenze trovate")
 	public Map<String, Long> countColtureGroupByProdotto() {
 		return dashboardServiceImpl.countColtureGroupByProdotto();
+	}
+
+	@Override
+	@GetMapping("/getPrezziAndDateRaccoltoColtura")
+	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
+		return dashboardServiceImpl.findPrezziAndDateRaccoltoColtura();
 	}
 	
 }

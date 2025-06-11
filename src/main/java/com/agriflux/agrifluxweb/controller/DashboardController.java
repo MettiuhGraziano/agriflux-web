@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.agriflux.agrifluxshared.dto.ColturaDTO;
+import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 import com.agriflux.agrifluxweb.service.DataChartService;
 
@@ -88,6 +89,13 @@ public class DashboardController implements DataChartService{
 	@ResponseBody
 	public Map<String, Long> countColtureGroupByProdotto() {
 		return dashboardServiceImpl.countColtureGroupByProdotto();
+	}
+
+	@Override
+	@GetMapping("/findPrezziAndDateRaccoltoColtura")
+	@ResponseBody
+	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
+		return dashboardServiceImpl.findPrezziAndDateRaccoltoColtura();
 	}
 	
 }

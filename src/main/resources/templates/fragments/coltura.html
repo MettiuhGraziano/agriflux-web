@@ -40,11 +40,23 @@
 				</div>
 			</div>
 		</div>
-
+	
 		<div class="card mb-3">
 			<div class="card-body">
-				<div id="coltura-chart-container1" class="chart-container col-md-6 mb-3 mb-md-0 p-3 border rounded">
-					<canvas id="colturaBarChart" height="200"></canvas>
+				<select id="productSelect" class="form-select card-header mb-3">
+					<option selected disabled>Seleziona un prodotto per vedere l'andamento del prezzo</option>
+				</select>
+		
+				<div id="coltura-chart-container1" class="chart-container border rounded">
+					<canvas id="colturaLineChart"></canvas>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card mb-3">
+			<div class="card-body">
+				<div id="coltura-chart-container2" class="chart-container col-md-6 mb-3 mb-md-0 p-3 border rounded">
+					<canvas id="colturaBarChart"></canvas>
 				</div>
 
 				<!-- <div id="coltura-chart-container2" class="chart-container col-md-6 mb-3 mb-md-0 p-3 border rounded"

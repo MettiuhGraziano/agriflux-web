@@ -26,67 +26,70 @@
 					<div class="text-center mb-4">
 						<a class="navbar-brand">
 							<img class="object-fit-fill border rounded" data-th-src="@{/images/logo.png}" alt="Logo"
-								style="max-width: 140px;">
+								style="max-width: 120px;">
 						</a>
 					</div>
 			
-					<span class="navbar-text mt-3 mx-auto">
+					<span class="navbar-text mt-2 mx-auto">
 						<a data-th-text="'Utente: ' + ${session.username}"></a>
 					</span>
 			
 					<hr class="border border-dark border-1">
 			
-					<ul class="nav nav-pills nav-fill flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start sidebar-bg-green-custom"
-						id="menu" role="tablist">
-						<li class="nav-item mx-auto" role="presentation">
-							<button id="pills-dashboard-tab" class="nav-link btn custom-btn-sidebar active" data-bs-toggle="pill"
-								data-bs-target="#pills-dashboard" type="button" role="tab" aria-controls="pills-dashboard"
-								aria-selected="true" data-th-text="Dashboard"></button>
-						</li>
+					<div id="menu"
+						class="nav nav-pills nav-fill flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start sidebar-bg-green-custom"
+						role="tablist">
+						<div class="nav-item mx-auto" role="presentation">
+							<button id="pills-dashboard-tab" class="nav-link btn custom-btn-sidebar active w-100"
+								data-bs-toggle="pill" data-bs-target="#pills-dashboard" type="button" role="tab"
+								aria-controls="pills-dashboard" aria-selected="true" data-th-text="Dashboard"></button>
+						</div>
 			
-						<li class="nav-item mx-auto" data-toggle="tooltip" role="presentation">
+						<div class="nav-item mx-auto" data-toggle="tooltip" role="presentation">
 							<button id="pills-monitoraggio-tab" class="nav-link-collapse collapsed btn custom-btn-sidebar"
-								data-bs-toggle="collapse" data-bs-auto-close="inside" aria-expanded="false"
-								data-th-text="Monitoraggio" href="#collapseComponents" data-parent="#menu"></button>
-							<ul id="collapseComponents" class="collapse">
-								<li><button id="pills-colture-tab" class="btn custom-btn-sidebar" type="button" data-bs-toggle="pill"
-										data-bs-target="#pills-colture" role="tab" aria-controls="pills-colture"
-										aria-selected="false" data-th-text="Colture"></button></li>
-								<li><button id="pills-produzione-tab" class="btn custom-btn-sidebar" type="button" data-bs-toggle="pill"
-										data-bs-target="#pills-produzione" role="tab" aria-controls="pills-produzione"
-										aria-selected="false" data-th-text="Produzione"></button></li>
-								<li><button id="pills-ambiente-tab" class="btn custom-btn-sidebar" type="button" data-bs-toggle="pill"
-										data-bs-target="#pills-ambiente" role="tab" aria-controls="pills-ambiente"
-										aria-selected="false" data-th-text="Ambiente"></button></li>
-								<li><button id="pills-terreno-tab" class="btn custom-btn-sidebar" type="button" data-bs-toggle="pill"
-										data-bs-target="#pills-terreno" role="tab" aria-controls="pills-terreno"
-										aria-selected="false" data-th-text="Terreno"></button></li>
-							</ul>
-						</li>
+								data-th-text="Monitoraggio" data-bs-toggle="collapse" data-bs-target="#collapseMonitoraggio"
+								aria-expanded="false" aria-controls="collapseMonitoraggio"></button>
+							<div class="collapse ps-3" id="collapseMonitoraggio" data-bs-parent="#menu">
+								<button id="pills-colture-tab" class="btn custom-btn-sidebar w-100" type="button"
+									data-bs-toggle="pill" data-bs-target="#pills-colture" role="tab" aria-controls="pills-colture"
+									aria-selected="false" data-th-text="Colture"></button>
+								<button id="pills-produzione-tab" class="btn custom-btn-sidebar w-100" type="button"
+									data-bs-toggle="pill" data-bs-target="#pills-produzione" role="tab"
+									aria-controls="pills-produzione" aria-selected="false" data-th-text="Produzione"></button>
+								<button id="pills-ambiente-tab" class="btn custom-btn-sidebar w-100" type="button"
+									data-bs-toggle="pill" data-bs-target="#pills-ambiente" role="tab" aria-controls="pills-ambiente"
+									aria-selected="false" data-th-text="Ambiente"></button>
+								<button id="pills-terreno-tab" class="btn custom-btn-sidebar w-100" type="button"
+									data-bs-toggle="pill" data-bs-target="#pills-terreno" role="tab" aria-controls="pills-terreno"
+									aria-selected="false" data-th-text="Terreno"></button>
+							</div>
+						</div>
 			
-						<li class="nav-item mx-auto" role="presentation">
-							<button id="pills-kpi-tab" class="nav-link btn custom-btn-sidebar" data-bs-toggle="pill"
+						<div class="nav-item mx-auto" role="presentation">
+							<button id="pills-kpi-tab" class="nav-link btn custom-btn-sidebar w-100" data-bs-toggle="pill"
 								data-bs-target="#pills-kpi" type="button" role="tab" aria-controls="pills-kpi" aria-selected="false"
 								data-th-text="KPI"></button>
-						</li>
-						
-						<li class="nav-item mx-auto" role="presentation">
-							<button id="pills-reporting-tab" class="nav-link btn custom-btn-sidebar" data-bs-toggle="pill" data-bs-target="#pills-reporting"
-								type="button" role="tab" aria-controls="pills-reporting" aria-selected="false" data-th-text="Reporting"></button>
-						</li>
-						
-						<li class="nav-item mx-auto" role="presentation">
-							<a id="pills-logout-tab" class="nav-link custom-btn-sidebar" data-th-href="@{/logout}" role="tab" data-th-text="Logout"></a>
-						</li>
+						</div>
 			
-					</ul>
+						<div class="nav-item mx-auto" role="presentation">
+							<button id="pills-reporting-tab" class="nav-link btn custom-btn-sidebar w-100" data-bs-toggle="pill"
+								data-bs-target="#pills-reporting" type="button" role="tab" aria-controls="pills-reporting"
+								aria-selected="false" data-th-text="Reporting"></button>
+						</div>
 			
+						<div class="nav-item mx-auto" role="presentation">
+							<a id="pills-logout-tab" class="nav-link custom-btn-sidebar w-100" data-th-href="@{/logout}" role="tab"
+								data-th-text="Logout"></a>
+						</div>
+			
+					</div>
+			
+					<hr class="border border-dark border-1">
+			
+					<footer class="navbar-text p-3 text-center border-top border-secondary">
+						© 2025 AgriFlux – Dati agricoli </br> Tutti diritti riservati
+					</footer>
 				</div>
-				
-				<footer class="navbar-text p-3 text-center border-top border-secondary">
-					© 2025 AgriFlux – Dati agricoli </br> Tutti diritti riservati
-				</footer>
-			
 			</nav>
 		
 			<div class="col col-md-10 ms-auto px-4 tab-content" style="overflow-y: auto;" id="nav-tabContent">
