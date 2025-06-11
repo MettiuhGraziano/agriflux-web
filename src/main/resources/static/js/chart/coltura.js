@@ -26,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
 						_: 'colture',
 						1: 'coltura'
 					}
-				}
+				},
+				pageLength: 5,
+				lengthMenu: [ [5, 10, 15], [5, 10, 15] ]
 			});
 		}, 50);
 	});

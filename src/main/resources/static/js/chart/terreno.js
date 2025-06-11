@@ -38,8 +38,10 @@ document.getElementById('pills-terreno-tab').addEventListener('click', function(
 						_: 'dati morfologici',
 						1: 'morfologia'
 					}
-				}
+				},
+				pageLength: 5,
+				lengthMenu: [[5, 10, 15], [5, 10, 15]]
 			});
 		}
-	}, 50); // aspetta che il fragment sia stato inserito nel DOM
+	}, 50);
 });

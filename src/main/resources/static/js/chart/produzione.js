@@ -26,8 +26,10 @@ document.getElementById('pills-produzione-tab').addEventListener('click', functi
 						_: 'dati produzione',
 						1: 'produzione'
 					}
-				}
+				},
+				pageLength: 5,
+				lengthMenu: [[5, 10, 15], [5, 10, 15]]
 			});
 		}
-	}, 50); // aspetta che il fragment sia stato inserito nel DOM
+	}, 50);
 });

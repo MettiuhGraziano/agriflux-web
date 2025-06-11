@@ -26,8 +26,10 @@ document.getElementById('pills-ambiente-tab').addEventListener('click', function
 						_: 'dati ambientali',
 						1: 'ambiente'
 					}
-				}
+				},
+				pageLength: 5,
+				lengthMenu: [[5, 10, 15], [5, 10, 15]]
 			});
 		}
-	}, 50); // aspetta che il fragment sia stato inserito nel DOM
+	}, 50);
 });
