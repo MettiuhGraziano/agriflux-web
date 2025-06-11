@@ -9,6 +9,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- DataTables -->
 	<link href="https://cdn.datatables.net/2.3.1/css/dataTables.bootstrap5.css" rel="stylesheet">
+	<!-- Chart.js -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -80,7 +81,6 @@
 			
 					</ul>
 			
-			
 				</div>
 				
 				<footer class="navbar-text p-3 text-center border-top border-secondary">
@@ -92,13 +92,13 @@
 			<div class="col col-md-10 ms-auto px-4 tab-content" style="overflow-y: auto;" id="nav-tabContent">
 				<div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel" th:insert="~{fragments/dashboard :: dashboardPage}" tabindex="0"></div>
 				
-				<div class="tab-pane fade" id="pills-colture" role="tabpanel" aria-labelledby="pills-colture-tab" tabindex="0"></div>
+				<div class="tab-pane fade" id="pills-colture" role="tabpanel" aria-labelledby="pills-colture-tab" th:insert="~{fragments/coltura :: colturaPage}" tabindex="0"></div>
 				
-				<div class="tab-pane fade" id="pills-produzione" role="tabpanel" aria-labelledby="pills-produzione-tab" tabindex="0"></div>
+				<div class="tab-pane fade" id="pills-produzione" role="tabpanel" aria-labelledby="pills-produzione-tab" th:insert="~{fragments/produzione :: produzionePage}" tabindex="0"></div>
 				
-				<div class="tab-pane fade" id="pills-ambiente" role="tabpanel" aria-labelledby="pills-ambiente-tab" tabindex="0"></div>
+				<div class="tab-pane fade" id="pills-ambiente" role="tabpanel" aria-labelledby="pills-ambiente-tab" th:insert="~{fragments/ambiente :: ambientePage}" tabindex="0"></div>
 				
-				<div class="tab-pane fade" id="pills-terreno" role="tabpanel" aria-labelledby="pills-terreno-tab" tabindex="0"></div>
+				<div class="tab-pane fade" id="pills-terreno" role="tabpanel" aria-labelledby="pills-terreno-tab" th:insert="~{fragments/terreno :: terrenoPage}" tabindex="0"></div>
 				
 				<div class="tab-pane fade" id="pills-kpi" role="tabpanel" aria-labelledby="pills-kpi-tab" tabindex="0"> KPI </div>
 				
@@ -107,12 +107,18 @@
 			
 		</div>
 	</div>
+	
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script> 
 	<script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
 	
 	<script data-th-src="@{/js/chart/datachart.js}" defer></script>
+	<script data-th-src="@{/js/chart/coltura.js}"></script>
+	<script data-th-src="@{/js/chart/produzione.js}"></script>
+	<script data-th-src="@{/js/chart/ambiente.js}"></script>
+	<script data-th-src="@{/js/chart/terreno.js}"></script>
+	<script data-th-src="@{/js/chart/dashboard.js}"></script>
 </body>
 
 </html>

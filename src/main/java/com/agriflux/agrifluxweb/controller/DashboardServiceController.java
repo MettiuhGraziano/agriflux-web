@@ -57,7 +57,7 @@ public class DashboardServiceController implements DashboardService {
 	}
 
 	@Override
-	@GetMapping("/countColtureGroupByProdotto")
+	@GetMapping("/getColtureGroupByProdotto")
 	public Map<String, Long> countColtureGroupByProdotto() {
 		return dashboardServiceImpl.countColtureGroupByProdotto();
 	}

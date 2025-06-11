@@ -10,11 +10,11 @@
 	<div class="container-fluid py-4" th:fragment="colturaPage">
 		<div class="card mb-3">
 			<div class="card-header">
-				 Tabella Colture
+				Tabella Colture
 			</div>
 			<div class="card-body">
 				<div class="table-responsive" th:unless="${#lists.isEmpty(colture)}">
-		
+
 					<table id="coltura-datatable" class="table table-bordered table-hover table-sm">
 						<thead>
 							<tr>
@@ -25,7 +25,7 @@
 								<th class="text-center" th:text="#{coltura.dataRaccolto}"></th>
 							</tr>
 						</thead>
-		
+
 						<tbody class="table-group-divider">
 							<tr th:each="coltura : ${colture}">
 								<td class="text-center" th:text="${{coltura.idColtura}}"></td>
@@ -36,21 +36,21 @@
 							</tr>
 						</tbody>
 					</table>
-		
+
 				</div>
 			</div>
 		</div>
 
 		<div class="card mb-3">
 			<div class="card-body">
-				<div id="coltura-chart-container1" class="chart-container col-md-6 mb-3 mb-md-0 p-3 border rounded"
-					th:data-chart="${colturaChartData}">
+				<div id="coltura-chart-container1" class="chart-container col-md-6 mb-3 mb-md-0 p-3 border rounded">
 					<canvas id="colturaBarChart" height="200"></canvas>
 				</div>
-		
-				<div class="chart-container col-md-6 p-3 bg-white border rounded shadow-sm" th:data-chart="${colturaChartData}">
-					<!-- <canvas id="secondoBarChart" height="200"></canvas> -->
-				</div>
+
+				<!-- <div id="coltura-chart-container2" class="chart-container col-md-6 mb-3 mb-md-0 p-3 border rounded"
+					th:data-chart="${colturaPieChartData}">
+					<canvas id="colturaPieChart" height="200"></canvas>
+				</div> -->
 			</div>
 		</div>
 
@@ -63,6 +63,7 @@
 					</div> 
 		</div> -->
 	</div>
+	
 </body>
 
 </html>

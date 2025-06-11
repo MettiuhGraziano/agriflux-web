@@ -1,24 +1,26 @@
 package com.agriflux.agrifluxweb.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.agriflux.agrifluxshared.dto.ColturaDTO;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.agriflux.agrifluxweb.service.DataChartService;
 
 import jakarta.servlet.http.HttpSession;
+
 /**
  * Controller per la gestione, comunicazione e recupero dati tra pagine html
  */
 @Controller
-public class DashboardController {
+public class DashboardController implements DataChartService{
 	
 	private final DashboardServiceImpl dashboardServiceImpl;
 	
@@ -53,13 +55,6 @@ public class DashboardController {
 		List<ColturaDTO> listaColture = dashboardServiceImpl.findAllColturaSortById();
 		model.addAttribute("colture", listaColture);
 
-		try {
-			model.addAttribute("colturaChartData",
-					new ObjectMapper().writeValueAsString(dashboardServiceImpl.countColtureGroupByProdotto()));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-
 		return "fragments/coltura :: colturaPage";
 	}
 
@@ -87,4 +82,12 @@ public class DashboardController {
 		model.addAttribute("produzioni", dashboardServiceImpl.findAllProduzioneSortById());
 	    return "fragments/produzione :: produzionePage";
 	}
+
+	@Override
+	@GetMapping("/countColtureGroupByProdotto")
+	@ResponseBody
+	public Map<String, Long> countColtureGroupByProdotto() {
+		return dashboardServiceImpl.countColtureGroupByProdotto();
+	}
+	
 }

@@ -1,7 +1,6 @@
 package com.agriflux.agrifluxweb.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.agriflux.agrifluxshared.dto.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.ColturaDTO;
@@ -13,7 +12,7 @@ import com.agriflux.agrifluxshared.dto.TerrenoDTO;
  * Interfaccia che mostra il contratto che deve rispettare il FE per la visualizzazione dei dati
  * nelle datatables e nei chart
  */
-public interface DashboardService {
+public interface DashboardService extends DataChartService{
 	
 	/**
 	 * Metodo che torna la lista di Colture ordinate in modo ASCENDENTE tramite l'ID
@@ -50,11 +49,4 @@ public interface DashboardService {
 	 */
 	List<ProduzioneDTO> findAllProduzioneSortById();
 	
-	/**
-	 * Metodo che torna una mappa contenente in chiave il nome del prodotto coltivato e 
-	 * per valore il numero di volte in cui è stato coltivato
-	 * 
-	 * @return Mappa key: Prodotto; value: 
-	 */
-	Map<String, Long> countColtureGroupByProdotto();
 }
