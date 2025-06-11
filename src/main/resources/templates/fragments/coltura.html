@@ -53,27 +53,28 @@
 			</div>
 		</div>
 		
-		<div class="card mb-3">
-			<div class="card-body">
-				<div id="coltura-chart-container2" class="chart-container col-md-6 mb-3 mb-md-0 p-3 border rounded">
-					<canvas id="colturaBarChart"></canvas>
+		<div class="row">
+			<div class="col-sm-6 mb-3 mb-sm-0">
+				<div class="card">
+					<div class="card-body">
+						<div id="coltura-chart-container2" class="chart-container border rounded">
+							<canvas id="colturaBarChart"></canvas>
+						</div>
+					</div>
 				</div>
-
-				<!-- <div id="coltura-chart-container2" class="chart-container col-md-6 mb-3 mb-md-0 p-3 border rounded"
-					th:data-chart="${colturaPieChartData}">
-					<canvas id="colturaPieChart" height="200"></canvas>
-				</div> -->
+			</div>
+			
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<div id="coltura-chart-container3" class="chart-container border rounded">
+							<canvas id="colturaPieChart"></canvas>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-
-		<!-- <div class="card mb-3">
-			 <div class="custom-chart col-md-6 mb-3 mb-md-0" id="chart-container3" th:data-chart="${terzoChartData}">
-						<canvas id="terzoBarChart" height="200"></canvas>
-					</div>
-					<div class="custom-chart col-md-6" id="chart-container4" th:data-chart="${quartoChartData}">
-						<canvas id="quartoBarChart" height="200"></canvas>
-					</div> 
-		</div> -->
+		
 	</div>
 	
 </body>
