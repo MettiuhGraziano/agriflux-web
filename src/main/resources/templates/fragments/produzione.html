@@ -31,6 +31,7 @@
 								<th class="text-center" th:text="#{produzione.tempoMaturazione}"></th>
 								<th class="text-center" th:text="#{produzione.tempoRaccolta}"></th>
 								<th class="text-center" th:text="#{utils.idColtura}"></th>
+								<th class="text-center" th:text="#{utils.idMorfologia}"></th>
 							</tr>
 						</thead>
 
@@ -47,7 +48,8 @@
 								<td class="text-center" th:text="${{produzione.tempoTrapianto}}"></td>
 								<td class="text-center" th:text="${{produzione.tempoMaturazione}}"></td>
 								<td class="text-center" th:text="${{produzione.tempoRaccolta}}"></td>
-								<td class="text-center" th:text="${{produzione.fkIdColtura}}"></td>
+								<td class="text-center" th:text="${{produzione.idColtura}}"></td>
+								<td class="text-center" th:text="${{produzione.idMorfologia}}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -55,7 +57,58 @@
 				</div>
 			</div>
 		</div>
-
+		
+		<div class="card mb-3">
+			<div class="card-body">
+				<div class="card-header mb-3">
+					Variazione Produzione Annuale Raccolto
+				</div>
+		
+				<div class="row g-2 mb-3">
+					<div class="col-md-4 offset-md-3">
+						<div class="form">
+							<input id="prodottiDataList" class="form-control" list="datalistOptions"
+								placeholder="Scrivi il prodotto da cercare...">
+							<datalist id="datalistOptions">
+								<option selected disabled></option>
+							</datalist>
+						</div>
+					</div>
+		
+					<div class="col-md-2">
+						<button id="ricerca" type="submit" class="btn btn-primary mb-3" disabled>Ricerca</button>
+					</div>
+				</div>
+		
+				<div class="row g-2 mb-3 px-2">
+					<div class="col-sm-7">
+						<div class="card">
+							<div id="produzione-chart-container1" class="chart-container border rounded">
+								<canvas id="produzioneMultipleLineChart"></canvas>
+							</div>
+						</div>
+					</div>
+		
+					<div class="col-sm-5">
+						<div class="card">
+							<div id="produzione-chart-container2" class="chart-container border rounded">
+								<canvas id="produzioneRadarChart"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+			</div>
+		</div>
+		
+		<div class="card mb-3">
+			<div class="card-body">
+				<div class="card-header mb-3">
+					Variazione Annuale Tempi Semina/Raccolto
+				</div>
+			</div>
+		</div>
+		
 	</div>
 
 </body>

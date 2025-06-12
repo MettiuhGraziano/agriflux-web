@@ -43,6 +43,9 @@
 	
 		<div class="card mb-3">
 			<div class="card-body">
+				<div class="card-header mb-3">
+					Andamento Prezzo Prodotti Coltivati
+				</div>
 				<select id="productSelect" class="form-select card-header mb-3">
 					<option selected disabled>Seleziona un prodotto...</option>
 				</select>
@@ -53,20 +56,21 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col-sm-6 mb-3 mb-sm-0">
-				<div class="card">
-					<div class="card-body">
+		<div class="card mb-3">
+			<div class="card-header mb-3">
+				Storico Totale Numero Coltivazioni Per Singola Coltura
+			</div>
+			<div class="row g-2 mb-3 px-2">
+				<div class="col-sm-6">
+					<div class="card">
 						<div id="coltura-chart-container2" class="chart-container border rounded">
 							<canvas id="colturaBarChart"></canvas>
 						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="col-sm-6">
-				<div class="card">
-					<div class="card-body">
+		
+				<div class="col-sm-6">
+					<div class="card">
 						<div id="coltura-chart-container3" class="chart-container border rounded">
 							<canvas id="colturaPieChart"></canvas>
 						</div>

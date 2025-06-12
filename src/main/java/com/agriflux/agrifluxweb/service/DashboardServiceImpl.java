@@ -11,6 +11,7 @@ import com.agriflux.agrifluxshared.dto.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.ColturaGroupByProdottoDTO;
 import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
+import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.TerrenoDTO;
 
@@ -64,6 +65,11 @@ public class DashboardServiceImpl implements DashboardService {
 	@Override
 	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
 		return agrifluxServiceImpl.findPrezziAndDateColtura();
+	}
+
+	@Override
+	public Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione() {
+		return agrifluxServiceImpl.findColtureJoinProduzione();
 	}
 
 }

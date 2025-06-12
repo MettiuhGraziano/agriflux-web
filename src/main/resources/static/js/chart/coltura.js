@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					.then(data => {
 						const select = document.getElementById("productSelect");
 
-						// Popola la select con le chiavi della mappa
+						// Popola la Select con le chiavi della mappa
 						Object.keys(data).forEach(prodotto => {
 							const option = document.createElement("option");
 							option.value = prodotto;

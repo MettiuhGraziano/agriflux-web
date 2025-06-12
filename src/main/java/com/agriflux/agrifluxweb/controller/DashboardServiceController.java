@@ -10,6 +10,7 @@ import com.agriflux.agrifluxshared.dto.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
+import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.TerrenoDTO;
 import com.agriflux.agrifluxweb.service.DashboardService;
@@ -72,6 +73,12 @@ public class DashboardServiceController implements DashboardService {
 	@GetMapping("/getPrezziAndDateRaccoltoColtura")
 	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
 		return dashboardServiceImpl.findPrezziAndDateRaccoltoColtura();
+	}
+
+	@Override
+	@GetMapping("/getColtureJoinProduzione")
+	public Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione() {
+		return dashboardServiceImpl.findColtureJoinProduzione();
 	}
 	
 }
