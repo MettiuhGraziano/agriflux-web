@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.agriflux.agrifluxshared.dto.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
+import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 import com.agriflux.agrifluxweb.service.DataChartService;
 
@@ -104,6 +105,13 @@ public class DashboardController implements DataChartService{
 	@ResponseBody
 	public Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione() {
 		return dashboardServiceImpl.findColtureJoinProduzione();
+	}
+
+	@Override
+	@GetMapping("/findProduzioneTempiJoinColtura")
+	@ResponseBody
+	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneTempiJoinColtura() {
+		return dashboardServiceImpl.findProduzioneTempiJoinColtura();
 	}
 	
 }

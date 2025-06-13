@@ -19,6 +19,7 @@ import com.agriflux.agrifluxshared.dto.ColturaGroupByProdottoDTO;
 import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
+import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.TerrenoDTO;
 import com.agriflux.agrifluxshared.service.AgrifluxDataService;
@@ -157,6 +158,22 @@ public class AgrifluxClientServiceImpl implements AgrifluxDataService {
         
 		ResponseEntity<Map<String, Map<String, ProduzioneColturaDTO>>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
 				new ParameterizedTypeReference<Map<String, Map<String, ProduzioneColturaDTO>>>() {
+				});
+        
+		return response.getBody();
+	}
+
+	@Override
+	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneTempiJoinColtura() {
+		
+		String url = batchUrl + "/findProduzioneTempiJoinColtura";
+		
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+        
+		ResponseEntity<Map<String, List<ProduzioneColturaTempiDTO>>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<Map<String, List<ProduzioneColturaTempiDTO>>>() {
 				});
         
 		return response.getBody();

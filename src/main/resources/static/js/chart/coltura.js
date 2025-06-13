@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				pageLength: 5,
 				lengthMenu: [ [5, 10, 15], [5, 10, 15] ]
 			});
-		}, 50);
+		}, 100);
 	});
 });
 
@@ -141,7 +141,14 @@ document.addEventListener("DOMContentLoaded", function() {
 							const values = colturaData.prezzoKgList;
 
 							const ctx = document.getElementById("colturaLineChart").getContext("2d");
-
+							
+							var randomColor = function() {
+								var r = Math.floor(Math.random() * 255);
+								var g = Math.floor(Math.random() * 255);
+								var b = Math.floor(Math.random() * 255);
+								return "rgb(" + r + "," + g + "," + b + ")";
+							};
+							
 							// Se esiste già un grafico, viene distrutto prima di crearne uno nuovo
 							if (lineChartInstance) {
 								lineChartInstance.destroy();
@@ -155,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
 										label: `Prezzo ${prodottoSelezionato}`,
 										data: values,
 										fill: false,
-										borderColor: 'rgb(75, 192, 192)',
+										borderColor: randomColor,
 										tension: 0.2
 									}]
 								},
@@ -179,6 +186,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 			colturaLineChartDinamica();
 			
-		}, 50);
+		}, 100);
 	});
 });

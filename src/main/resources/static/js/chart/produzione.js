@@ -31,7 +31,7 @@ document.getElementById('pills-produzione-tab').addEventListener('click', functi
 				lengthMenu: [[5, 10, 15], [5, 10, 15]]
 			});
 		}
-	}, 50);
+	}, 100);
 });
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -133,8 +133,8 @@ document.addEventListener("DOMContentLoaded", function() {
 										datasets: [{
 											label: `Fatturato annuale ${prodottoSelezionato} (€)`,
 											data: fatturatoColtura,
-											borderColor: 'rgb(127, 255, 0)',
-											backgroundColor: 'rgb(127, 255, 0)',
+											borderColor: 'rgb(146, 197, 222)',
+											backgroundColor: 'rgb(146, 197, 222)',
 											borderWidth: 2
 										}]
 									}, options: {
@@ -148,6 +148,111 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 			produzioneMultipleChartLineRadar();
 			
-		}, 50)
+			//HORIZONTAL BARCHART
+			function produzioneBarChartHorizontal() {
+				let horizontalBarChartInstance;
+
+				fetch("/findProduzioneTempiJoinColtura")
+					.then(res => res.json())
+					.then(data => {
+
+						const annoRiferimentoSelect = document.getElementById("annoRiferimentoSelect");
+						
+						Object.keys(data).forEach(annoRiferimento => {
+							const option = document.createElement("option");
+							option.value = annoRiferimento;
+							option.textContent = annoRiferimento;
+							annoRiferimentoSelect.appendChild(option);
+						});
+						
+						annoRiferimentoSelect.addEventListener("change", function() {
+
+							const ctxBar = document.getElementById("produzioneBarChartHorizontal").getContext("2d");
+
+							// Se esiste già un grafico, viene distrutto prima di crearne uno nuovo
+							if (horizontalBarChartInstance) {
+								horizontalBarChartInstance.destroy();
+							}
+							
+							const annoSelectList = data[this.value];
+							const prodottiColtivati = [];
+							
+							const medieSeminaList = [];
+							const medieGerminazioneList = [];
+							const medieTrapiantoList = [];
+							const medieMaturazioneList = [];
+							const medieRaccoltaList = [];
+							
+							annoSelectList.forEach(dto => {
+								prodottiColtivati.push(dto.prodottoColtivato);
+								medieSeminaList.push(dto.listMedieTempi[0]);
+								medieGerminazioneList.push(dto.listMedieTempi[1]);
+								medieTrapiantoList.push(dto.listMedieTempi[2]);
+								medieMaturazioneList.push(dto.listMedieTempi[3]);
+								medieRaccoltaList.push(dto.listMedieTempi[4]);
+							});
+							
+							horizontalBarChartInstance = new Chart(ctxBar, {
+								type: 'bar',
+								data: {
+									labels: prodottiColtivati,
+									datasets: [{
+										label: 'Tempo Semina',
+										data: medieSeminaList,
+										borderColor: 'rgb(33, 102, 172)',
+										backgroundColor: 'rgb(33, 102, 172, 0.2)',
+										borderWidth: 2
+									}, {
+										label: 'Tempo Germinazione',
+										data: medieGerminazioneList,
+										borderColor: 'rgb(67, 147, 195)',
+										backgroundColor: 'rgb(67, 147, 195, 0.2)',
+										borderWidth: 2
+									}, {
+										label: 'Tempo Trapianto',
+										data: medieTrapiantoList,
+										borderColor: 'rgb(146, 197, 222)',
+										backgroundColor: 'rgb(146, 197, 222, 0.2)',
+										borderWidth: 2
+									}, {
+										label: 'Tempo Maturazione',
+										data: medieMaturazioneList,
+										borderColor: 'rgb(244, 165, 130)',
+										backgroundColor: 'rgb(244, 165, 130, 0.2)',
+										borderWidth: 2
+									}, {
+										label: 'Tempo Raccolta',
+										data: medieRaccoltaList,
+										borderColor: 'rgb(215, 48, 39)',
+										backgroundColor: 'rgb(215, 48, 39, 0.2)',
+										borderWidth: 2
+									}]
+								}, options: {
+									indexAxis: 'y',
+									responsive: true,
+									maintainAspectRatio: false,
+									scales: {
+										x: {
+											stacked: true,
+											beginAtZero: true,
+											title: { display: true, text: 'Giorni' }
+										},
+										y: {
+											stacked: true,
+											title: { display: true, text: 'Prodotti' }
+										}
+									}, plugins: {
+										legend: {
+											position: 'right',
+										}
+									}
+								}
+							});
+						});
+					})
+			}
+			produzioneBarChartHorizontal();
+			
+		}, 100);
 	})
 });

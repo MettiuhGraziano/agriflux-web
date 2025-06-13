@@ -1,9 +1,11 @@
 package com.agriflux.agrifluxweb.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
+import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
 
 /**
  * Interfaccia che mostra il contratto che deve rispettare il FE per la visualizzazione dei dati
@@ -35,4 +37,13 @@ public interface DataChartService {
 	 * @return Map -> key : Prodotto | value : Map -> key : Anno Riferimento | value : {@code ProduzioneColturaDTO}
 	 */
 	Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione();
+	
+	/**
+	 * Metodo che restituisce una mappa con in chiave l'anno di semina e come valore una lista di oggetti
+	 * contenenti il prodotto coltivato e la lista delle medie dei tempi dalla semina alla raccolta per il 
+	 * singolo prodotto
+	 * 
+	 * @return Map di ProduzioneColturaTempiDTO
+	 */
+	Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneTempiJoinColtura();
 }
