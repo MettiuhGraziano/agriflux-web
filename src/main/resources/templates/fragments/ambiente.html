@@ -8,44 +8,51 @@
 
 <body>
 	<div class="container-fluid py-4" th:fragment="ambientePage">
+		
 		<div class="card mb-3">
-			<div class="card-header">
-				Tabella Dati Ambientali
-			</div>
 			<div class="card-body">
-				<div class="table-responsive" th:unless="${#lists.isEmpty(ambienti)}">
-
-					<table id="ambiente-datatable" class="table table-bordered table-hover table-sm">
-						<thead>
-							<tr>
-								<th class="text-center" th:text="#{utils.id}"></th>
-								<th class="text-center" th:text="#{ambiente.temperaturaMedia}"></th>
-								<th class="text-center" th:text="#{ambiente.umiditaMedia}"></th>
-								<th class="text-center" th:text="#{ambiente.precipitazioni}"></th>
-								<th class="text-center" th:text="#{ambiente.irraggiamentoMedio}"></th>
-								<th class="text-center" th:text="#{ambiente.ombreggiamentoMedio}"></th>
-								<th class="text-center" th:text="#{ambiente.dataRilevazione}"></th>
-								<th class="text-center" th:text="#{utils.idColtura}"></th>
-							</tr>
-						</thead>
-
-						<tbody class="table-group-divider">
-							<tr th:each="ambiente : ${ambienti}">
-								<td class="text-center" th:text="${{ambiente.idAmbiente}}"></td>
-								<td class="text-center" th:text="${{ambiente.temperaturaMedia}}"></td>
-								<td class="text-center" th:text="${{ambiente.umiditaMedia}}"></td>
-								<td class="text-center" th:text="${{ambiente.precipitazioni}}"></td>
-								<td class="text-center" th:text="${{ambiente.irraggiamentoMedio}}"></td>
-								<td class="text-center" th:text="${{ambiente.ombreggiamentoMedio}}"></td>
-								<td class="text-center" th:text="${{ambiente.dataRilevazione}}"></td>
-								<td class="text-center" th:text="${{ambiente.idColtura}}"></td>
-							</tr>
-						</tbody>
-					</table>
-
+				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaAmbiente"
+					aria-expanded="false" aria-controls="collapseTabellaAmbiente">
+					Tabella Dati Ambientali
+				</div>
+				<div class="collapse" id="collapseTabellaAmbiente">
+					<div class="card-body">
+						<div class="table-responsive" th:unless="${#lists.isEmpty(ambienti)}">
+		
+							<table id="ambiente-datatable" class="table table-bordered table-hover table-sm">
+								<thead>
+									<tr>
+										<th class="text-center" th:text="#{utils.id}"></th>
+										<th class="text-center" th:text="#{ambiente.temperaturaMedia}"></th>
+										<th class="text-center" th:text="#{ambiente.umiditaMedia}"></th>
+										<th class="text-center" th:text="#{ambiente.precipitazioni}"></th>
+										<th class="text-center" th:text="#{ambiente.irraggiamentoMedio}"></th>
+										<th class="text-center" th:text="#{ambiente.ombreggiamentoMedio}"></th>
+										<th class="text-center" th:text="#{ambiente.dataRilevazione}"></th>
+										<th class="text-center" th:text="#{utils.idColtura}"></th>
+									</tr>
+								</thead>
+		
+								<tbody class="table-group-divider">
+									<tr th:each="ambiente : ${ambienti}">
+										<td class="text-center" th:text="${{ambiente.idAmbiente}}"></td>
+										<td class="text-center" th:text="${{ambiente.temperaturaMedia}}"></td>
+										<td class="text-center" th:text="${{ambiente.umiditaMedia}}"></td>
+										<td class="text-center" th:text="${{ambiente.precipitazioni}}"></td>
+										<td class="text-center" th:text="${{ambiente.irraggiamentoMedio}}"></td>
+										<td class="text-center" th:text="${{ambiente.ombreggiamentoMedio}}"></td>
+										<td class="text-center" th:text="${{ambiente.dataRilevazione}}"></td>
+										<td class="text-center" th:text="${{ambiente.idColtura}}"></td>
+									</tr>
+								</tbody>
+							</table>
+		
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+		
 	</div>
 
 </body>

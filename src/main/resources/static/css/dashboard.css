@@ -37,7 +37,8 @@
 }
 
 .tab-content {
-	background-color: rgb(156, 201, 39);
+	height: 1000px !important;
+	background-color: rgb(156, 201, 39)
 }
 
 .chart-container {

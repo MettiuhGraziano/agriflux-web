@@ -8,71 +8,85 @@
 
 <body>
 	<div class="container-fluid py-4" th:fragment="colturaPage">
+		
 		<div class="card mb-3">
-			<div class="card-header">
-				Tabella Colture
-			</div>
 			<div class="card-body">
-				<div class="table-responsive" th:unless="${#lists.isEmpty(colture)}">
-
-					<table id="coltura-datatable" class="table table-bordered table-hover table-sm">
-						<thead>
-							<tr>
-								<th class="text-center" th:text="#{utils.id}"></th>
-								<th class="text-center" th:text="#{coltura.prodotto}"></th>
-								<th class="text-center" th:text="#{coltura.prezzo}"></th>
-								<th class="text-center" th:text="#{coltura.dataSemina}"></th>
-								<th class="text-center" th:text="#{coltura.dataRaccolto}"></th>
-							</tr>
-						</thead>
-
-						<tbody class="table-group-divider">
-							<tr th:each="coltura : ${colture}">
-								<td class="text-center" th:text="${{coltura.idColtura}}"></td>
-								<td class="text-center" th:text="${{coltura.prodottoColtivato}}"></td>
-								<td class="text-center" th:text="${{coltura.prezzoKg}}"></td>
-								<td class="text-center" th:text="${{coltura.dataSemina}}"></td>
-								<td class="text-center" th:text="${{coltura.dataRaccolto}}"></td>
-							</tr>
-						</tbody>
-					</table>
-
+				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaColture"
+					aria-expanded="false" aria-controls="collapseTabellaColture">
+					Tabella Colture
+				</div>
+				<div class="collapse" id="collapseTabellaColture">
+					<div class="card-body">
+						<div class="table-responsive" th:unless="${#lists.isEmpty(colture)}">
+		
+							<table id="coltura-datatable" class="table table-bordered table-hover table-sm">
+								<thead>
+									<tr>
+										<th class="text-center" th:text="#{utils.id}"></th>
+										<th class="text-center" th:text="#{coltura.prodotto}"></th>
+										<th class="text-center" th:text="#{coltura.prezzo}"></th>
+										<th class="text-center" th:text="#{coltura.dataSemina}"></th>
+										<th class="text-center" th:text="#{coltura.dataRaccolto}"></th>
+									</tr>
+								</thead>
+		
+								<tbody class="table-group-divider">
+									<tr th:each="coltura : ${colture}">
+										<td class="text-center" th:text="${{coltura.idColtura}}"></td>
+										<td class="text-center" th:text="${{coltura.prodottoColtivato}}"></td>
+										<td class="text-center" th:text="${{coltura.prezzoKg}}"></td>
+										<td class="text-center" th:text="${{coltura.dataSemina}}"></td>
+										<td class="text-center" th:text="${{coltura.dataRaccolto}}"></td>
+									</tr>
+								</tbody>
+							</table>
+		
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	
 		<div class="card mb-3">
 			<div class="card-body">
-				<div class="card-header mb-3">
+				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColturaLineChart"
+					aria-expanded="false" aria-controls="collapseColturaLineChart">
 					Andamento Prezzo Prodotti Coltivati
 				</div>
-				<select id="productSelect" class="form-select card-header mb-3">
-					<option selected disabled>Seleziona un prodotto...</option>
-				</select>
+				<div class="collapse" id="collapseColturaLineChart">
+					<select id="productSelect" class="form-select card-header mb-3 mt-3">
+						<option selected disabled>Seleziona un prodotto...</option>
+					</select>
 		
-				<div id="coltura-chart-container1" class="chart-container border rounded">
-					<canvas id="colturaLineChart"></canvas>
+					<div id="coltura-chart-container1" class="chart-container border rounded">
+						<canvas id="colturaLineChart"></canvas>
+					</div>
 				</div>
 			</div>
 		</div>
 		
 		<div class="card mb-3">
-			<div class="card-header mb-3">
-				Storico Totale Numero Coltivazioni Per Singola Coltura
-			</div>
-			<div class="row g-2 mb-3 px-2">
-				<div class="col-sm-6">
-					<div class="card">
-						<div id="coltura-chart-container2" class="chart-container border rounded">
-							<canvas id="colturaBarChart"></canvas>
-						</div>
-					</div>
+			<div class="card-body">
+				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColturaCharts"
+					aria-expanded="false" aria-controls="collapseColturaCharts">
+					Storico Numero Coltivazioni
 				</div>
+				<div class="collapse" id="collapseColturaCharts">
+					<div class="row g-2 mb-3 px-2 mt-3">
+						<div class="col-sm-6">
+							<div class="card">
+								<div id="coltura-chart-container2" class="chart-container border rounded">
+									<canvas id="colturaBarChart"></canvas>
+								</div>
+							</div>
+						</div>
 		
-				<div class="col-sm-6">
-					<div class="card">
-						<div id="coltura-chart-container3" class="chart-container border rounded">
-							<canvas id="colturaPieChart"></canvas>
+						<div class="col-sm-6">
+							<div class="card">
+								<div id="coltura-chart-container3" class="chart-container border rounded">
+									<canvas id="colturaPieChart"></canvas>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -26,7 +26,9 @@ document.getElementById('pills-terreno-tab').addEventListener('click', function(
 						_: 'dati terreno',
 						1: 'terreno'
 					}
-				}
+				},
+				pageLength: 5,
+				lengthMenu: [[5, 10, 15], [5, 10, 15]]
 			});
 		}
 
@@ -43,5 +45,5 @@ document.getElementById('pills-terreno-tab').addEventListener('click', function(
 				lengthMenu: [[5, 10, 15], [5, 10, 15]]
 			});
 		}
-	}, 50);
+	}, 100);
 });
