@@ -6,6 +6,7 @@ import java.util.Map;
 import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
+import com.agriflux.agrifluxshared.dto.ProduzioneMorfologiaColturaDTO;
 
 /**
  * Interfaccia che mostra il contratto che deve rispettare il FE per la visualizzazione dei dati
@@ -46,4 +47,12 @@ public interface DataChartService {
 	 * @return Map di ProduzioneColturaTempiDTO
 	 */
 	Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneTempiJoinColtura();
+	
+	/**
+	 * Metodo che restituisce una mappa con in chiave l'id della produzione e come valore un oggetto
+	 * che contiene i dati relativi alla morfologia del terreno e l'id della coltura con la data di semina 
+	 * 
+	 * @return Map di ProduzioneMorfologiaColturaDTO
+	 */
+	Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia();
 }

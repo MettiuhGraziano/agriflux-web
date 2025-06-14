@@ -1,5 +1,6 @@
 package com.agriflux.agrifluxweb.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ import com.agriflux.agrifluxshared.dto.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
+import com.agriflux.agrifluxshared.dto.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.enumeratori.TipoProdottoEnum;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 import com.agriflux.agrifluxweb.service.DataChartService;
 
@@ -112,6 +115,25 @@ public class DashboardController implements DataChartService{
 	@ResponseBody
 	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneTempiJoinColtura() {
 		return dashboardServiceImpl.findProduzioneTempiJoinColtura();
+	}
+
+	@Override
+	@GetMapping("/findProduzioneJoinColturaMorfologia")
+	@ResponseBody
+	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
+		return dashboardServiceImpl.findProduzioneJoinColturaMorfologia();
+	}
+	
+	@GetMapping("/findListaProdottiColtivati")
+	@ResponseBody
+	public List<String> findListProdottiColture() {
+		
+		List<String> prodottiColtivati = new ArrayList<String>();
+		for (TipoProdottoEnum prodotto : TipoProdottoEnum.values()) {
+			prodottiColtivati.add(prodotto.name());
+		}
+		
+		return prodottiColtivati;
 	}
 	
 }

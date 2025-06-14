@@ -82,7 +82,7 @@
 						</div>
 		
 						<div class="col-md-2">
-							<button id="ricerca" type="submit" class="btn btn-primary mb-3" disabled>Ricerca</button>
+							<button id="ricerca" type="submit" class="btn btn-primary mb-3" disabled>Invio</button>
 						</div>
 					</div>
 		
@@ -104,6 +104,84 @@
 						</div>
 					</div>
 		
+				</div>
+			</div>
+		</div>
+		
+		<div class="card mb-3">
+			<div class="card-body">
+				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProduzioneCharts3"
+					aria-expanded="false" aria-controls="collapseProduzioneCharts3">
+					Distribuzione Produzioni e Relativa Morfologia Terreno
+				</div>
+				<div class="collapse mb-3" id="collapseProduzioneCharts3">
+					<div class="card-body">
+						<div class="form card-header row">
+							<div class="col-md-4">
+								<label for="startDate" class="form-label">Data Inizio</label>
+								<input type="date" class="form-control" id="startDate" name="startDate">
+							</div>
+							<div class="col-md-4">
+								<label for="endDate" class="form-label">Data Fine</label>
+								<input type="date" class="form-control" id="endDate" name="endDate">
+							</div>
+							<div class="col-md-2 offset-md-1 align-self-end">
+								<button id="invio" type="submit" class="btn btn-primary">Invio</button>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row g-2 mb-3 px-2">
+						<div class="col-sm-8">
+							<div id="produzione-chart-container4" class="card chart-container border rounded">
+								<canvas id="produzioneScatterChart"></canvas>
+							</div>
+						</div>
+					
+						<div class="col-sm-4">
+							<div class="card mb-3">
+								<div class="card-body">
+									<p class="card-text">Se si passa il mouse sopra uno dei pointer si visualizza: </p>
+									PRODOTTO COLTIVATO, DATA DI RACCOLTA, CODICE DI PRODUZIONE.
+									Se invece si clicca sul pointer specifico, appariranno i relativi dati morfologici nella tabella sottostante.
+									Se si desidare cambiare il range di date o togliere/immettere più prodotti dalla visualizzazione basta interagire
+									con il grafico.
+								</div>
+							</div>
+							
+							<div class="table-responsive rounded">
+								<table id="produzione-chart-datatable" class="table table-bordered table-hover table-sm">
+									<thead>
+										<tr>
+											<th class="text-center"></th>
+											<th class="text-center">#</th>
+										</tr>
+									</thead>
+						
+									<tbody class="table-group-divider">
+										<tr>
+											<td class="text-center" th:text="#{coltura.prodotto}"></td>
+										</tr>
+										<tr>
+											<td class="text-center" th:text="#{utils.idMorfologia}"></td>
+										</tr>
+										<tr>
+											<td class="text-center" th:text="#{morfologia.estensioneTerreno}"></td>
+										</tr>
+										<tr>
+											<td class="text-center" th:text="#{morfologia.pendenza}"></td>
+										</tr>
+										<tr>
+											<td class="text-center" th:text="#{morfologia.esposizione}"></td>
+										</tr>
+										<tr>
+											<td class="text-center" th:text="#{morfologia.litologia}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -34,6 +34,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 });
 
+function generaColoreRandom() {
+	var r = Math.floor(Math.random() * 255);
+	var g = Math.floor(Math.random() * 255);
+	var b = Math.floor(Math.random() * 255);
+	return "rgb(" + r + "," + g + "," + b + ")";
+}
+
 document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('pills-colture-tab').addEventListener("click", function() {
 		setTimeout(() => {
@@ -79,17 +86,11 @@ document.addEventListener("DOMContentLoaded", function() {
 					.then(response => response.json())
 					.then(data => {
 						
+						const colorArray = [];
 						//GENERO COLORI RANDOM X OGNI COLTURA
-						var colorArray = [];
-						var randomColors = function() {
-							var r = Math.floor(Math.random() * 255);
-							var g = Math.floor(Math.random() * 255);
-							var b = Math.floor(Math.random() * 255);
-							return "rgb(" + r + "," + g + "," + b + ")";
-						};
-						for(var x in data) {
-							colorArray.push(randomColors());
-						}
+						Object.keys(data).forEach(prodotto => {
+							colorArray.push(generaColoreRandom());
+						});
 								 
 						new Chart(ctx, {
 							type: 'pie',
@@ -142,13 +143,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 							const ctx = document.getElementById("colturaLineChart").getContext("2d");
 							
-							var randomColor = function() {
-								var r = Math.floor(Math.random() * 255);
-								var g = Math.floor(Math.random() * 255);
-								var b = Math.floor(Math.random() * 255);
-								return "rgb(" + r + "," + g + "," + b + ")";
-							};
-							
 							// Se esiste già un grafico, viene distrutto prima di crearne uno nuovo
 							if (lineChartInstance) {
 								lineChartInstance.destroy();
@@ -162,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
 										label: `Prezzo ${prodottoSelezionato}`,
 										data: values,
 										fill: false,
-										borderColor: randomColor,
+										borderColor: generaColoreRandom(),
 										tension: 0.2
 									}]
 								},
