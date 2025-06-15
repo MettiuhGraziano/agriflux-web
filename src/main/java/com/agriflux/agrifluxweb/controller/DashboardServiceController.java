@@ -15,6 +15,7 @@ import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneMorfologiaColturaDTO;
 import com.agriflux.agrifluxshared.dto.TerrenoDTO;
+import com.agriflux.agrifluxshared.dto.TerrenoMorfologiaColturaDTO;
 import com.agriflux.agrifluxweb.service.DashboardService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
@@ -93,6 +94,12 @@ public class DashboardServiceController implements DashboardService {
 	@GetMapping("/getProduzioneJoinColturaMorfologia")
 	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
 		return dashboardServiceImpl.findProduzioneJoinColturaMorfologia();
+	}
+
+	@Override
+	@GetMapping("/getTerrenoJoinColturaMorfologia")
+	public Map<Long, List<TerrenoMorfologiaColturaDTO>> findTerrenoJoinColturaMorfologia() {
+		return dashboardServiceImpl.findTerrenoJoinColturaMorfologia();
 	}
 	
 }

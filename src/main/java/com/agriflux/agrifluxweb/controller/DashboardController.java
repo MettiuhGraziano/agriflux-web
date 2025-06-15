@@ -16,6 +16,7 @@ import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.TerrenoMorfologiaColturaDTO;
 import com.agriflux.agrifluxshared.enumeratori.TipoProdottoEnum;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 import com.agriflux.agrifluxweb.service.DataChartService;
@@ -134,6 +135,13 @@ public class DashboardController implements DataChartService{
 		}
 		
 		return prodottiColtivati;
+	}
+
+	@Override
+	@GetMapping("/findTerrenoJoinColturaMorfologia")
+	@ResponseBody
+	public Map<Long, List<TerrenoMorfologiaColturaDTO>> findTerrenoJoinColturaMorfologia() {
+		return dashboardServiceImpl.findTerrenoJoinColturaMorfologia();
 	}
 	
 }

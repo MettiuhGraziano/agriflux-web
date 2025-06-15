@@ -16,6 +16,7 @@ import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.ProduzioneMorfologiaColturaDTO;
 import com.agriflux.agrifluxshared.dto.TerrenoDTO;
+import com.agriflux.agrifluxshared.dto.TerrenoMorfologiaColturaDTO;
 
 @Service
 public class DashboardServiceImpl implements DashboardService {
@@ -82,6 +83,11 @@ public class DashboardServiceImpl implements DashboardService {
 	@Override
 	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
 		return agrifluxServiceImpl.findProduzioneJoinColturaMorfologia();
+	}
+
+	@Override
+	public Map<Long, List<TerrenoMorfologiaColturaDTO>> findTerrenoJoinColturaMorfologia() {
+		return agrifluxServiceImpl.findTerrenoJoinColturaMorfologia();
 	}
 
 }

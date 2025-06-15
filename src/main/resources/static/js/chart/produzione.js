@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							//Mappa da utilizzare nel grafico per mostrare i valori
 							const mappaAnnoRiferimento = data[prodottoSelezionato];
 
-							const pulsanteRicerca = document.getElementById("ricerca");
+							const pulsanteRicerca = document.getElementById("ricercaAnno");
 
 							//Se annoSelect è stato selezionato, sblocco il pulsante di visualizzazione del grafico
 							pulsanteRicerca.removeAttribute("disabled");

@@ -10,7 +10,7 @@
 	<!-- DataTables -->
 	<link href="https://cdn.datatables.net/2.3.1/css/dataTables.bootstrap5.css" rel="stylesheet">
 	<!-- Chart.js -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 	<!-- Chart.js per la gestione delle Date -->
 	<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
@@ -74,12 +74,6 @@
 						</div>
 
 						<div class="nav-item mx-auto" role="presentation">
-							<button id="pills-reporting-tab" class="nav-link btn custom-btn-sidebar w-100"
-								data-bs-toggle="pill" data-bs-target="#pills-reporting" type="button" role="tab"
-								aria-controls="pills-reporting" aria-selected="false" data-th-text="Reporting"></button>
-						</div>
-
-						<div class="nav-item mx-auto" role="presentation">
 							<a id="pills-logout-tab" class="nav-link custom-btn-sidebar w-100" data-th-href="@{/logout}"
 								role="tab" data-th-text="Logout"></a>
 						</div>
@@ -112,9 +106,6 @@
 
 				<div class="tab-pane fade" id="pills-kpi" role="tabpanel" aria-labelledby="pills-kpi-tab" tabindex="0">
 					KPI </div>
-
-				<div class="tab-pane fade" id="pills-reporting" role="tabpanel" aria-labelledby="pills-reporting-tab"
-					tabindex="0"> REPORTING </div>
 			</div>
 
 		</div>

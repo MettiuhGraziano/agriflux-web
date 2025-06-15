@@ -1,5 +1,5 @@
 .nav-bg-green-custom {
-	background-color: rgb(0, 145, 0);
+	background-color: #1f3b2c;
 }
 
 .sidebar-custom .nav-link {
@@ -38,11 +38,11 @@
 
 .tab-content {
 	height: 1000px !important;
-	background-color: rgb(156, 201, 39)
+	background-color: rgb(187, 240, 162)
 }
 
 .chart-container {
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

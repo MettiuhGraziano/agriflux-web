@@ -8,7 +8,45 @@
 
 <body>
 	<div class="container-fluid py-4" th:fragment="terrenoPage">
-		
+	
+		<div class="card mb-3">
+			<div class="card-body">
+				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaMorfologia"
+					aria-expanded="false" aria-controls="collapseTabellaMorfologia">
+					Tabella Dati Morfologici
+				</div>
+				<div class="collapse" id="collapseTabellaMorfologia">
+					<div class="card-body">
+						<div class="table-responsive" th:unless="${#lists.isEmpty(morfologie)}">
+	
+							<table id="morfologia-datatable" class="table table-bordered table-hover table-sm">
+								<thead>
+									<tr>
+										<th class="text-center" th:text="#{utils.id}"></th>
+										<th class="text-center" th:text="#{morfologia.estensioneTerreno}"></th>
+										<th class="text-center" th:text="#{morfologia.pendenza}"></th>
+										<th class="text-center" th:text="#{morfologia.esposizione}"></th>
+										<th class="text-center" th:text="#{morfologia.litologia}"></th>
+									</tr>
+								</thead>
+	
+								<tbody class="table-group-divider">
+									<tr th:each="morfologia : ${morfologie}">
+										<td class="text-center" th:text="${{morfologia.idMorfologia}}"></td>
+										<td class="text-center" th:text="${{morfologia.estensioneTerreno}}"></td>
+										<td class="text-center" th:text="${{morfologia.pendenza}}"></td>
+										<td class="text-center" th:text="${{morfologia.esposizione}}"></td>
+										<td class="text-center" th:text="${{morfologia.litologia}}"></td>
+									</tr>
+								</tbody>
+							</table>
+	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		  
 		<div class="card mb-3">
 			<div class="card-body">
 				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaTerreno"
@@ -18,7 +56,7 @@
 				<div class="collapse" id="collapseTabellaTerreno">
 					<div class="card-body">
 						<div class="table-responsive" th:unless="${#lists.isEmpty(terreni)}">
-		
+	
 							<table id="terreno-datatable" class="table table-bordered table-hover table-sm">
 								<thead>
 									<tr>
@@ -34,7 +72,7 @@
 										<th class="text-center" th:text="#{utils.idMorfologia}"></th>
 									</tr>
 								</thead>
-		
+	
 								<tbody class="table-group-divider">
 									<tr th:each="terreno : ${terreni}">
 										<td class="text-center" th:text="${{terreno.idRilevazioneTerreno}}"></td>
@@ -50,7 +88,7 @@
 									</tr>
 								</tbody>
 							</table>
-		
+	
 						</div>
 					</div>
 				</div>
@@ -59,42 +97,33 @@
 		
 		<div class="card mb-3">
 			<div class="card-body">
-				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaMorfologia"
-					aria-expanded="false" aria-controls="collapseTabellaMorfologia">
-					Tabella Dati Morfologici
+				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBarChartTerreno"
+					aria-expanded="false" aria-controls="collapseBarChartTerreno">
+					Rotazione delle Colture
 				</div>
-				<div class="collapse" id="collapseTabellaMorfologia">
-					<div class="card-body">
-						<div class="table-responsive" th:unless="${#lists.isEmpty(morfologie)}">
-		
-							<table id="morfologia-datatable" class="table table-bordered table-hover table-sm">
-								<thead>
-									<tr>
-										<th class="text-center" th:text="#{utils.id}"></th>
-										<th class="text-center" th:text="#{morfologia.estensioneTerreno}"></th>
-										<th class="text-center" th:text="#{morfologia.pendenza}"></th>
-										<th class="text-center" th:text="#{morfologia.esposizione}"></th>
-										<th class="text-center" th:text="#{morfologia.litologia}"></th>
-									</tr>
-								</thead>
-		
-								<tbody class="table-group-divider">
-									<tr th:each="morfologia : ${morfologie}">
-										<td class="text-center" th:text="${{morfologia.idMorfologia}}"></td>
-										<td class="text-center" th:text="${{morfologia.estensioneTerreno}}"></td>
-										<td class="text-center" th:text="${{morfologia.pendenza}}"></td>
-										<td class="text-center" th:text="${{morfologia.esposizione}}"></td>
-										<td class="text-center" th:text="${{morfologia.litologia}}"></td>
-									</tr>
-								</tbody>
-							</table>
-		
+				<div class="collapse" id="collapseBarChartTerreno">
+					<div class="row g-2 mb-3 mt-3">
+						<div class="col-md-4 offset-md-3">
+							<div class="form">
+								<input id="terreniDataList" class="form-control" list="terreniDatalistOptions"
+									placeholder="Scrivi il terreno da cercare...">
+								<datalist id="terreniDatalistOptions">
+									<option selected disabled></option>
+								</datalist>
+							</div>
 						</div>
+		
+						<div class="col-md-2">
+							<button id="ricercaTerreno" type="submit" class="btn btn-primary mb-3" disabled>Invio</button>
+						</div>
+					</div>
+		
+					<div id="terreno-chart-container1" class="chart-container border rounded">
+						<canvas id="terrenoHorizontalBarChart"></canvas>
 					</div>
 				</div>
 			</div>
 		</div>
-		
 	</div>
 
 </body>
