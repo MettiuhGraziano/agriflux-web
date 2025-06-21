@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
+import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
-import com.agriflux.agrifluxweb.service.DashboardService;
-import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
+import com.agriflux.agrifluxweb.service.dashboard.DashboardService;
+import com.agriflux.agrifluxweb.service.dashboard.DashboardServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,6 +33,15 @@ public class DashboardServiceController implements DashboardService {
 	
 	public DashboardServiceController(DashboardServiceImpl dashboardServiceImpl) {
 		this.dashboardServiceImpl = dashboardServiceImpl;
+	}
+	
+	//PARTICELLA
+	
+	@Override
+	@GetMapping("/particelleApi")
+	@Operation(summary = "Recupera tutte le Particelle", description = "Restituisce una lista di Particelle")
+	public List<DatiParticellaDTO> findAllParticellaSortById() {
+		return dashboardServiceImpl.findAllParticellaSortById();
 	}
 	
 	//COLTURA
@@ -63,17 +73,20 @@ public class DashboardServiceController implements DashboardService {
 	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
 		return dashboardServiceImpl.findPrezziAndDateRaccoltoColtura();
 	}
+	
+	//RILEVAZIONE TERRENO
+	
+	@Override
+	@GetMapping("/rilevazioniTerrenoApi")
+	@Operation(summary = "Recupera tutte le Rilevazioni effettuate sulle Particelle", description = "Restituisce una lista di Rilevazioni del Terreno")
+	public List<TerrenoDTO> findAllRilevazioneTerrenoSortById() {
+		return dashboardServiceImpl.findAllRilevazioneTerrenoSortById();
+	}
 
 	@Override
 	@GetMapping("/datiAmbientali")
 	public List<AmbienteDTO> findAllAmbienteSortById() {
 		return dashboardServiceImpl.findAllAmbienteSortById();
-	}
-
-	@Override
-	@GetMapping("/datiTerreni")
-	public List<TerrenoDTO> findAllTerrenoSortById() {
-		return dashboardServiceImpl.findAllTerrenoSortById();
 	}
 
 	@Override

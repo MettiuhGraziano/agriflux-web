@@ -16,8 +16,8 @@ import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
-import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
-import com.agriflux.agrifluxweb.service.DataChartService;
+import com.agriflux.agrifluxweb.service.dashboard.DashboardServiceImpl;
+import com.agriflux.agrifluxweb.service.dashboard.DataChartService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -55,6 +55,8 @@ public class DashboardController implements DataChartService{
 	    return "fragments/dashboard :: dashboardPage";
 	}
 	
+	//COLTURA
+	
 	@GetMapping("/coltura")
 	public String getColtureDataModel(Model model) {
 		List<ColturaDTO> listaColture = dashboardServiceImpl.findAllColturaSortById();
@@ -83,7 +85,17 @@ public class DashboardController implements DataChartService{
 	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
 		return dashboardServiceImpl.findPrezziAndDateRaccoltoColtura();
 	}
+	
+	//PARTICELLA
 
+	@GetMapping("/terreno")
+	public String getParticelleDataModel(Model model) {
+		model.addAttribute("particelle", dashboardServiceImpl.findAllParticellaSortById());
+		model.addAttribute("rilevazioniTerreno", dashboardServiceImpl.findAllRilevazioneTerrenoSortById());
+	    return "fragments/terreno :: terrenoPage";
+	}
+	
+	//PRODUZIONE
 
 	@GetMapping("/ambiente")
 	public String getAmbientiDataModel(Model model) {

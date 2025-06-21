@@ -18,7 +18,6 @@ import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
-import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
 import com.agriflux.agrifluxshared.service.AgrifluxDataService;
 
@@ -44,22 +43,6 @@ public class AgrifluxClientServiceImpl implements AgrifluxDataService {
         
 		ResponseEntity<List<AmbienteDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
 				new ParameterizedTypeReference<List<AmbienteDTO>>() {
-				});
-        
-		return response.getBody();
-	}
-
-	@Override
-	public List<TerrenoDTO> findAllTerrenoSortById() {
-		
-		String url = batchUrl + "/datiTerreni";
-		
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
-        
-		ResponseEntity<List<TerrenoDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
-				new ParameterizedTypeReference<List<TerrenoDTO>>() {
 				});
         
 		return response.getBody();

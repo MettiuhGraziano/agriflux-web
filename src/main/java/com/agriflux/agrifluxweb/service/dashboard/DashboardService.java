@@ -1,9 +1,10 @@
-package com.agriflux.agrifluxweb.service;
+package com.agriflux.agrifluxweb.service.dashboard;
 
 import java.util.List;
 
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
+import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
 
@@ -20,7 +21,19 @@ public interface DashboardService extends DataChartService{
 	 */
 	List<ColturaDTO> findAllColturaSortById();
 	
+	/**
+	 * Metodo che restituisce la lista di Particelle ordinate in modo ASCENDENTE tramite l'ID
+	 * 
+	 * @return List di DatiParticellaDTO
+	 */
+	List<DatiParticellaDTO> findAllParticellaSortById();
 	
+	/**
+	 * Metodo che torna la lista di Terreni ordinati in modo ASCENDENTE tramite l'ID
+	 * 
+	 * @return List di TerrenoDTO
+	 */
+	List<TerrenoDTO> findAllRilevazioneTerrenoSortById();
 	
 	
 	
@@ -32,12 +45,7 @@ public interface DashboardService extends DataChartService{
 	 */
 	List<AmbienteDTO> findAllAmbienteSortById();
 	
-	/**
-	 * Metodo che torna la lista di Terreni ordinati in modo ASCENDENTE tramite l'ID
-	 * 
-	 * @return List di TerrenoDTO
-	 */
-	List<TerrenoDTO> findAllTerrenoSortById();
+	
 	
 	/**
 	 * Metodo che torna la lista di dati di Produzione ordinati in modo ASCENDENTE tramite l'ID

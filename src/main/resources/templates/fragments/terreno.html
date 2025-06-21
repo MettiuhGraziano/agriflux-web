@@ -11,32 +11,43 @@
 	
 		<div class="card mb-3">
 			<div class="card-body">
-				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaMorfologia"
-					aria-expanded="false" aria-controls="collapseTabellaMorfologia">
-					Tabella Dati Morfologici
+				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaParticella"
+					aria-expanded="false" aria-controls="collapseTabellaParticella">
+					Tabella Dati Particelle
 				</div>
-				<div class="collapse" id="collapseTabellaMorfologia">
+				<div class="collapse" id="collapseTabellaParticella">
 					<div class="card-body">
-						<div class="table-responsive" th:unless="${#lists.isEmpty(morfologie)}">
+						<div class="table-responsive" th:unless="${#lists.isEmpty(particelle)}">
 	
-							<table id="morfologia-datatable" class="table table-bordered table-hover table-sm">
+							<table id="particella-datatable" class="table table-bordered table-hover table-sm">
 								<thead>
 									<tr>
 										<th class="text-center" th:text="#{utils.id}"></th>
-										<th class="text-center" th:text="#{morfologia.estensioneTerreno}"></th>
-										<th class="text-center" th:text="#{morfologia.pendenza}"></th>
-										<th class="text-center" th:text="#{morfologia.esposizione}"></th>
-										<th class="text-center" th:text="#{morfologia.litologia}"></th>
+										<th class="text-center" th:text="#{particella.costo}"></th>
+										<th class="text-center" th:text="#{particella.estensione}"></th>
+										<th class="text-center" th:text="#{particella.pendenza}"></th>
+										<th class="text-center" th:text="#{particella.tipologia}"></th>
+										<th class="text-center" th:text="#{particella.annoInstallazione}"></th>
+										<th class="text-center" th:text="#{particella.esposizione}"></th>
+										<th class="text-center" th:text="#{particella.comune}"></th>
+										<th class="text-center" th:text="#{particella.foglio}"></th>
+										<th class="text-center" th:text="#{particella.qualita}"></th>
+										
 									</tr>
 								</thead>
 	
 								<tbody class="table-group-divider">
-									<tr th:each="morfologia : ${morfologie}">
-										<td class="text-center" th:text="${{morfologia.idMorfologia}}"></td>
-										<td class="text-center" th:text="${{morfologia.estensioneTerreno}}"></td>
-										<td class="text-center" th:text="${{morfologia.pendenza}}"></td>
-										<td class="text-center" th:text="${{morfologia.esposizione}}"></td>
-										<td class="text-center" th:text="${{morfologia.litologia}}"></td>
+									<tr th:each="particella : ${particelle}">
+										<td class="text-center" th:text="${{particella.idParticella}}"></td>
+										<td class="text-center" th:text="${{particella.costo}}"></td>
+										<td class="text-center" th:text="${{particella.estensione}}"></td>
+										<td class="text-center" th:text="${{particella.pendenza}}"></td>
+										<td class="text-center" th:text="${{particella.tipologiaLitologia}}"></td>
+										<td class="text-center" th:text="${{particella.annoInstallazione}}"></td>
+										<td class="text-center" th:text="${{particella.esposizione}}"></td>
+										<td class="text-center" th:text="${{particella.comune}}"></td>
+										<td class="text-center" th:text="${{particella.foglio}}"></td>
+										<td class="text-center" th:text="${{particella.qualita}}"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -49,15 +60,15 @@
 		  
 		<div class="card mb-3">
 			<div class="card-body">
-				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaTerreno"
-					aria-expanded="false" aria-controls="collapseTabellaTerreno">
-					Tabella Dati Terreno
+				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaRilevazioneTerreno"
+					aria-expanded="false" aria-controls="collapseTabellaRilevazioneTerreno">
+					Tabella Dati Rilevazioni Morfologiche
 				</div>
-				<div class="collapse" id="collapseTabellaTerreno">
+				<div class="collapse" id="collapseTabellaRilevazioneTerreno">
 					<div class="card-body">
-						<div class="table-responsive" th:unless="${#lists.isEmpty(terreni)}">
+						<div class="table-responsive" th:unless="${#lists.isEmpty(rilevazioniTerreno)}">
 	
-							<table id="terreno-datatable" class="table table-bordered table-hover table-sm">
+							<table id="rilevazione-datatable" class="table table-bordered table-hover table-sm">
 								<thead>
 									<tr>
 										<th class="text-center" th:text="#{utils.id}"></th>
@@ -66,25 +77,21 @@
 										<th class="text-center" th:text="#{terreno.capacitaAssorbente}"></th>
 										<th class="text-center" th:text="#{terreno.porosita}"></th>
 										<th class="text-center" th:text="#{terreno.temperatura}"></th>
-										<th class="text-center" th:text="#{terreno.disponibilitaIrrigua}"></th>
 										<th class="text-center" th:text="#{terreno.dataRilevazione}"></th>
-										<th class="text-center" th:text="#{utils.idColtura}"></th>
-										<th class="text-center" th:text="#{utils.idMorfologia}"></th>
+										<th class="text-center" th:text="#{utils.idParticellaParticella}"></th>
 									</tr>
 								</thead>
 	
 								<tbody class="table-group-divider">
-									<tr th:each="terreno : ${terreni}">
+									<tr th:each="terreno : ${rilevazioniTerreno}">
 										<td class="text-center" th:text="${{terreno.idRilevazioneTerreno}}"></td>
 										<td class="text-center" th:text="${{terreno.phSuolo}}"></td>
 										<td class="text-center" th:text="${{terreno.umidita}}"></td>
 										<td class="text-center" th:text="${{terreno.capacitaAssorbente}}"></td>
 										<td class="text-center" th:text="${{terreno.porosita}}"></td>
 										<td class="text-center" th:text="${{terreno.temperatura}}"></td>
-										<td class="text-center" th:text="${{terreno.disponibilitaIrrigua}}"></td>
 										<td class="text-center" th:text="${{terreno.dataRilevazione}}"></td>
-										<td class="text-center" th:text="${{terreno.idColtura}}"></td>
-										<td class="text-center" th:text="${{terreno.idMorfologia}}"></td>
+										<td class="text-center" th:text="${{terreno.idParticellaParticella}}"></td>
 									</tr>
 								</tbody>
 							</table>

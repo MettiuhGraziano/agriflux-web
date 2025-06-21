@@ -53,17 +53,15 @@
 								<button id="pills-colture-tab" class="btn custom-btn-sidebar w-100" type="button"
 									data-bs-toggle="pill" data-bs-target="#pills-colture" role="tab"
 									aria-controls="pills-colture" aria-selected="false" data-th-text="Colture"></button>
-								<button id="pills-produzione-tab" class="btn custom-btn-sidebar w-100" type="button"
-									data-bs-toggle="pill" data-bs-target="#pills-produzione" role="tab"
-									aria-controls="pills-produzione" aria-selected="false"
+								<button id="pills-produzione-tab" class="btn custom-btn-sidebar w-100" type="button" data-bs-toggle="pill"
+									data-bs-target="#pills-produzione" role="tab" aria-controls="pills-produzione" aria-selected="false"
 									data-th-text="Produzione"></button>
-								<button id="pills-ambiente-tab" class="btn custom-btn-sidebar w-100" type="button"
-									data-bs-toggle="pill" data-bs-target="#pills-ambiente" role="tab"
-									aria-controls="pills-ambiente" aria-selected="false"
-									data-th-text="Ambiente"></button>
-								<button id="pills-terreno-tab" class="btn custom-btn-sidebar w-100" type="button"
-									data-bs-toggle="pill" data-bs-target="#pills-terreno" role="tab"
-									aria-controls="pills-terreno" aria-selected="false" data-th-text="Terreno"></button>
+								<button id="pills-terreno-tab" class="btn custom-btn-sidebar w-100" type="button" data-bs-toggle="pill"
+									data-bs-target="#pills-terreno" role="tab" aria-controls="pills-terreno" aria-selected="false"
+									data-th-text="Terreno"></button>
+								<button id="pills-ambiente-tab" class="btn custom-btn-sidebar w-100" type="button" data-bs-toggle="pill"
+									data-bs-target="#pills-ambiente" role="tab" aria-controls="pills-ambiente" aria-selected="false"
+									data-th-text="Ambiente"></button>	
 							</div>
 						</div>
 
@@ -98,11 +96,11 @@
 				<div class="tab-pane fade" id="pills-produzione" role="tabpanel" aria-labelledby="pills-produzione-tab"
 					th:insert="~{fragments/produzione :: produzionePage}" tabindex="0"></div>
 
-				<div class="tab-pane fade" id="pills-ambiente" role="tabpanel" aria-labelledby="pills-ambiente-tab"
-					th:insert="~{fragments/ambiente :: ambientePage}" tabindex="0"></div>
-
 				<div class="tab-pane fade" id="pills-terreno" role="tabpanel" aria-labelledby="pills-terreno-tab"
 					th:insert="~{fragments/terreno :: terrenoPage}" tabindex="0"></div>
+										
+				<div class="tab-pane fade" id="pills-ambiente" role="tabpanel" aria-labelledby="pills-ambiente-tab"
+					th:insert="~{fragments/ambiente :: ambientePage}" tabindex="0"></div>
 
 				<div class="tab-pane fade" id="pills-kpi" role="tabpanel" aria-labelledby="pills-kpi-tab" tabindex="0">
 					KPI </div>
@@ -118,8 +116,8 @@
 
 	<script data-th-src="@{/js/chart/coltura.js}"></script>
 	<script data-th-src="@{/js/chart/produzione.js}"></script>
-	<script data-th-src="@{/js/chart/ambiente.js}"></script>
 	<script data-th-src="@{/js/chart/terreno.js}"></script>
+	<script data-th-src="@{/js/chart/ambiente.js}"></script>
 	<script data-th-src="@{/js/chart/dashboard.js}"></script>
 </body>
 

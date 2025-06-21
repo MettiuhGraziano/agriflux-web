@@ -1,4 +1,4 @@
-package com.agriflux.agrifluxweb.service;
+package com.agriflux.agrifluxweb.service.dashboard;
 
 import java.util.List;
 import java.util.Map;
