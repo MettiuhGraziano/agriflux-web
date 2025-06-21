@@ -7,7 +7,7 @@ import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
-import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 
 /**
  * Interfaccia che mostra il contratto che deve rispettare il FE per la visualizzazione dei dati
@@ -39,6 +39,14 @@ public interface DataChartService {
 	 */
 	Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura();
 	
+	/**
+	 * Metodo che restituisce una mappa con in chiave l'id della particella e come valore una lista di oggetti
+	 * contenenti l'id della coltura associata, il prodotto coltivato e la lista di date rilevazioni associate
+	 * 
+	 * @return Map di ColturaListPrezzoDataRaccoltoDTO
+	 */
+	Map<Long, List<ParticellaColturaTerrenoDTO>> findParticellaJoinColturaTerreno();
+	
 	
 	
 	/**
@@ -67,11 +75,4 @@ public interface DataChartService {
 	 */
 	Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia();
 	
-	/**
-	 * Metodo che restituisce una mappa con in chiave l'id della rilevazione morfologica e come valore 
-	 * una lista di oggetti contenenti il prodotto coltivato e la lista di date rilevazione del terreno 
-	 * 
-	 * @return Map di TerrenoMorfologiaColturaDTO
-	 */
-	Map<Long, List<TerrenoMorfologiaColturaDTO>> findTerrenoJoinColturaMorfologia();
 }

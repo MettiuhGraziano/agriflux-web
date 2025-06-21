@@ -15,7 +15,7 @@ import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
-import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxweb.service.dashboard.DashboardServiceImpl;
 import com.agriflux.agrifluxweb.service.dashboard.DataChartService;
 
@@ -95,26 +95,14 @@ public class DashboardController implements DataChartService{
 	    return "fragments/terreno :: terrenoPage";
 	}
 	
-	//PRODUZIONE
-
-	@GetMapping("/ambiente")
-	public String getAmbientiDataModel(Model model) {
-		model.addAttribute("ambienti", dashboardServiceImpl.findAllAmbienteSortById());
-	    return "fragments/ambiente :: ambientePage";
+	@Override
+	@GetMapping("/findParticellaJoinColturaTerreno")
+	@ResponseBody
+	public Map<Long, List<ParticellaColturaTerrenoDTO>> findParticellaJoinColturaTerreno() {
+		return dashboardServiceImpl.findParticellaJoinColturaTerreno();
 	}
-
-//	@GetMapping("/morfologia")
-//	public String getMorfologieDataModel(Model model) {
-//		model.addAttribute("morfologie", dashboardServiceImpl.findAllMorfologiaSortById());
-//	    return "fragments/morfologia :: morfologiaPage";
-//	}
-
-//	@GetMapping("/terreno")
-//	public String getTerreniDataModel(Model model) {
-//		model.addAttribute("terreni", dashboardServiceImpl.findAllTerrenoSortById());
-//		model.addAttribute("morfologie", dashboardServiceImpl.findAllMorfologiaSortById());
-//	    return "fragments/terreno :: terrenoPage";
-//	}
+	
+	//PRODUZIONE
 
 	@GetMapping("/produzione")
 	public String getProduzioniDataModel(Model model) {
@@ -143,6 +131,14 @@ public class DashboardController implements DataChartService{
 		return dashboardServiceImpl.findProduzioneJoinColturaMorfologia();
 	}
 	
+	//AMBIENTE
+	
+	@GetMapping("/ambiente")
+	public String getAmbientiDataModel(Model model) {
+		model.addAttribute("ambienti", dashboardServiceImpl.findAllAmbienteSortById());
+	    return "fragments/ambiente :: ambientePage";
+	}
+
 //	@GetMapping("/findListaProdottiColtivati")
 //	@ResponseBody
 //	public List<String> findListProdottiColture() {
@@ -154,12 +150,5 @@ public class DashboardController implements DataChartService{
 //		
 //		return prodottiColtivati;
 //	}
-
-	@Override
-	@GetMapping("/findTerrenoJoinColturaMorfologia")
-	@ResponseBody
-	public Map<Long, List<TerrenoMorfologiaColturaDTO>> findTerrenoJoinColturaMorfologia() {
-		return dashboardServiceImpl.findTerrenoJoinColturaMorfologia();
-	}
 
 }

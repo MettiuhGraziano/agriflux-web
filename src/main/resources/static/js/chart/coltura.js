@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				pageLength: 5,
 				lengthMenu: [ [5, 10, 15], [5, 10, 15] ]
 			});
-		}, 100);
+		}, 1000);
 	});
 });
 
@@ -38,11 +38,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('pills-colture-tab').addEventListener("click", function() {
 		setTimeout(() => {
 			
+			colturaLineChartDinamica();
 			colturaBarChart();
 			colturaPieChart();
-			colturaLineChartDinamica();
 			
-		}, 100);
+		}, 1000);
 	});
 });
 
@@ -173,7 +173,8 @@ function colturaLineChartDinamica() {
 								title: { display: true, text: 'Prezzo €/kg' }
 							},
 							x: {
-								title: { display: true, text: 'Data Raccolto' }
+								title: { display: true, text: 'Data Raccolto' },
+								beginAtZero: false
 							}
 						}
 					}

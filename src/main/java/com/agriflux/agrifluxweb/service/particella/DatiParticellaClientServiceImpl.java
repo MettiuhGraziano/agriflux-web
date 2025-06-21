@@ -1,6 +1,7 @@
 package com.agriflux.agrifluxweb.service.particella;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
+import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxshared.service.particella.DatiParticellaService;
 
 @Service
@@ -35,6 +37,21 @@ public class DatiParticellaClientServiceImpl implements DatiParticellaService {
 
 		ResponseEntity<List<DatiParticellaDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
 				new ParameterizedTypeReference<List<DatiParticellaDTO>>() {
+				});
+
+		return response.getBody();
+	}
+
+	@Override
+	public Map<Long, List<ParticellaColturaTerrenoDTO>> findParticellaJoinColturaTerreno() {
+		String url = batchUrl + "/findParticellaJoinColturaTerreno";
+
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+		HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+
+		ResponseEntity<Map<Long, List<ParticellaColturaTerrenoDTO>>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<Map<Long, List<ParticellaColturaTerrenoDTO>>>() {
 				});
 
 		return response.getBody();

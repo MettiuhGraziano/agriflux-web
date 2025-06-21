@@ -52,9 +52,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('pills-terreno-tab').addEventListener("click", function() {
 		setTimeout(() => { 
 			
-			//terrenoHorizontalBarChart();
+			rotazioneColtureBarChart();
 			
-		}, 100);
+		}, 1000);
 	});
 });
 
@@ -65,15 +65,15 @@ function generaColoreRandom() {
 	return "rgb(" + r + "," + g + "," + b + ")";
 }
 
-//BARCHART HORIZONTAL
-function terrenoHorizontalBarChart() {
+//ROTAZIONE COLTURE BARCHART
+function rotazioneColtureBarChart() {
 	let barChartInstance;
 
-	fetch("/findTerrenoJoinColturaMorfologia")
+	fetch("/findParticellaJoinColturaTerreno")
 		.then(res => res.json())
 		.then(data => {
 
-			const terreniDatalistOptions = document.getElementById("terreniDatalistOptions");
+			const terreniDatalistOptions = document.getElementById("particelleDatalistOptions");
 			Object.keys(data).forEach(prodotto => {
 				const option = document.createElement("option");
 				option.value = prodotto;
@@ -81,7 +81,7 @@ function terrenoHorizontalBarChart() {
 				terreniDatalistOptions.appendChild(option);
 			});
 
-			document.getElementById("terreniDataList").addEventListener("change", function() {
+			document.getElementById("particelleDataList").addEventListener("change", function() {
 
 				const terrenoSelezionato = this.value;
 				//Inverto l'ordine della lista per avere la lista di date già ordinate
@@ -98,7 +98,7 @@ function terrenoHorizontalBarChart() {
 						barChartInstance.destroy();
 					}
 
-					const ctxLine = document.getElementById("terrenoHorizontalBarChart").getContext("2d");
+					const ctxLine = document.getElementById("rotazioneColtureBarChart").getContext("2d");
 
 					var dateMin = dtoList[dtoList.length - 1].dateRilevazione[0];
 					var dateMax = dtoList[0].dateRilevazione[dtoList[0].dateRilevazione.length - 1];
@@ -119,8 +119,8 @@ function terrenoHorizontalBarChart() {
 							prodottiColtivati.push(dto.prodottoColtivato);
 						}
 					}
-
-					console.log(datasetDinamico);
+					
+					//document.getElementById("rotazioneColtureBarChart").height = dtoList.length * 150;
 
 					barChartInstance = new Chart(ctxLine, {
 						type: 'bar',
@@ -139,10 +139,10 @@ function terrenoHorizontalBarChart() {
 									beginAtZero: false,
 									type: 'time',
 									time: {
-										unit: 'day',
-										tooltipFormat: 'yyyy-MM-dd',
+										unit: 'year',
+										tooltipFormat: 'yyyy',
 										displayFormats: {
-											day: 'yyyy-MM-dd'
+											day: 'yyyy'
 										}
 									},
 									min: dateMin,
@@ -161,7 +161,8 @@ function terrenoHorizontalBarChart() {
 							},
 							elements: {
 								bar: {
-									borderWidth: 2,
+									borderWidth: 4,
+									barThickness: 100
 								}
 							},
 							plugins: {

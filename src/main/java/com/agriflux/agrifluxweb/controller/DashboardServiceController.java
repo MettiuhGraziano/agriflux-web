@@ -14,8 +14,8 @@ import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
-import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
 import com.agriflux.agrifluxweb.service.dashboard.DashboardService;
 import com.agriflux.agrifluxweb.service.dashboard.DashboardServiceImpl;
 
@@ -42,6 +42,14 @@ public class DashboardServiceController implements DashboardService {
 	@Operation(summary = "Recupera tutte le Particelle", description = "Restituisce una lista di Particelle")
 	public List<DatiParticellaDTO> findAllParticellaSortById() {
 		return dashboardServiceImpl.findAllParticellaSortById();
+	}
+	
+	@Override
+	@GetMapping("/findParticellaJoinColturaTerrenoApi")
+	@Operation(summary = "Recupera alcuni dati relativi a Coltura e Rilevazione Terreno raggruppandoli per Particella", description = "Restituisce una mappa che ha come chiave l'id della Particella"
+			+ " e come valore una lista di DTO che contengono l'id della Coltura, il prodotto coltivato e la lista di date rilevazioni associate a quella Coltura su quella Particella")
+	public Map<Long, List<ParticellaColturaTerrenoDTO>> findParticellaJoinColturaTerreno() {
+		return dashboardServiceImpl.findParticellaJoinColturaTerreno();
 	}
 	
 	//COLTURA
@@ -111,12 +119,6 @@ public class DashboardServiceController implements DashboardService {
 	@GetMapping("/getProduzioneJoinColturaMorfologia")
 	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
 		return dashboardServiceImpl.findProduzioneJoinColturaMorfologia();
-	}
-
-	@Override
-	@GetMapping("/getTerrenoJoinColturaMorfologia")
-	public Map<Long, List<TerrenoMorfologiaColturaDTO>> findTerrenoJoinColturaMorfologia() {
-		return dashboardServiceImpl.findTerrenoJoinColturaMorfologia();
 	}
 
 }

@@ -13,8 +13,8 @@ import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
-import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
 import com.agriflux.agrifluxweb.service.AgrifluxClientServiceImpl;
 import com.agriflux.agrifluxweb.service.DatiRilevazioneTerrenoClientServiceImpl;
 import com.agriflux.agrifluxweb.service.coltura.DatiColturaClientServiceImpl;
@@ -42,6 +42,11 @@ public class DashboardServiceImpl implements DashboardService {
 	@Override
 	public List<DatiParticellaDTO> findAllParticellaSortById() {
 		return datiParticellaService.findAllParticellaSortById();
+	}
+	
+	@Override
+	public Map<Long, List<ParticellaColturaTerrenoDTO>> findParticellaJoinColturaTerreno() {
+		return datiParticellaService.findParticellaJoinColturaTerreno();
 	}
 
 	//COLTURA
@@ -112,11 +117,6 @@ public class DashboardServiceImpl implements DashboardService {
 	@Override
 	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
 		return agrifluxServiceImpl.findProduzioneJoinColturaMorfologia();
-	}
-
-	@Override
-	public Map<Long, List<TerrenoMorfologiaColturaDTO>> findTerrenoJoinColturaMorfologia() {
-		return agrifluxServiceImpl.findTerrenoJoinColturaMorfologia();
 	}
 
 }
