@@ -3,11 +3,11 @@ package com.agriflux.agrifluxweb.service;
 import java.util.List;
 import java.util.Map;
 
-import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneMorfologiaColturaDTO;
-import com.agriflux.agrifluxshared.dto.TerrenoMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
 
 /**
  * Interfaccia che mostra il contratto che deve rispettare il FE per la visualizzazione dei dati
@@ -16,12 +16,20 @@ import com.agriflux.agrifluxshared.dto.TerrenoMorfologiaColturaDTO;
 public interface DataChartService {
 	
 	/**
-	 * Metodo che restituisce una mappa contenente in chiave il nome del prodotto coltivato e 
-	 * per valore il numero di volte in cui è stato coltivato
+	 * Metodo che restituisce una mappa con in chiave la tipologia di prodotto e come valore il numero di
+	 * volte nelle quali quel prodotto è stato coltivato
 	 * 
-	 * @return Mappa key: Prodotto; value: 
+	 * @return Map<String, Long>
 	 */
-	Map<String, Long> countColtureGroupByProdotto();
+	Map<String, Long> countOrtaggioColtura();
+	
+	/**
+	 * Metodo che restituisce una mappa con in chiave la famiglia relativa alla tipologia di prodotto e come valore il numero di
+	 * volte nelle quali quella famiglia è stata coltivata
+	 * 
+	 * @return Map<String, Long>
+	 */
+	Map<String, Long> countFamigliaOrtaggioColtura();
 	
 	/**
 	 * Metodo che restituisce una mappa con in chiave la tipologia di prodotto e come valore un oggetto
@@ -30,6 +38,8 @@ public interface DataChartService {
 	 * @return Map di ColturaListPrezzoDataRaccoltoDTO
 	 */
 	Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura();
+	
+	
 	
 	/**
 	 * Metodo che restituisce una mappa con chiave la tipologia di prodotto e come valore un'altra mappa con chiave

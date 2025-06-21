@@ -6,16 +6,15 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.agriflux.agrifluxshared.dto.AmbienteDTO;
-import com.agriflux.agrifluxshared.dto.ColturaDTO;
-import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
-import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneMorfologiaColturaDTO;
-import com.agriflux.agrifluxshared.dto.TerrenoDTO;
-import com.agriflux.agrifluxshared.dto.TerrenoMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
+import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
+import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
+import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
 import com.agriflux.agrifluxweb.service.DashboardService;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 
@@ -35,22 +34,40 @@ public class DashboardServiceController implements DashboardService {
 		this.dashboardServiceImpl = dashboardServiceImpl;
 	}
 	
+	//COLTURA
+	
 	@Override
-	@GetMapping("/datiColture")
+	@GetMapping("/coltureApi")
+	@Operation(summary = "Recupera tutte le Colture coltivate", description = "Restituisce una lista di colture")
 	public List<ColturaDTO> findAllColturaSortById(){
 		return dashboardServiceImpl.findAllColturaSortById();
+	}
+	
+	@Override
+	@GetMapping("/countOrtaggioColturaApi")
+	@Operation(summary = "Conta le Colture raggruppate per nome Ortaggio", description = "Restituisce una mappa in cui la chiave è il tipo di Ortaggio e il valore è il numero di occorrenze trovate")
+	public Map<String, Long> countOrtaggioColtura() {
+		return dashboardServiceImpl.countOrtaggioColtura();
+	}
+
+	@Override
+	@GetMapping("/countFamigliaOrtaggioColturaApi")
+	@Operation(summary = "Conta le Colture raggruppate per Famiglia di Ortaggio", description = "Restituisce una mappa in cui la chiave è la Famiglia associata a quell'Ortaggio e il valore è il numero di occorrenze trovate")
+	public Map<String, Long> countFamigliaOrtaggioColtura() {
+		return dashboardServiceImpl.countFamigliaOrtaggioColtura();
+	}
+	
+	@Override
+	@GetMapping("/getPrezziAndDateRaccoltoColturaApi")
+	@Operation(summary = "Mostra la lista di prezzi e date raccolto relative alle singole Colture", description = "Restituisce una mappa in cui la chiave è la Coltura e il valore è un oggetto contenente la lista di Date Raccolto e Prezzo al Kg relativi a quella Coltura")
+	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
+		return dashboardServiceImpl.findPrezziAndDateRaccoltoColtura();
 	}
 
 	@Override
 	@GetMapping("/datiAmbientali")
 	public List<AmbienteDTO> findAllAmbienteSortById() {
 		return dashboardServiceImpl.findAllAmbienteSortById();
-	}
-
-	@Override
-	@GetMapping("/datiMorfologici")
-	public List<MorfologiaDTO> findAllMorfologiaSortById() {
-		return dashboardServiceImpl.findAllMorfologiaSortById();
 	}
 
 	@Override
@@ -63,19 +80,6 @@ public class DashboardServiceController implements DashboardService {
 	@GetMapping("/datiProduzione")
 	public List<ProduzioneDTO> findAllProduzioneSortById() {
 		return dashboardServiceImpl.findAllProduzioneSortById();
-	}
-
-	@Override
-	@GetMapping("/getColtureGroupByProdotto")
-	@Operation(summary = "Conta le colture raggruppate per tipologia di prodotto", description = "Restituisce una mappa in cui la chiave è il nome della coltura e il valore è il numero di occorrenze trovate")
-	public Map<String, Long> countColtureGroupByProdotto() {
-		return dashboardServiceImpl.countColtureGroupByProdotto();
-	}
-
-	@Override
-	@GetMapping("/getPrezziAndDateRaccoltoColtura")
-	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
-		return dashboardServiceImpl.findPrezziAndDateRaccoltoColtura();
 	}
 
 	@Override
@@ -101,5 +105,5 @@ public class DashboardServiceController implements DashboardService {
 	public Map<Long, List<TerrenoMorfologiaColturaDTO>> findTerrenoJoinColturaMorfologia() {
 		return dashboardServiceImpl.findTerrenoJoinColturaMorfologia();
 	}
-	
+
 }

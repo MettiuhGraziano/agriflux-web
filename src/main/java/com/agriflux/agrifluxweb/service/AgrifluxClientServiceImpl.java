@@ -13,17 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.agriflux.agrifluxshared.dto.AmbienteDTO;
-import com.agriflux.agrifluxshared.dto.ColturaDTO;
-import com.agriflux.agrifluxshared.dto.ColturaGroupByProdottoDTO;
-import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
-import com.agriflux.agrifluxshared.dto.MorfologiaDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneMorfologiaColturaDTO;
-import com.agriflux.agrifluxshared.dto.TerrenoDTO;
-import com.agriflux.agrifluxshared.dto.TerrenoMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
+import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
 import com.agriflux.agrifluxshared.service.AgrifluxDataService;
 
 @Service
@@ -38,22 +34,6 @@ public class AgrifluxClientServiceImpl implements AgrifluxDataService {
 	}
 
 	@Override
-	public List<ColturaDTO> findAllColturaSortById() {
-		
-		String url = batchUrl + "/datiColture";
-		
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
-        
-		ResponseEntity<List<ColturaDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
-				new ParameterizedTypeReference<List<ColturaDTO>>() {
-				});
-        
-		return response.getBody();
-	}
-
-	@Override
 	public List<AmbienteDTO> findAllAmbienteSortById() {
 		
 		String url = batchUrl + "/datiAmbientali";
@@ -64,22 +44,6 @@ public class AgrifluxClientServiceImpl implements AgrifluxDataService {
         
 		ResponseEntity<List<AmbienteDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
 				new ParameterizedTypeReference<List<AmbienteDTO>>() {
-				});
-        
-		return response.getBody();
-	}
-
-	@Override
-	public List<MorfologiaDTO> findAllMorfologiaSortById() {
-		
-		String url = batchUrl + "/datiMorfologici";
-		
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
-        
-		ResponseEntity<List<MorfologiaDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
-				new ParameterizedTypeReference<List<MorfologiaDTO>>() {
 				});
         
 		return response.getBody();
@@ -112,38 +76,6 @@ public class AgrifluxClientServiceImpl implements AgrifluxDataService {
         
 		ResponseEntity<List<ProduzioneDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
 				new ParameterizedTypeReference<List<ProduzioneDTO>>() {
-				});
-        
-		return response.getBody();
-	}
-
-	@Override
-	public List<ColturaGroupByProdottoDTO> countColtureGroupByProdotto() {
-		
-		String url = batchUrl + "/listColtureGroupByProdotto";
-		
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
-        
-		ResponseEntity<List<ColturaGroupByProdottoDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
-				new ParameterizedTypeReference<List<ColturaGroupByProdottoDTO>>() {
-				});
-        
-		return response.getBody();
-	}
-
-	@Override
-	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateColtura() {
-		
-		String url = batchUrl + "/findPrezziAndDateRaccoltoColtura";
-		
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
-        
-		ResponseEntity<Map<String, ColturaListPrezzoDataRaccoltoDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
-				new ParameterizedTypeReference<Map<String, ColturaListPrezzoDataRaccoltoDTO>>() {
 				});
         
 		return response.getBody();

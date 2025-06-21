@@ -34,6 +34,18 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+	document.getElementById('pills-colture-tab').addEventListener("click", function() {
+		setTimeout(() => {
+			
+			colturaBarChart();
+			colturaPieChart();
+			colturaLineChartDinamica();
+			
+		}, 100);
+	});
+});
+
 function generaColoreRandom() {
 	var r = Math.floor(Math.random() * 255);
 	var g = Math.floor(Math.random() * 255);
@@ -41,145 +53,131 @@ function generaColoreRandom() {
 	return "rgb(" + r + "," + g + "," + b + ")";
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById('pills-colture-tab').addEventListener("click", function() {
-		setTimeout(() => {
-			
-			//BARCHART COLTURE
-			function colturaBarChart() {
+//BARCHART COLTURE
+function colturaBarChart() {
 
-				const ctx = document.getElementById('colturaBarChart').getContext('2d');
+	const ctx = document.getElementById('colturaBarChart').getContext('2d');
 
-				fetch('/countColtureGroupByProdotto')
-					.then(response => response.json())
-					.then(data => {
-						new Chart(ctx, {
-							type: 'bar',
-							data: {
-								labels: Object.keys(data),
-								datasets: [{
-									label: 'Colture Totali',
-									data: Object.values(data),
-									borderWidth: 2
-								}]
+	fetch('/countOrtaggioColtura')
+		.then(response => response.json())
+		.then(data => {
+			new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: Object.keys(data),
+					datasets: [{
+						label: 'Colture Totali',
+						data: Object.values(data),
+						borderWidth: 2
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			})
+		});
+}
+
+//PIECHART FAMIGLIE COLTURE
+function colturaPieChart() {
+	const ctx = document.getElementById('colturaPieChart').getContext('2d');
+
+	fetch('/countFamigliaOrtaggioColtura')
+		.then(response => response.json())
+		.then(data => {
+
+			const colorArray = [];
+			//GENERO COLORI RANDOM X OGNI COLTURA
+			Object.keys(data).forEach(prodotto => {
+				colorArray.push(generaColoreRandom());
+			});
+
+			new Chart(ctx, {
+				type: 'pie',
+				data: {
+					labels: Object.keys(data),
+					datasets: [{
+						label: 'Colture Totali',
+						data: Object.values(data),
+						hoverOffset: 5,
+						backgroundColor: colorArray
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					animateRotate: true,
+					animateScale: true
+				}
+			})
+		});
+}
+
+//LINECHART COLTURE
+function colturaLineChartDinamica() {
+
+	let lineChartInstance;
+
+	fetch("/findPrezziAndDateRaccoltoColtura")
+		.then(res => res.json())
+		.then(data => {
+			const select = document.getElementById("productSelect");
+
+			// Popola la Select con le chiavi della mappa
+			Object.keys(data).forEach(prodotto => {
+				const option = document.createElement("option");
+				option.value = prodotto;
+				option.textContent = prodotto;
+				select.appendChild(option);
+			});
+
+			// Evento cambio selezione
+			select.addEventListener("change", function() {
+				const prodottoSelezionato = this.value;
+				const colturaData = data[prodottoSelezionato];
+
+				const labels = colturaData.dataRaccoltoList;
+				const values = colturaData.prezzoKgList;
+
+				const ctx = document.getElementById("colturaLineChart").getContext("2d");
+
+				// Se esiste già un grafico, viene distrutto prima di crearne uno nuovo
+				if (lineChartInstance) {
+					lineChartInstance.destroy();
+				}
+
+				lineChartInstance = new Chart(ctx, {
+					type: "line",
+					data: {
+						labels: labels,
+						datasets: [{
+							label: `Prezzo ${prodottoSelezionato}`,
+							data: values,
+							fill: false,
+							borderColor: generaColoreRandom(),
+							tension: 0.2
+						}]
+					},
+					options: {
+						responsive: true,
+						maintainAspectRatio: false,
+						scales: {
+							y: {
+								beginAtZero: false,
+								title: { display: true, text: 'Prezzo €/kg' }
 							},
-							options: {
-								responsive: true,
-								maintainAspectRatio: false,
-								scales: {
-									y: {
-										beginAtZero: true
-									}
-								}
+							x: {
+								title: { display: true, text: 'Data Raccolto' }
 							}
-						})
-					});
-			}
-
-			colturaBarChart();
-			
-			//PIECHART COLTURE
-			function colturaPieChart() {
-				const ctx = document.getElementById('colturaPieChart').getContext('2d');
-
-				fetch('/countColtureGroupByProdotto')
-					.then(response => response.json())
-					.then(data => {
-						
-						const colorArray = [];
-						//GENERO COLORI RANDOM X OGNI COLTURA
-						Object.keys(data).forEach(prodotto => {
-							colorArray.push(generaColoreRandom());
-						});
-								 
-						new Chart(ctx, {
-							type: 'pie',
-							data: {
-								labels: Object.keys(data),
-								datasets: [{
-									label: 'Colture Totali',
-									data: Object.values(data),
-									hoverOffset: 5,
-									backgroundColor: colorArray
-								}]
-							},
-							options: {
-								responsive: true,
-								maintainAspectRatio: false,
-								animateRotate: true,
-								animateScale: true
-							}
-						})
-					});
-			}
-			
-			colturaPieChart();
-			
-			//LINECHART COLTURE
-			function colturaLineChartDinamica() {
-
-				let lineChartInstance;
-
-				fetch("/findPrezziAndDateRaccoltoColtura")
-					.then(res => res.json())
-					.then(data => {
-						const select = document.getElementById("productSelect");
-
-						// Popola la Select con le chiavi della mappa
-						Object.keys(data).forEach(prodotto => {
-							const option = document.createElement("option");
-							option.value = prodotto;
-							option.textContent = prodotto;
-							select.appendChild(option);
-						});
-
-						// Evento cambio selezione
-						select.addEventListener("change", function() {
-							const prodottoSelezionato = this.value;
-							const colturaData = data[prodottoSelezionato];
-
-							const labels = colturaData.dataRaccoltoList;
-							const values = colturaData.prezzoKgList;
-
-							const ctx = document.getElementById("colturaLineChart").getContext("2d");
-							
-							// Se esiste già un grafico, viene distrutto prima di crearne uno nuovo
-							if (lineChartInstance) {
-								lineChartInstance.destroy();
-							}
-
-							lineChartInstance = new Chart(ctx, {
-								type: "line",
-								data: {
-									labels: labels,
-									datasets: [{
-										label: `Prezzo ${prodottoSelezionato}`,
-										data: values,
-										fill: false,
-										borderColor: generaColoreRandom(),
-										tension: 0.2
-									}]
-								},
-								options: {
-									responsive: true,
-									maintainAspectRatio: false,
-									scales: {
-										y: {
-											beginAtZero: false,
-											title: { display: true, text: 'Prezzo €/kg' }
-										},
-										x: {
-											title: { display: true, text: 'Data Raccolto' }
-										}
-									}
-								}
-							});
-						});
-					});
-			}
-
-			colturaLineChartDinamica();
-			
-		}, 100);
-	});
-});
+						}
+					}
+				});
+			});
+		});
+}

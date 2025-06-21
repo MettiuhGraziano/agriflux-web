@@ -1,6 +1,5 @@
 package com.agriflux.agrifluxweb.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,13 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.agriflux.agrifluxshared.dto.ColturaDTO;
-import com.agriflux.agrifluxshared.dto.ColturaListPrezzoDataRaccoltoDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneColturaDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneColturaTempiDTO;
-import com.agriflux.agrifluxshared.dto.ProduzioneMorfologiaColturaDTO;
-import com.agriflux.agrifluxshared.dto.TerrenoMorfologiaColturaDTO;
-import com.agriflux.agrifluxshared.enumeratori.TipoProdottoEnum;
+import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
+import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.terreno.TerrenoMorfologiaColturaDTO;
 import com.agriflux.agrifluxweb.service.DashboardServiceImpl;
 import com.agriflux.agrifluxweb.service.DataChartService;
 
@@ -64,6 +62,28 @@ public class DashboardController implements DataChartService{
 
 		return "fragments/coltura :: colturaPage";
 	}
+	
+	@Override
+	@GetMapping("/countOrtaggioColtura")
+	@ResponseBody
+	public Map<String, Long> countOrtaggioColtura() {
+		return dashboardServiceImpl.countOrtaggioColtura();
+	}
+
+	@Override
+	@GetMapping("/countFamigliaOrtaggioColtura")
+	@ResponseBody
+	public Map<String, Long> countFamigliaOrtaggioColtura() {
+		return dashboardServiceImpl.countFamigliaOrtaggioColtura();
+	}
+	
+	@Override
+	@GetMapping("/findPrezziAndDateRaccoltoColtura")
+	@ResponseBody
+	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
+		return dashboardServiceImpl.findPrezziAndDateRaccoltoColtura();
+	}
+
 
 	@GetMapping("/ambiente")
 	public String getAmbientiDataModel(Model model) {
@@ -77,33 +97,19 @@ public class DashboardController implements DataChartService{
 //	    return "fragments/morfologia :: morfologiaPage";
 //	}
 
-	@GetMapping("/terreno")
-	public String getTerreniDataModel(Model model) {
-		model.addAttribute("terreni", dashboardServiceImpl.findAllTerrenoSortById());
-		model.addAttribute("morfologie", dashboardServiceImpl.findAllMorfologiaSortById());
-	    return "fragments/terreno :: terrenoPage";
-	}
+//	@GetMapping("/terreno")
+//	public String getTerreniDataModel(Model model) {
+//		model.addAttribute("terreni", dashboardServiceImpl.findAllTerrenoSortById());
+//		model.addAttribute("morfologie", dashboardServiceImpl.findAllMorfologiaSortById());
+//	    return "fragments/terreno :: terrenoPage";
+//	}
 
 	@GetMapping("/produzione")
 	public String getProduzioniDataModel(Model model) {
 		model.addAttribute("produzioni", dashboardServiceImpl.findAllProduzioneSortById());
 	    return "fragments/produzione :: produzionePage";
 	}
-
-	@Override
-	@GetMapping("/countColtureGroupByProdotto")
-	@ResponseBody
-	public Map<String, Long> countColtureGroupByProdotto() {
-		return dashboardServiceImpl.countColtureGroupByProdotto();
-	}
-
-	@Override
-	@GetMapping("/findPrezziAndDateRaccoltoColtura")
-	@ResponseBody
-	public Map<String, ColturaListPrezzoDataRaccoltoDTO> findPrezziAndDateRaccoltoColtura() {
-		return dashboardServiceImpl.findPrezziAndDateRaccoltoColtura();
-	}
-
+	
 	@Override
 	@GetMapping("/findColtureJoinProduzione")
 	@ResponseBody
@@ -125,17 +131,17 @@ public class DashboardController implements DataChartService{
 		return dashboardServiceImpl.findProduzioneJoinColturaMorfologia();
 	}
 	
-	@GetMapping("/findListaProdottiColtivati")
-	@ResponseBody
-	public List<String> findListProdottiColture() {
-		
-		List<String> prodottiColtivati = new ArrayList<String>();
-		for (TipoProdottoEnum prodotto : TipoProdottoEnum.values()) {
-			prodottiColtivati.add(prodotto.name());
-		}
-		
-		return prodottiColtivati;
-	}
+//	@GetMapping("/findListaProdottiColtivati")
+//	@ResponseBody
+//	public List<String> findListProdottiColture() {
+//		
+//		List<String> prodottiColtivati = new ArrayList<String>();
+//		for (TipoProdottoEnum prodotto : TipoProdottoEnum.values()) {
+//			prodottiColtivati.add(prodotto.name());
+//		}
+//		
+//		return prodottiColtivati;
+//	}
 
 	@Override
 	@GetMapping("/findTerrenoJoinColturaMorfologia")
@@ -143,5 +149,5 @@ public class DashboardController implements DataChartService{
 	public Map<Long, List<TerrenoMorfologiaColturaDTO>> findTerrenoJoinColturaMorfologia() {
 		return dashboardServiceImpl.findTerrenoJoinColturaMorfologia();
 	}
-	
+
 }
