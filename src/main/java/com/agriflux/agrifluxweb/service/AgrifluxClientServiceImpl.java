@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
-import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
 import com.agriflux.agrifluxshared.service.AgrifluxDataService;
@@ -41,22 +40,6 @@ public class AgrifluxClientServiceImpl implements AgrifluxDataService {
         
 		ResponseEntity<List<AmbienteDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
 				new ParameterizedTypeReference<List<AmbienteDTO>>() {
-				});
-        
-		return response.getBody();
-	}
-
-	@Override
-	public Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione() {
-		
-		String url = batchUrl + "/findColtureJoinProduzione";
-		
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
-        
-		ResponseEntity<Map<String, Map<String, ProduzioneColturaDTO>>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
-				new ParameterizedTypeReference<Map<String, Map<String, ProduzioneColturaDTO>>>() {
 				});
         
 		return response.getBody();

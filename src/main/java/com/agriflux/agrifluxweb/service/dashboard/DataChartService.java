@@ -47,8 +47,6 @@ public interface DataChartService {
 	 */
 	Map<Long, List<ParticellaColturaTerrenoDTO>> findParticellaJoinColturaTerreno();
 	
-	
-	
 	/**
 	 * Metodo che restituisce una mappa con chiave la tipologia di prodotto e come valore un'altra mappa con chiave
 	 * l'anno di riferimento e come valore un oggetto contenente i dati sulla quantita' del raccolto ed il fatturato
@@ -56,7 +54,14 @@ public interface DataChartService {
 	 * 
 	 * @return Map -> key : Prodotto | value : Map -> key : Anno Riferimento | value : {@code ProduzioneColturaDTO}
 	 */
-	Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione();
+	Map<String, Map<String, ProduzioneColturaDTO>> findProduzioneQuantitaJoinColtura();
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * Metodo che restituisce una mappa con in chiave l'anno di semina e come valore una lista di oggetti

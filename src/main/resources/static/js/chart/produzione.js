@@ -58,7 +58,7 @@ function produzioneMultipleChartLineRadar() {
 	let lineChartInstance;
 	let radarChartInstance;
 
-	fetch("/findColtureJoinProduzione")
+	fetch("/findProduzioneQuantitaJoinColtura")
 		.then(res => res.json())
 		.then(data => {
 
@@ -87,12 +87,16 @@ function produzioneMultipleChartLineRadar() {
 
 					const quantitaRaccolto = [];
 					const quantitaRaccoltoVenduto = [];
-					const fatturatoColtura = [];
+					const quantitaRaccoltoMarcio = [];
+					const quantitaRaccoltoTerzi = [];
+					const fatturatoRaccolto = [];
 
 					Object.values(mappaAnnoRiferimento).forEach(dto => {
 						quantitaRaccolto.push(dto.quantitaRaccolto);
 						quantitaRaccoltoVenduto.push(dto.quantitaRaccoltoVenduto);
-						fatturatoColtura.push(dto.fatturatoColtura);
+						quantitaRaccoltoMarcio.push(dto.quantitaRaccoltoMarcio);
+						quantitaRaccoltoTerzi.push(dto.quantitaRaccoltoTerzi);
+						fatturatoRaccolto.push(dto.fatturatoRaccolto);
 					});
 
 					const ctxLine = document.getElementById("produzioneMultipleLineChart").getContext("2d");
@@ -118,6 +122,19 @@ function produzioneMultipleChartLineRadar() {
 								data: quantitaRaccoltoVenduto,
 								borderColor: 'rgb(0, 255, 0)',
 								backgroundColor: 'rgb(0, 255, 0)',
+								borderWidth: 2
+							},
+							{
+								label: `Quantita' di ${prodottoSelezionato} marcio/a (KG)`,
+								data: quantitaRaccoltoMarcio,
+								borderColor: 'rgb(210,105,30)',
+								backgroundColor: 'rgb(210,105,30)',
+								borderWidth: 2
+							}, {
+								label: `Quantita' di ${prodottoSelezionato} utilizzato per scopi terzi (KG)`,
+								data: quantitaRaccoltoTerzi,
+								borderColor: 'rgb(139,0,139)',
+								backgroundColor: 'rgb(139,0,139)',
 								borderWidth: 2
 							}]
 						}, options: {
@@ -147,10 +164,10 @@ function produzioneMultipleChartLineRadar() {
 							labels: labelsAnnoRiferimento,
 							datasets: [{
 								label: `Fatturato annuale ${prodottoSelezionato} (€)`,
-								data: fatturatoColtura,
-								borderColor: 'rgb(146, 197, 222)',
-								backgroundColor: 'rgb(146, 197, 222)',
-								borderWidth: 2
+								data: fatturatoRaccolto,
+								borderColor: 'rgb(233,150,122)',
+								backgroundColor: 'rgb(233,150,122, 0.4)',
+								borderWidth: 3
 							}]
 						}, options: {
 							responsive: true,

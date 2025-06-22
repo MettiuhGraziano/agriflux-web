@@ -87,10 +87,10 @@ public class DashboardServiceImpl implements DashboardService {
 	public List<ProduzioneDTO> findAllProduzioneSortById() {
 		return datiProduzioneService.findAllProduzioneSortById();
 	}
-
+	
 	@Override
-	public Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione() {
-		return agrifluxServiceImpl.findColtureJoinProduzione();
+	public Map<String, Map<String, ProduzioneColturaDTO>> findProduzioneQuantitaJoinColtura() {
+		return datiProduzioneService.findProduzioneQuantitaJoinColtura();
 	}
 
 	@Override
@@ -109,5 +109,7 @@ public class DashboardServiceImpl implements DashboardService {
 	public List<AmbienteDTO> findAllAmbienteSortById() {
 		return agrifluxServiceImpl.findAllAmbienteSortById();
 	}
+
+	
 
 }

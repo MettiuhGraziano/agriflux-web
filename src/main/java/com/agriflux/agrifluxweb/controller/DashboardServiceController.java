@@ -100,11 +100,11 @@ public class DashboardServiceController implements DashboardService {
 	}
 	
 	@Override
-	@GetMapping("/getColtureJoinProduzione")
-	public Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione() {
-		return dashboardServiceImpl.findColtureJoinProduzione();
+	@GetMapping("/getProduzioneQuantitaJoinColtura")
+	public Map<String, Map<String, ProduzioneColturaDTO>> findProduzioneQuantitaJoinColtura() {
+		return dashboardServiceImpl.findProduzioneQuantitaJoinColtura();
 	}
-
+	
 	@Override
 	@GetMapping("/getProduzioneTempiJoinColtura")
 	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneTempiJoinColtura() {

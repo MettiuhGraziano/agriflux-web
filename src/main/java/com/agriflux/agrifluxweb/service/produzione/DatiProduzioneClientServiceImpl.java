@@ -1,6 +1,7 @@
 package com.agriflux.agrifluxweb.service.produzione;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
 import com.agriflux.agrifluxshared.service.produzione.DatiProduzioneService;
 
@@ -35,6 +37,22 @@ public class DatiProduzioneClientServiceImpl implements DatiProduzioneService {
 
 		ResponseEntity<List<ProduzioneDTO>> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity,
 				new ParameterizedTypeReference<List<ProduzioneDTO>>() {
+				});
+
+		return response.getBody();
+	}
+
+	@Override
+	public Map<String, Map<String, ProduzioneColturaDTO>> findProduzioneQuantitaJoinColtura() {
+		String url = batchUrl + "/findProduzioneQuantitaJoinColtura";
+
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+		HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+
+		ResponseEntity<Map<String, Map<String, ProduzioneColturaDTO>>> response = restTemplate.exchange(url,
+				HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<Map<String, Map<String, ProduzioneColturaDTO>>>() {
 				});
 
 		return response.getBody();
