@@ -95,21 +95,28 @@ public class DashboardServiceController implements DashboardService {
 
 	@Override
 	@GetMapping("/produzioneApi")
+	@Operation(summary = "Recupera tutti i dati relativi alle Produzioni", description = "Restituisce una lista di Produzioni")
 	public List<ProduzioneDTO> findAllProduzioneSortById() {
 		return dashboardServiceImpl.findAllProduzioneSortById();
 	}
 	
 	@Override
 	@GetMapping("/getProduzioneQuantitaJoinColtura")
+	@Operation(summary = "Mostra una mappa delle quantita' di raccolto prodotte e del fatturato raggruppate per nome ortaggio e anno di riferimento", description = "Restituisce una mappa in cui la chiave è il nome dell'Ortaggio e il valore è un mappa "
+			+ " con in chiave l'anno di riferimento e come valore un oggetto contenente le quantità di raccolto prodotte ed il fatturato")
 	public Map<String, Map<String, ProduzioneColturaDTO>> findProduzioneQuantitaJoinColtura() {
 		return dashboardServiceImpl.findProduzioneQuantitaJoinColtura();
 	}
 	
 	@Override
-	@GetMapping("/getProduzioneTempiJoinColtura")
-	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneTempiJoinColtura() {
-		return dashboardServiceImpl.findProduzioneTempiJoinColtura();
+	@GetMapping("/getProduzioneJoinColturaTempi")
+	@Operation(summary = "Mostra una mappa della lista dei tempi medi da semina a raccolto delle singole Colture per anno di riferimento", description = "Restituisce una mappa in cui la chiave è l'anno di riferimento e il valore è una lista "
+			+ " di oggetti contenenti il prodotto coltivato e la lista delle medie dei tempi da semina a raccolto")
+	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneJoinColturaTempi() {
+		return dashboardServiceImpl.findProduzioneJoinColturaTempi();
 	}
+	
+	
 
 	@Override
 	@GetMapping("/getProduzioneJoinColturaMorfologia")

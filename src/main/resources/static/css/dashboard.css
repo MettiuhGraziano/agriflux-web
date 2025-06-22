@@ -46,14 +46,14 @@
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	width: 100%;
+	width: 100% !important;
 	max-width: 950px;
-	height: 400px; /* Altezza fissa */
+	height: auto !important;
 	margin: 0 auto;
 	position: relative;
 }
 
 canvas {
 	width: 100% !important;
-	height: 100% !important;
+	height: 550px !important;
 }

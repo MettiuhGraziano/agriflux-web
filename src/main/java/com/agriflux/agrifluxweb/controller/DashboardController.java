@@ -118,12 +118,12 @@ public class DashboardController implements DataChartService{
 	}
 	
 	@Override
-	@GetMapping("/findProduzioneTempiJoinColtura")
+	@GetMapping("/findProduzioneJoinColturaTempi")
 	@ResponseBody
-	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneTempiJoinColtura() {
-		return dashboardServiceImpl.findProduzioneTempiJoinColtura();
+	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneJoinColturaTempi() {
+		return dashboardServiceImpl.findProduzioneJoinColturaTempi();
 	}
-
+	
 	@Override
 	@GetMapping("/findProduzioneJoinColturaMorfologia")
 	@ResponseBody

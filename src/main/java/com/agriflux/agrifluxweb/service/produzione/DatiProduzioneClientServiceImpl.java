@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
 import com.agriflux.agrifluxshared.service.produzione.DatiProduzioneService;
 
@@ -53,6 +54,22 @@ public class DatiProduzioneClientServiceImpl implements DatiProduzioneService {
 		ResponseEntity<Map<String, Map<String, ProduzioneColturaDTO>>> response = restTemplate.exchange(url,
 				HttpMethod.GET, httpHentity,
 				new ParameterizedTypeReference<Map<String, Map<String, ProduzioneColturaDTO>>>() {
+				});
+
+		return response.getBody();
+	}
+
+	@Override
+	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneJoinColturaTempi() {
+		String url = batchUrl + "/findProduzioneJoinColturaTempi";
+
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+		HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+
+		ResponseEntity<Map<String, List<ProduzioneColturaTempiDTO>>> response = restTemplate.exchange(url,
+				HttpMethod.GET, httpHentity,
+				new ParameterizedTypeReference<Map<String, List<ProduzioneColturaTempiDTO>>>() {
 				});
 
 		return response.getBody();

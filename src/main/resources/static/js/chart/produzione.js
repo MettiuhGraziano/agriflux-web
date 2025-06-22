@@ -183,7 +183,7 @@ function produzioneMultipleChartLineRadar() {
 function produzioneBarChartHorizontal() {
 	let horizontalBarChartInstance;
 
-	fetch("/findProduzioneTempiJoinColtura")
+	fetch("/findProduzioneJoinColturaTempi")
 		.then(res => res.json())
 		.then(data => {
 
@@ -222,7 +222,7 @@ function produzioneBarChartHorizontal() {
 					medieMaturazioneList.push(dto.listMedieTempi[3]);
 					medieRaccoltaList.push(dto.listMedieTempi[4]);
 				});
-
+				
 				horizontalBarChartInstance = new Chart(ctxBar, {
 					type: 'bar',
 					data: {
