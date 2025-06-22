@@ -13,7 +13,7 @@
 			<div class="card-body">
 				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaProduzione"
 					aria-expanded="false" aria-controls="collapseTabellaProduzione">
-					Tabella Produzione
+					Tabella Dati Produzione
 				</div>
 				<div class="collapse" id="collapseTabellaProduzione">
 					<div class="card-body">
@@ -25,16 +25,12 @@
 										<th class="text-center" th:text="#{utils.id}"></th>
 										<th class="text-center" th:text="#{produzione.raccolto}"></th>
 										<th class="text-center" th:text="#{produzione.raccoltoVenduto}"></th>
-										<th class="text-center" th:text="#{produzione.fatturatoColtura}"></th>
-										<th class="text-center" th:text="#{produzione.speseAccessorie}"></th>
+										<th class="text-center" th:text="#{produzione.raccoltoMarcio}"></th>
+										<th class="text-center" th:text="#{produzione.raccoltoTerzi}"></th>
+										<th class="text-center" th:text="#{produzione.fatturatoRaccolto}"></th>
 										<th class="text-center" th:text="#{produzione.numLavoratori}"></th>
-										<th class="text-center" th:text="#{produzione.tempoSemina}"></th>
-										<th class="text-center" th:text="#{produzione.tempoGerminazione}"></th>
-										<th class="text-center" th:text="#{produzione.tempoTrapianto}"></th>
-										<th class="text-center" th:text="#{produzione.tempoMaturazione}"></th>
-										<th class="text-center" th:text="#{produzione.tempoRaccolta}"></th>
+										<th class="text-center" th:text="#{produzione.speseProduzione}"></th>
 										<th class="text-center" th:text="#{utils.idColtura}"></th>
-										<th class="text-center" th:text="#{utils.idMorfologia}"></th>
 									</tr>
 								</thead>
 		
@@ -43,16 +39,12 @@
 										<td class="text-center" th:text="${{produzione.idProduzione}}"></td>
 										<td class="text-center" th:text="${{produzione.quantitaRaccolto}}"></td>
 										<td class="text-center" th:text="${{produzione.quantitaRaccoltoVenduto}}"></td>
-										<td class="text-center" th:text="${{produzione.fatturatoColtura}}"></td>
-										<td class="text-center" th:text="${{produzione.speseAccessorie}}"></td>
+										<td class="text-center" th:text="${{produzione.quantitaRaccoltoMarcio}}"></td>
+										<td class="text-center" th:text="${{produzione.quantitaRaccoltoTerzi}}"></td>
+										<td class="text-center" th:text="${{produzione.fatturatoRaccolto}}"></td>
 										<td class="text-center" th:text="${{produzione.numLavoratori}}"></td>
-										<td class="text-center" th:text="${{produzione.tempoSemina}}"></td>
-										<td class="text-center" th:text="${{produzione.tempoGerminazione}}"></td>
-										<td class="text-center" th:text="${{produzione.tempoTrapianto}}"></td>
-										<td class="text-center" th:text="${{produzione.tempoMaturazione}}"></td>
-										<td class="text-center" th:text="${{produzione.tempoRaccolta}}"></td>
-										<td class="text-center" th:text="${{produzione.idColtura}}"></td>
-										<td class="text-center" th:text="${{produzione.idMorfologia}}"></td>
+										<td class="text-center" th:text="${{produzione.speseProduzione}}"></td>
+										<td class="text-center" th:text="${{produzione.idColturaColtura}}"></td>
 									</tr>
 								</tbody>
 							</table>

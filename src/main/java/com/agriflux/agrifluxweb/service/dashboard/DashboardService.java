@@ -35,8 +35,12 @@ public interface DashboardService extends DataChartService{
 	 */
 	List<TerrenoDTO> findAllRilevazioneTerrenoSortById();
 	
-	
-	
+	/**
+	 * Metodo che restituisce la lista di dati di Produzione ordinati in modo ASCENDENTE tramite l'ID
+	 * 
+	 * @return List di ProduzioneDTO
+	 */
+	List<ProduzioneDTO> findAllProduzioneSortById();
 	
 	/**
 	 * Metodo che torna la lista di dati Ambientali ordinati in modo ASCENDENTE tramite l'ID
@@ -44,14 +48,5 @@ public interface DashboardService extends DataChartService{
 	 * @return List di AmbienteDTO
 	 */
 	List<AmbienteDTO> findAllAmbienteSortById();
-	
-	
-	
-	/**
-	 * Metodo che torna la lista di dati di Produzione ordinati in modo ASCENDENTE tramite l'ID
-	 * 
-	 * @return List di ProduzioneDTO
-	 */
-	List<ProduzioneDTO> findAllProduzioneSortById();
 	
 }

@@ -90,19 +90,15 @@ public class DashboardServiceController implements DashboardService {
 	public List<TerrenoDTO> findAllRilevazioneTerrenoSortById() {
 		return dashboardServiceImpl.findAllRilevazioneTerrenoSortById();
 	}
+	
+	//PRODUZIONE
 
 	@Override
-	@GetMapping("/datiAmbientali")
-	public List<AmbienteDTO> findAllAmbienteSortById() {
-		return dashboardServiceImpl.findAllAmbienteSortById();
-	}
-
-	@Override
-	@GetMapping("/datiProduzione")
+	@GetMapping("/produzioneApi")
 	public List<ProduzioneDTO> findAllProduzioneSortById() {
 		return dashboardServiceImpl.findAllProduzioneSortById();
 	}
-
+	
 	@Override
 	@GetMapping("/getColtureJoinProduzione")
 	public Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione() {
@@ -119,6 +115,14 @@ public class DashboardServiceController implements DashboardService {
 	@GetMapping("/getProduzioneJoinColturaMorfologia")
 	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
 		return dashboardServiceImpl.findProduzioneJoinColturaMorfologia();
+	}
+	
+	//AMBIENTE
+	
+	@Override
+	@GetMapping("/datiAmbientali")
+	public List<AmbienteDTO> findAllAmbienteSortById() {
+		return dashboardServiceImpl.findAllAmbienteSortById();
 	}
 
 }

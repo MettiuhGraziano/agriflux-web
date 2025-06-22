@@ -16,9 +16,10 @@ import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO
 import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
 import com.agriflux.agrifluxweb.service.AgrifluxClientServiceImpl;
-import com.agriflux.agrifluxweb.service.DatiRilevazioneTerrenoClientServiceImpl;
 import com.agriflux.agrifluxweb.service.coltura.DatiColturaClientServiceImpl;
 import com.agriflux.agrifluxweb.service.particella.DatiParticellaClientServiceImpl;
+import com.agriflux.agrifluxweb.service.produzione.DatiProduzioneClientServiceImpl;
+import com.agriflux.agrifluxweb.service.terreno.DatiRilevazioneTerrenoClientServiceImpl;
 
 @Service
 public class DashboardServiceImpl implements DashboardService {
@@ -27,14 +28,16 @@ public class DashboardServiceImpl implements DashboardService {
 	private final DatiColturaClientServiceImpl datiColturaService;
 	private final DatiParticellaClientServiceImpl datiParticellaService;
 	private final DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService;
+	private final DatiProduzioneClientServiceImpl datiProduzioneService;
 	
 	public DashboardServiceImpl(AgrifluxClientServiceImpl agrifluxServiceImpl,
 			DatiColturaClientServiceImpl datiColturaService, DatiParticellaClientServiceImpl datiParticellaService,
-			DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService) {
+			DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService, DatiProduzioneClientServiceImpl datiProduzioneService) {
 		this.agrifluxServiceImpl = agrifluxServiceImpl;
 		this.datiColturaService = datiColturaService;
 		this.datiParticellaService = datiParticellaService;
 		this.datiRilevazioneTerrenoService = datiRilevazioneTerrenoService;
+		this.datiProduzioneService = datiProduzioneService;
 	}
 	
 	//PARTICELLA
@@ -78,31 +81,12 @@ public class DashboardServiceImpl implements DashboardService {
 		return datiRilevazioneTerrenoService.findAllRilevazioneTerrenoSortById();
 	}
 	
+	//PRODUZIONE
 	
-
-	@Override
-	public List<AmbienteDTO> findAllAmbienteSortById() {
-		return agrifluxServiceImpl.findAllAmbienteSortById();
-	}
-
 	@Override
 	public List<ProduzioneDTO> findAllProduzioneSortById() {
-		return agrifluxServiceImpl.findAllProduzioneSortById();
+		return datiProduzioneService.findAllProduzioneSortById();
 	}
-
-	
-//	@Override
-//	public Map<String, Long> countColtureGroupByProdotto() {
-//
-//		Map<String, Long> chartData = new HashMap<>();
-//		List<ColturaGroupByProdottoDTO> countColtureGroupByProdotto = agrifluxServiceImpl.countColtureGroupByProdotto();
-//
-//		for (ColturaGroupByProdottoDTO colturaGroupByProdottoDTO : countColtureGroupByProdotto) {
-//			chartData.put(colturaGroupByProdottoDTO.getProdottoColtivato(), colturaGroupByProdottoDTO.getCount());
-//		}
-//		
-//		return chartData;
-//	}
 
 	@Override
 	public Map<String, Map<String, ProduzioneColturaDTO>> findColtureJoinProduzione() {
@@ -117,6 +101,13 @@ public class DashboardServiceImpl implements DashboardService {
 	@Override
 	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
 		return agrifluxServiceImpl.findProduzioneJoinColturaMorfologia();
+	}
+	
+	//AMBIENTE
+	
+	@Override
+	public List<AmbienteDTO> findAllAmbienteSortById() {
+		return agrifluxServiceImpl.findAllAmbienteSortById();
 	}
 
 }

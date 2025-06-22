@@ -120,8 +120,6 @@ function rotazioneColtureBarChart() {
 						}
 					}
 					
-					//document.getElementById("rotazioneColtureBarChart").height = dtoList.length * 150;
-
 					barChartInstance = new Chart(ctxLine, {
 						type: 'bar',
 						data: {
