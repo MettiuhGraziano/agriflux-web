@@ -12,7 +12,7 @@ import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
  * Interfaccia che mostra il contratto che deve rispettare il FE per la visualizzazione dei dati
  * nelle datatables e nei chart
  */
-public interface DashboardService extends DataChartService{
+public interface DashboardService extends DataChartService {
 	
 	/**
 	 * Metodo che torna la lista di Colture ordinate in modo ASCENDENTE tramite l'ID

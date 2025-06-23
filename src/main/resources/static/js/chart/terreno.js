@@ -103,22 +103,28 @@ function rotazioneColtureBarChart() {
 					var dateMin = dtoList[dtoList.length - 1].dateRilevazione[0];
 					var dateMax = dtoList[0].dateRilevazione[dtoList[0].dateRilevazione.length - 1];
 
-					const datasetDinamico = [];
 					const prodottiColtivati = [];
 
+					const datasetMap = new Map(); // Mappa per aggregare i dati per prodotto
+
 					for (let dto of dtoList) {
-						const dataDinamica = { y: dto.prodottoColtivato, x: [dto.dateRilevazione[0], dto.dateRilevazione[dto.dateRilevazione.length - 1]] }
+					    const range = {
+					        y: dto.prodottoColtivato,
+					        x: [dto.dateRilevazione[0], dto.dateRilevazione[dto.dateRilevazione.length - 1]]
+					    };
 
-						datasetDinamico.push({
-							label: 'Coltura ' + dto.idColtura,
-							data: [dataDinamica],
-							borderColor: generaColoreRandom()
-						})
-
-						if (!prodottiColtivati.includes(dto.prodottoColtivato)) {
-							prodottiColtivati.push(dto.prodottoColtivato);
-						}
+					    if (datasetMap.has(dto.prodottoColtivato)) {
+					        datasetMap.get(dto.prodottoColtivato).data.push(range);
+					    } else {
+					        datasetMap.set(dto.prodottoColtivato, {
+					            label: 'Coltura ' + dto.idColtura,
+					            data: [range],
+					            borderColor: generaColoreRandom()
+					        });
+					    }
 					}
+					
+					const datasetDinamico = Array.from(datasetMap.values());
 					
 					barChartInstance = new Chart(ctxLine, {
 						type: 'bar',
@@ -134,6 +140,7 @@ function rotazioneColtureBarChart() {
 							indexAxis: 'y',
 							scales: {
 								x: {
+									stacked: true,
 									beginAtZero: false,
 									type: 'time',
 									time: {
@@ -159,7 +166,7 @@ function rotazioneColtureBarChart() {
 							},
 							elements: {
 								bar: {
-									borderWidth: 4,
+									borderWidth: 2,
 									barThickness: 100
 								}
 							},

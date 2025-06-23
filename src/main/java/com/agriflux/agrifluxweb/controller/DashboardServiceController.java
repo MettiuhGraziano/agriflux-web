@@ -13,7 +13,7 @@ import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
-import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneParticellaColturaOrtaggioDTO;
 import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
 import com.agriflux.agrifluxweb.service.dashboard.DashboardService;
@@ -116,14 +116,14 @@ public class DashboardServiceController implements DashboardService {
 		return dashboardServiceImpl.findProduzioneJoinColturaTempi();
 	}
 	
-	
-
 	@Override
-	@GetMapping("/getProduzioneJoinColturaMorfologia")
-	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
-		return dashboardServiceImpl.findProduzioneJoinColturaMorfologia();
+	@GetMapping("/getProduzioneParticellaColturaOrtaggio")
+	@Operation(summary = "Mostra una mappa dei dati relativi alla Particella e al prodotto coltivato raggruppati per Produzione", description = "Restituisce una mappa in cui la chiave è la Produzione e il valore è un oggetto "
+			+ " contenente i dati relativi alla Particella e al prodotto coltivato riferito a quella Produzione")
+	public Map<Long, ProduzioneParticellaColturaOrtaggioDTO> findProduzioneParticellaColturaOrtaggio() {
+		return dashboardServiceImpl.findProduzioneParticellaColturaOrtaggio();
 	}
-	
+
 	//AMBIENTE
 	
 	@Override

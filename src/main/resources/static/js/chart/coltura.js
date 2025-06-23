@@ -160,8 +160,7 @@ function colturaLineChartDinamica() {
 							label: `Prezzo ${prodottoSelezionato}`,
 							data: values,
 							fill: false,
-							borderColor: generaColoreRandom(),
-							tension: 0.2
+							borderColor: generaColoreRandom()
 						}]
 					},
 					options: {

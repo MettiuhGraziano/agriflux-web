@@ -287,7 +287,7 @@ function produzioneBarChartHorizontal() {
 function produzioneScatterChart() {
 	let produzioneScatterChart;
 
-	fetch("/findProduzioneJoinColturaMorfologia")
+	fetch("/findProduzioneParticellaColturaOrtaggio")
 		.then(res => res.json())
 		.then(data => {
 
@@ -297,12 +297,13 @@ function produzioneScatterChart() {
 			const produzioni = Object.keys(data);
 
 			//Setto gli attributi min e max con il range massimo di date e i value
-			startDate.setAttribute("min", data[produzioni[produzioni.length - 1]].dataRaccolto);
-			startDate.setAttribute("max", data[produzioni[0]].dataRaccolto);
-			startDate.setAttribute("value", data[produzioni[produzioni.length - 1]].dataRaccolto);
-			endDate.setAttribute("min", data[produzioni[produzioni.length - 1]].dataRaccolto);
-			endDate.setAttribute("max", data[produzioni[0]].dataRaccolto);
-			endDate.setAttribute("value", data[produzioni[0]].dataRaccolto);
+			startDate.setAttribute("min", data[produzioni[0]].dataRaccolto);
+			startDate.setAttribute("max", data[produzioni[produzioni.length - 1]].dataRaccolto);
+			startDate.setAttribute("value", data[produzioni[0]].dataRaccolto);
+			
+			endDate.setAttribute("min", data[produzioni[0]].dataRaccolto);
+			endDate.setAttribute("max", data[produzioni[produzioni.length - 1]].dataRaccolto);
+			endDate.setAttribute("value", data[produzioni[produzioni.length - 1]].dataRaccolto);
 
 			startDate.addEventListener("change", function() {
 				startDate.setAttribute("value", this.value);
@@ -319,13 +320,17 @@ function produzioneScatterChart() {
 				const startDateSelected = document.getElementById("startDate");
 				const endDateSelected = document.getElementById("endDate");
 
-				var dateMax = new Date(endDateSelected.value);
-				var dateMin = new Date(startDateSelected.value);
+				var dateMax = new Date(new Date(endDateSelected.value).setYear(new Date(endDateSelected.value).getFullYear() + 1));
+				var dateMin = new Date(new Date(startDateSelected.value).setYear(new Date(startDateSelected.value).getFullYear() - 1));
+				
+				var rangeMin = new Date(startDateSelected.value);
+				var rangeMax = new Date(endDateSelected.value);
+				
 				//Filtro le produzioni in base al range di date inserito
 				produzioni.forEach(produzione => {
 					const dataRaccolto = new Date(data[produzione].dataRaccolto);
-					if ((dataRaccolto <= dateMin && dataRaccolto >= dateMax) ||
-						(dataRaccolto >= dateMin && dataRaccolto <= dateMax)) {
+					if ((dataRaccolto <= rangeMin && dataRaccolto >= rangeMax) ||
+						(dataRaccolto >= rangeMin && dataRaccolto <= rangeMax)) {
 						produzioniFiltrate.push(produzione);
 					}
 				});
@@ -443,8 +448,8 @@ function aggiornaTabella(dto) {
 	bodyTabella.appendChild(prodottoRow);
 
 	const morfologiaRow = document.createElement("tr");
-	morfologiaRow.innerHTML = `<td class="text-center">Codice Rilevazione Morfologica</td>
-						    <td class="text-center">${dto.idMorfologia}</td>`;
+	morfologiaRow.innerHTML = `<td class="text-center">Codice Particella</td>
+						    <td class="text-center">${dto.idParticella}</td>`;
 	bodyTabella.appendChild(morfologiaRow);
 
 	const estensioneRow = document.createElement("tr");

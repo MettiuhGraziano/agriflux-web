@@ -1,7 +1,6 @@
 package com.agriflux.agrifluxweb.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
-import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
 import com.agriflux.agrifluxshared.service.AgrifluxDataService;
 
 @Service
@@ -41,23 +39,6 @@ public class AgrifluxClientServiceImpl implements AgrifluxDataService {
 				new ParameterizedTypeReference<List<AmbienteDTO>>() {
 				});
         
-		return response.getBody();
-	}
-
-	@Override
-	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
-		
-		String url = batchUrl + "/findProduzioneJoinColturaMorfologia";
-
-		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-		HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
-
-		ResponseEntity<Map<Long, ProduzioneMorfologiaColturaDTO>> response = restTemplate.exchange(url,
-				HttpMethod.GET, httpHentity,
-				new ParameterizedTypeReference<Map<Long, ProduzioneMorfologiaColturaDTO>>() {
-				});
-
 		return response.getBody();
 	}
 

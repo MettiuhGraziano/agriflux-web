@@ -8,14 +8,16 @@ import org.springframework.stereotype.Service;
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
+import com.agriflux.agrifluxshared.dto.ortaggio.OrtaggioDTO;
 import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
-import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneParticellaColturaOrtaggioDTO;
 import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
 import com.agriflux.agrifluxweb.service.AgrifluxClientServiceImpl;
+import com.agriflux.agrifluxweb.service.DatiOrtaggioClientServiceImpl;
 import com.agriflux.agrifluxweb.service.coltura.DatiColturaClientServiceImpl;
 import com.agriflux.agrifluxweb.service.particella.DatiParticellaClientServiceImpl;
 import com.agriflux.agrifluxweb.service.produzione.DatiProduzioneClientServiceImpl;
@@ -29,15 +31,18 @@ public class DashboardServiceImpl implements DashboardService {
 	private final DatiParticellaClientServiceImpl datiParticellaService;
 	private final DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService;
 	private final DatiProduzioneClientServiceImpl datiProduzioneService;
+	private final DatiOrtaggioClientServiceImpl datiOrtaggioService;
 	
 	public DashboardServiceImpl(AgrifluxClientServiceImpl agrifluxServiceImpl,
 			DatiColturaClientServiceImpl datiColturaService, DatiParticellaClientServiceImpl datiParticellaService,
-			DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService, DatiProduzioneClientServiceImpl datiProduzioneService) {
+			DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService,
+			DatiProduzioneClientServiceImpl datiProduzioneService, DatiOrtaggioClientServiceImpl datiOrtaggioService) {
 		this.agrifluxServiceImpl = agrifluxServiceImpl;
 		this.datiColturaService = datiColturaService;
 		this.datiParticellaService = datiParticellaService;
 		this.datiRilevazioneTerrenoService = datiRilevazioneTerrenoService;
 		this.datiProduzioneService = datiProduzioneService;
+		this.datiOrtaggioService = datiOrtaggioService;
 	}
 	
 	//PARTICELLA
@@ -97,12 +102,12 @@ public class DashboardServiceImpl implements DashboardService {
 	public Map<String, List<ProduzioneColturaTempiDTO>> findProduzioneJoinColturaTempi() {
 		return datiProduzioneService.findProduzioneJoinColturaTempi();
 	}
-
-	@Override
-	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
-		return agrifluxServiceImpl.findProduzioneJoinColturaMorfologia();
-	}
 	
+	@Override
+	public Map<Long, ProduzioneParticellaColturaOrtaggioDTO> findProduzioneParticellaColturaOrtaggio() {
+		return datiProduzioneService.findProduzioneParticellaColturaOrtaggio();
+	}
+
 	//AMBIENTE
 	
 	@Override
@@ -110,5 +115,8 @@ public class DashboardServiceImpl implements DashboardService {
 		return agrifluxServiceImpl.findAllAmbienteSortById();
 	}
 
+	public List<OrtaggioDTO> findAllOrtaggioSortById() {
+		return datiOrtaggioService.findAllOrtaggioSortById();
+	}
 
 }

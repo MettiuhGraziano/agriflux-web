@@ -1,5 +1,6 @@
 package com.agriflux.agrifluxweb.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
+import com.agriflux.agrifluxshared.dto.ortaggio.OrtaggioDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
-import com.agriflux.agrifluxshared.dto.produzione.ProduzioneMorfologiaColturaDTO;
+import com.agriflux.agrifluxshared.dto.produzione.ProduzioneParticellaColturaOrtaggioDTO;
 import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxweb.service.dashboard.DashboardServiceImpl;
 import com.agriflux.agrifluxweb.service.dashboard.DataChartService;
@@ -125,10 +127,10 @@ public class DashboardController implements DataChartService{
 	}
 	
 	@Override
-	@GetMapping("/findProduzioneJoinColturaMorfologia")
+	@GetMapping("/findProduzioneParticellaColturaOrtaggio")
 	@ResponseBody
-	public Map<Long, ProduzioneMorfologiaColturaDTO> findProduzioneJoinColturaMorfologia() {
-		return dashboardServiceImpl.findProduzioneJoinColturaMorfologia();
+	public Map<Long, ProduzioneParticellaColturaOrtaggioDTO> findProduzioneParticellaColturaOrtaggio() {
+		return dashboardServiceImpl.findProduzioneParticellaColturaOrtaggio();
 	}
 	
 	//AMBIENTE
@@ -138,17 +140,22 @@ public class DashboardController implements DataChartService{
 		model.addAttribute("ambienti", dashboardServiceImpl.findAllAmbienteSortById());
 	    return "fragments/ambiente :: ambientePage";
 	}
-
-//	@GetMapping("/findListaProdottiColtivati")
-//	@ResponseBody
-//	public List<String> findListProdottiColture() {
-//		
-//		List<String> prodottiColtivati = new ArrayList<String>();
-//		for (TipoProdottoEnum prodotto : TipoProdottoEnum.values()) {
-//			prodottiColtivati.add(prodotto.name());
-//		}
-//		
-//		return prodottiColtivati;
-//	}
+	
+	//UTILS
+	
+	@GetMapping("/findListaProdottiColtivati")
+	@ResponseBody
+	public List<String> findListProdottiColture() {
+		
+		List<OrtaggioDTO> dtoList = dashboardServiceImpl.findAllOrtaggioSortById();
+		
+		List<String> response = new ArrayList<String>();
+		
+		for (OrtaggioDTO dto : dtoList) {
+			response.add(dto.getNome());
+		}
+		
+		return response;
+	}
 
 }
