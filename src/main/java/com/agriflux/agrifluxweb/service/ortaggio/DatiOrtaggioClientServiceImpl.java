@@ -1,4 +1,4 @@
-package com.agriflux.agrifluxweb.service;
+package com.agriflux.agrifluxweb.service.ortaggio;
 
 import java.util.List;
 

@@ -16,9 +16,9 @@ import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneParticellaColturaOrtaggioDTO;
 import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
-import com.agriflux.agrifluxweb.service.AgrifluxClientServiceImpl;
-import com.agriflux.agrifluxweb.service.DatiOrtaggioClientServiceImpl;
+import com.agriflux.agrifluxweb.service.ambiente.DatiAmbienteClientServiceImpl;
 import com.agriflux.agrifluxweb.service.coltura.DatiColturaClientServiceImpl;
+import com.agriflux.agrifluxweb.service.ortaggio.DatiOrtaggioClientServiceImpl;
 import com.agriflux.agrifluxweb.service.particella.DatiParticellaClientServiceImpl;
 import com.agriflux.agrifluxweb.service.produzione.DatiProduzioneClientServiceImpl;
 import com.agriflux.agrifluxweb.service.terreno.DatiRilevazioneTerrenoClientServiceImpl;
@@ -26,23 +26,23 @@ import com.agriflux.agrifluxweb.service.terreno.DatiRilevazioneTerrenoClientServ
 @Service
 public class DashboardServiceImpl implements DashboardService {
 	
-	private final AgrifluxClientServiceImpl agrifluxServiceImpl;
 	private final DatiColturaClientServiceImpl datiColturaService;
 	private final DatiParticellaClientServiceImpl datiParticellaService;
 	private final DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService;
 	private final DatiProduzioneClientServiceImpl datiProduzioneService;
 	private final DatiOrtaggioClientServiceImpl datiOrtaggioService;
-	
-	public DashboardServiceImpl(AgrifluxClientServiceImpl agrifluxServiceImpl,
-			DatiColturaClientServiceImpl datiColturaService, DatiParticellaClientServiceImpl datiParticellaService,
+	private final DatiAmbienteClientServiceImpl datiAmbienteClientService;
+
+	public DashboardServiceImpl(DatiColturaClientServiceImpl datiColturaService,
+			DatiParticellaClientServiceImpl datiParticellaService,
 			DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService,
-			DatiProduzioneClientServiceImpl datiProduzioneService, DatiOrtaggioClientServiceImpl datiOrtaggioService) {
-		this.agrifluxServiceImpl = agrifluxServiceImpl;
+			DatiProduzioneClientServiceImpl datiProduzioneService, DatiOrtaggioClientServiceImpl datiOrtaggioService, DatiAmbienteClientServiceImpl datiAmbienteClientService) {
 		this.datiColturaService = datiColturaService;
 		this.datiParticellaService = datiParticellaService;
 		this.datiRilevazioneTerrenoService = datiRilevazioneTerrenoService;
 		this.datiProduzioneService = datiProduzioneService;
 		this.datiOrtaggioService = datiOrtaggioService;
+		this.datiAmbienteClientService = datiAmbienteClientService;
 	}
 	
 	//PARTICELLA
@@ -112,7 +112,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Override
 	public List<AmbienteDTO> findAllAmbienteSortById() {
-		return agrifluxServiceImpl.findAllAmbienteSortById();
+		return datiAmbienteClientService.findAllAmbienteSortById();
 	}
 
 	public List<OrtaggioDTO> findAllOrtaggioSortById() {

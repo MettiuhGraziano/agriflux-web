@@ -127,7 +127,8 @@ public class DashboardServiceController implements DashboardService {
 	//AMBIENTE
 	
 	@Override
-	@GetMapping("/datiAmbientali")
+	@GetMapping("/ambienteApi")
+	@Operation(summary = "Recupera tutti i dati Ambientali", description = "Restituisce una lista di dati Ambientali")
 	public List<AmbienteDTO> findAllAmbienteSortById() {
 		return dashboardServiceImpl.findAllAmbienteSortById();
 	}

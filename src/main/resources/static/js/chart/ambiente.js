@@ -31,5 +31,5 @@ document.getElementById('pills-ambiente-tab').addEventListener('click', function
 				lengthMenu: [[5, 10, 15], [5, 10, 15]]
 			});
 		}
-	}, 50);
+	}, 1000);
 });
