@@ -204,7 +204,7 @@ function downloadColturaLineChart() {
 		pdf.text("Andamento Prezzo Prodotti Coltivati", 40, 30);
 		pdf.addImage(imageData, 'PNG', 40, 50, width - 80, height);
 
-		pdf.save("linechart_prezzo_colture.pdf");
+		pdf.save("andamento_prezzi_colture.pdf");
 	});
 }
 

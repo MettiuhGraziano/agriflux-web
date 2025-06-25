@@ -39,8 +39,13 @@ document.addEventListener("DOMContentLoaded", function() {
 		setTimeout(() => {
 
 			produzioneMultipleChartLineRadar();
+			downloadProduzioneAnnualeRaccoltoChart();
+			
 			produzioneBarChartHorizontal();
+			downloadVariazioneTempi();
+			
 			produzioneScatterChart();
+			downloadDistribuzioneProduzione();
 
 		}, 1000);
 	})
@@ -471,5 +476,83 @@ function aggiornaTabella(dto) {
 	litologiaRow.innerHTML = `<td class="text-center">Litologia</td>
 						    <td class="text-center">${dto.litologia}</td>`;
 	bodyTabella.appendChild(litologiaRow);
-											
+}
+
+function downloadProduzioneAnnualeRaccoltoChart() {
+	document.getElementById("downloadProduzioneAnnualeRaccolto").addEventListener("click", async () => {
+		const { jsPDF } = window.jspdf;
+
+		const pdf = new jsPDF({
+			orientation: 'landscape',
+			unit: 'px',
+			format: 'a4'
+		});
+
+		const canvas1 = document.getElementById("produzioneMultipleLineChart");
+		const imageData1 = canvas1.toDataURL("image/png", 1.0);
+
+		const width1 = pdf.internal.pageSize.getWidth();
+		const height1 = canvas1.height * (width1 / canvas1.width) / 2;
+
+		pdf.text("Produzione Annuale", 40, 30);
+		pdf.addImage(imageData1, 'PNG', 40, 50, width1 - 80, height1);
+		
+		const canvas2 = document.getElementById("produzioneRadarChart");
+		const imageData2 = canvas2.toDataURL("image/png", 1.0);
+
+		const width2 = pdf.internal.pageSize.getWidth();
+		const height2 = canvas2.height * (width2 / canvas2.width) / 2;
+	
+		pdf.addPage();
+		pdf.text("Fatturato Annuale", 40, 30);
+		pdf.addImage(imageData2, 'PNG', 40, 50, width2 - 80, height2);
+
+		pdf.save("produzione_annuale_raccolto.pdf");
+	});
+}
+
+function downloadDistribuzioneProduzione() {
+	document.getElementById("downloadDistribuzioneProduzione").addEventListener("click", async () => {
+		const { jsPDF } = window.jspdf;
+
+		const pdf = new jsPDF({
+			orientation: 'landscape',
+			unit: 'px',
+			format: 'a4'
+		});
+
+		const canvas = document.getElementById("produzioneScatterChart");
+		const imageData = canvas.toDataURL("image/png", 1.0);
+
+		const width = pdf.internal.pageSize.getWidth();
+		const height = canvas.height * (width / canvas.width) / 2;
+
+		pdf.text("Distribuzione Produzione Prodotti", 40, 30);
+		pdf.addImage(imageData, 'PNG', 40, 50, width - 80, height);
+
+		pdf.save("distribuzione_produzione.pdf");
+	});
+}
+
+function downloadVariazioneTempi() {
+	document.getElementById("downloadVariazioneTempi").addEventListener("click", async () => {
+		const { jsPDF } = window.jspdf;
+
+		const pdf = new jsPDF({
+			orientation: 'landscape',
+			unit: 'px',
+			format: 'a4'
+		});
+
+		const canvas = document.getElementById("produzioneBarChartHorizontal");
+		const imageData = canvas.toDataURL("image/png", 1.0);
+
+		const width = pdf.internal.pageSize.getWidth();
+		const height = canvas.height * (width / canvas.width);
+
+		pdf.text("Variazioni tempi di coltura", 40, 30);
+		pdf.addImage(imageData, 'PNG', 40, 50, width - 80, height);
+
+		pdf.save("variazione_tempi.pdf");
+	});
 }
