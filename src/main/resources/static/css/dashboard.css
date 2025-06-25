@@ -1,31 +1,39 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .nav-bg-green-custom {
 	background-color: #1f3b2c;
 }
 
-.sidebar-custom .nav-link {
+.navbar-custom {
+	height: 80px !important;
+}
+
+.navbar-custom .nav-link {
 	color: #D4FFD6;
 }
 
-.sidebar-custom .nav-link:hover {
+.navbar-custom .nav-link:hover {
 	color: #ffffff;
 	background-color: rgba(255, 255, 255, 0.05);
 }
 
-.custom-btn-sidebar {
+.custom-btn-navbar {
 	background-color: #3E8E41;
 	color: #D4FFD6 !important;
 	border: none;
-	text-align: start;
 }
 
-.custom-btn-sidebar:hover {
+.custom-btn-navbar:hover {
 	background-color: #4CAF50;
 	color: #ffffff;
 }
 
-.custom-btn-sidebar:active,
-.custom-btn-sidebar.active,
-.custom-btn-sidebar:focus {
+.custom-btn-navbar:active,
+.custom-btn-navbar.active,
+.custom-btn-navbar:focus {
 	background-color: rgb(11, 108, 33) !important;
 	color: #ffffff !important;
 	box-shadow: none !important;
@@ -37,14 +45,16 @@
 }
 
 .tab-content {
-	height: 1000px !important;
-	background-color: rgb(187, 240, 162)
+	height: 800px !important;
+	background-color: rgb(187, 240, 162);
+	padding-top: 80px;
+	min-height: calc(100vh - 80px) !important;
 }
 
 .chart-container {
 	background-color: rgb(255, 255, 255);
 	padding: 20px;
-	border-radius: 8px;
+	border-radius: 10px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	width: 100% !important;
 	max-width: 950px;

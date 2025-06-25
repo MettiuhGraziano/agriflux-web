@@ -1,13 +1,13 @@
 let terrenoLoaded = false;
 
 document.addEventListener('DOMContentLoaded', function() {
-	const terrenoTab = document.getElementById('pills-terreno-tab');
+	const terrenoTab = document.getElementById('terreno-tab');
 	terrenoTab.addEventListener('click', function() {
 		if (!terrenoLoaded) {
 			fetch('/terreno')
 				.then(response => response.text())
 				.then(html => {
-					document.getElementById('pills-terreno').innerHTML = html;
+					document.getElementById('tab-terreno').innerHTML = html;
 				})
 				.catch(error => {
 					console.error('Errore nel caricamento del terreno:', error);
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 });
 
-document.getElementById('pills-terreno-tab').addEventListener('click', function() {
+document.getElementById('terreno-tab').addEventListener('click', function() {
 	setTimeout(() => {
 		if (!$.fn.DataTable.isDataTable('#particella-datatable')) {
 			new DataTable('#particella-datatable', {
@@ -49,7 +49,7 @@ document.getElementById('pills-terreno-tab').addEventListener('click', function(
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById('pills-terreno-tab').addEventListener("click", function() {
+	document.getElementById('terreno-tab').addEventListener("click", function() {
 		setTimeout(() => { 
 			
 			rotazioneColtureBarChart();

@@ -1,13 +1,13 @@
 let produzioneLoaded = false;
 
 document.addEventListener('DOMContentLoaded', function() {
-	const produzioneTab = document.getElementById('pills-produzione-tab');
+	const produzioneTab = document.getElementById('produzione-tab');
 	produzioneTab.addEventListener('click', function() {
 		if (!produzioneLoaded) {
 			fetch('/produzione')
 				.then(response => response.text())
 				.then(html => {
-					document.getElementById('pills-produzione').innerHTML = html;
+					document.getElementById('tab-produzione').innerHTML = html;
 				})
 				.catch(error => {
 					console.error('Errore nel caricamento dei dati di produzione:', error);
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 });
 
-document.getElementById('pills-produzione-tab').addEventListener('click', function() {
+document.getElementById('produzione-tab').addEventListener('click', function() {
 	setTimeout(() => {
 		if (!$.fn.DataTable.isDataTable('#produzione-datatable')) {
 			new DataTable('#produzione-datatable', {
@@ -35,7 +35,7 @@ document.getElementById('pills-produzione-tab').addEventListener('click', functi
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById('pills-produzione-tab').addEventListener("click", function() {
+	document.getElementById('produzione-tab').addEventListener("click", function() {
 		setTimeout(() => {
 
 			produzioneMultipleChartLineRadar();

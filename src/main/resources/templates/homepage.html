@@ -7,6 +7,8 @@
 	<link rel="stylesheet" data-th-href="@{/css/dashboard.css}">
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap CSS FONT AWESOME-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" >
 	<!-- DataTables -->
 	<link href="https://cdn.datatables.net/2.3.1/css/dataTables.bootstrap5.css" rel="stylesheet">
 	<!-- Chart.js -->
@@ -14,105 +16,104 @@
 	<!-- Chart.js per la gestione delle Date -->
 	<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
-  
+
 <body>
-	<div class="container-fluid">
-		<div class="row flex-nowrap">
-
-			<nav class="sidebar-custom col-md-2 d-none d-md-block nav-bg-green-custom position-fixed p-0 min-vh-100">
-				<div class="d-flex flex-column justify-content-between h-100 p-3">
-
-					<div class="text-center mb-4">
-						<a class="navbar-brand">
-							<img class="object-fit-fill border rounded" data-th-src="@{/images/logo.png}" alt="Logo"
-								style="max-width: 120px;">
-						</a>
-					</div>
-
-					<span class="navbar-text mt-2 mx-auto">
-						<a data-th-text="'Utente: ' + ${session.username}"></a>
-					</span>
-
-					<hr class="border border-dark border-1">
-
-					<div id="menu"
-						class="nav nav-pills nav-fill flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start sidebar-bg-green-custom"
-						role="tablist">
-						<div class="nav-item mx-auto" role="presentation">
-							<button id="pills-dashboard-tab" class="nav-link btn custom-btn-sidebar active w-100"
-								data-bs-toggle="pill" data-bs-target="#pills-dashboard" type="button" role="tab"
-								aria-controls="pills-dashboard" aria-selected="true" data-th-text="Dashboard"></button>
-						</div>
-
-						<div class="nav-item mx-auto" data-toggle="tooltip" role="presentation">
-							<button id="pills-monitoraggio-tab"
-								class="nav-link-collapse collapsed btn custom-btn-sidebar w-100" data-th-text="Monitoraggio"
-								data-bs-toggle="collapse" data-bs-target="#collapseMonitoraggio" aria-expanded="false"
-								aria-controls="collapseMonitoraggio"></button>
-							<div class="collapse ps-3" id="collapseMonitoraggio" data-bs-parent="#menu">
-								<button id="pills-colture-tab" class="btn custom-btn-sidebar w-100" type="button"
-									data-bs-toggle="pill" data-bs-target="#pills-colture" role="tab"
-									aria-controls="pills-colture" aria-selected="false" data-th-text="Colture"></button>
-								<button id="pills-produzione-tab" class="btn custom-btn-sidebar w-100" type="button" data-bs-toggle="pill"
-									data-bs-target="#pills-produzione" role="tab" aria-controls="pills-produzione" aria-selected="false"
-									data-th-text="Produzione"></button>
-								<button id="pills-terreno-tab" class="btn custom-btn-sidebar w-100" type="button" data-bs-toggle="pill"
-									data-bs-target="#pills-terreno" role="tab" aria-controls="pills-terreno" aria-selected="false"
-									data-th-text="Terreno"></button>
-								<button id="pills-ambiente-tab" class="btn custom-btn-sidebar w-100" type="button" data-bs-toggle="pill"
-									data-bs-target="#pills-ambiente" role="tab" aria-controls="pills-ambiente" aria-selected="false"
-									data-th-text="Ambiente"></button>	
-							</div>
-						</div>
-
-						<div class="nav-item mx-auto" role="presentation">
-							<button id="pills-kpi-tab" class="nav-link btn custom-btn-sidebar w-100"
-								data-bs-toggle="pill" data-bs-target="#pills-kpi" type="button" role="tab"
-								aria-controls="pills-kpi" aria-selected="false" data-th-text="KPI"></button>
-						</div>
-
-						<div class="nav-item mx-auto" role="presentation">
-							<a id="pills-logout-tab" class="nav-link custom-btn-sidebar w-100" data-th-href="@{/logout}"
-								role="tab" data-th-text="Logout"></a>
-						</div>
-
-					</div>
-
-					<hr class="border border-dark border-1">
-
-					<!-- <footer class="navbar-text p-3 text-center border-top border-secondary">
-						© 2025 AgriFlux – Dati agricoli </br> Tutti diritti riservati
-					</footer> -->
+	<div class="container-fluid p-0">
+	
+		<nav class="navbar nav-tabs navbar-expand-lg nav-justified navbar-custom fixed-top nav-bg-green-custom">
+			<div class="container-fluid">
+	
+				<div class="col-1 d-flex align-items-center me-2">
+					<a class="navbar-brand">
+						<img class="border rounded" data-th-src="@{/images/logo.png}" alt="Logo" style="height: 60px;">
+					</a>
 				</div>
-			</nav>
-
-			<div class="col-md-10 ms-auto px-4 tab-content" style="overflow-y: auto;" id="nav-tabContent">
-				<div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
-					th:insert="~{fragments/dashboard :: dashboardPage}" tabindex="0"></div>
-
-				<div class="tab-pane fade" id="pills-colture" role="tabpanel" aria-labelledby="pills-colture-tab"
-					th:insert="~{fragments/coltura :: colturaPage}" tabindex="0"></div>
-
-				<div class="tab-pane fade" id="pills-produzione" role="tabpanel" aria-labelledby="pills-produzione-tab"
-					th:insert="~{fragments/produzione :: produzionePage}" tabindex="0"></div>
-
-				<div class="tab-pane fade" id="pills-terreno" role="tabpanel" aria-labelledby="pills-terreno-tab"
-					th:insert="~{fragments/terreno :: terrenoPage}" tabindex="0"></div>
-										
-				<div class="tab-pane fade" id="pills-ambiente" role="tabpanel" aria-labelledby="pills-ambiente-tab"
-					th:insert="~{fragments/ambiente :: ambientePage}" tabindex="0"></div>
-
-				<div class="tab-pane fade" id="pills-kpi" role="tabpanel" aria-labelledby="pills-kpi-tab" tabindex="0">
-					KPI </div>
+	
+				<div class="col-9 nav-tabs collapse navbar-collapse d-flex mx-auto me-2" role="tablist">
+				
+					<div class="nav-item p-2 flex-fill" role="presentation">
+						<button id="dashboard-tab" class="nav-link btn custom-btn-navbar active" data-bs-toggle="tab"
+							data-bs-target="#tab-dashboard" type="button" role="tab" aria-controls="tab-dashboard"
+							aria-selected="true"><i class="fa-solid fa-house-chimney-window me-2"></i><span
+								data-th-text="Homepage"></span></button>
+					</div>
+				
+					<div class="nav-item p-2 flex-fill" role="presentation">
+						<button id="colture-tab" class="nav-link btn custom-btn-navbar" type="button" data-bs-toggle="tab"
+							data-bs-target="#tab-colture" role="tab" aria-controls="tab-colture" aria-selected="false"><i
+								class="fa-solid fa-seedling me-2"></i><span data-th-text="Colture"></span></button>
+					</div>
+				
+					<div class="nav-item p-2 flex-fill" role="presentation">
+						<button id="produzione-tab" class="nav-link btn custom-btn-navbar" type="button" data-bs-toggle="tab"
+							data-bs-target="#tab-produzione" role="tab" aria-controls="tab-produzione" aria-selected="false"><i
+								class="fa-solid fa-plus-minus me-2"></i><span data-th-text="Produzione"></span></button>
+					</div>
+				
+					<div class="nav-item p-2 flex-fill" role="presentation">
+						<button id="terreno-tab" class="nav-link btn custom-btn-navbar" type="button" data-bs-toggle="tab"
+							data-bs-target="#tab-terreno" role="tab" aria-controls="tab-terreno" aria-selected="false"><i
+								class="fa-solid fa-layer-group me-2"></i><span data-th-text="Terreno"></span></button>
+					</div>
+				
+					<div class="nav-item p-2 flex-fill" role="presentation">
+						<button id="ambiente-tab" class="nav-link btn custom-btn-navbar" type="button" data-bs-toggle="tab"
+							data-bs-target="#tab-ambiente" role="tab" aria-controls="tab-ambiente" aria-selected="false"><i
+								class="fa-solid fa-temperature-three-quarters me-2"></i><span data-th-text="Ambiente"></span></button>
+					</div>
+				
+					<div class="nav-item p-2 flex-fill" role="presentation">
+						<button id="kpi-tab" class="nav-link btn custom-btn-navbar" data-bs-toggle="tab" data-bs-target="#tab-kpi"
+							type="button" role="tab" aria-controls="tab-kpi" aria-selected="false"><i
+								class="fa-solid fa-timeline me-2"></i><span data-th-text="KPI"></span></button>
+					</div>
+				</div>
+	
+				<!-- <span class="navbar-text">
+				<a data-th-text="'Utente: ' + ${session.username}"></a>
+				</span> -->
+				<div class="col-1 nav-item" role="presentation">
+					<a id="logout-tab" class="nav-link custom-btn-sidebar" data-th-href="@{/logout}" role="tab"
+						data-th-text="Logout"></a>
+				</div>
+	
+	
+				<!-- <footer class="navbar-text p-3 text-center border-top border-secondary">
+																									© 2025 AgriFlux – Dati agricoli </br> Tutti diritti riservati
+																								</footer> -->
 			</div>
-
+		</nav>
+	
+		<div class="tab-content">
+			<div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel"
+				th:insert="~{fragments/dashboard :: dashboardPage}" tabindex="0"></div>
+	
+			<div class="tab-pane fade" id="tab-colture" role="tabpanel" aria-labelledby="colture-tab"
+				th:insert="~{fragments/coltura :: colturaPage}" tabindex="0"></div>
+	
+			<div class="tab-pane fade" id="tab-produzione" role="tabpanel" aria-labelledby="produzione-tab"
+				th:insert="~{fragments/produzione :: produzionePage}" tabindex="0"></div>
+	
+			<div class="tab-pane fade" id="tab-terreno" role="tabpanel" aria-labelledby="terreno-tab"
+				th:insert="~{fragments/terreno :: terrenoPage}" tabindex="0"></div>
+	
+			<div class="tab-pane fade" id="tab-ambiente" role="tabpanel" aria-labelledby="ambiente-tab"
+				th:insert="~{fragments/ambiente :: ambientePage}" tabindex="0"></div>
+	
+			<div class="tab-pane fade" id="tab-kpi" role="tabpanel" aria-labelledby="kpi-tab" tabindex="0">
+				KPI </div>
 		</div>
+	
 	</div>
 
 	<script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
-	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-	<script defer src="https://cdn.datatables.net/v/dt/dt-2.3.2/datatables.min.js" integrity="sha384-JRUjeYWWUGO171YFugrU0ksSC6CaWnl4XzwP6mNjnnDh4hfFGRyYbEXwryGwLsEp" crossorigin="anonymous"></script>
+	<script defer
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+	<script defer src="https://cdn.datatables.net/v/dt/dt-2.3.2/datatables.min.js"
+		integrity="sha384-JRUjeYWWUGO171YFugrU0ksSC6CaWnl4XzwP6mNjnnDh4hfFGRyYbEXwryGwLsEp"
+		crossorigin="anonymous"></script>
 	<script defer src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 	<script data-th-src="@{/js/chart/coltura.js}"></script>
 	<script data-th-src="@{/js/chart/produzione.js}"></script>

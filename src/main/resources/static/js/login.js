@@ -1,7 +1,10 @@
 const images = [
-	'/images/test1.jpg',
-	'/images/test2.jpg',
-	'/images/test3.jpg'
+	'/images/carosello1.png',
+	'/images/carosello2.png',
+	'/images/carosello3.png',
+	'/images/carosello4.jpg',
+	'/images/carosello5.jpg',
+	'/images/carosello6.jpg'
 ];
 
 let index = 0;
