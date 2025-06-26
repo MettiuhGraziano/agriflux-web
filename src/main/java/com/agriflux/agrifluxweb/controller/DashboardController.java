@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.agriflux.agrifluxshared.dto.ambiente.VariazioneValoriParametriAmbienteDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.ortaggio.OrtaggioDTO;
@@ -27,7 +28,7 @@ import jakarta.servlet.http.HttpSession;
  * Controller per la gestione, comunicazione e recupero dati tra pagine html
  */
 @Controller
-public class DashboardController implements DataChartService{
+public class DashboardController implements DataChartService {
 	
 	private final DashboardServiceImpl dashboardServiceImpl;
 	
@@ -140,6 +141,21 @@ public class DashboardController implements DataChartService{
 		model.addAttribute("ambienti", dashboardServiceImpl.findAllAmbienteSortById());
 	    return "fragments/ambiente :: ambientePage";
 	}
+	
+	@GetMapping("/getListaParametriAmbientali")
+	@ResponseBody
+	public List<String> getListaParametriAmbientali() {
+		
+		return dashboardServiceImpl.getListaParametriAmbiente();
+	}
+	
+	@Override
+	@GetMapping("/getVariazioneValoriParametriAmbiente")
+	@ResponseBody
+	public Map<String, List<VariazioneValoriParametriAmbienteDTO>> getVariazioneValoriParametriAmbiente() {
+		return dashboardServiceImpl.getVariazioneValoriParametriAmbiente();
+	}
+	
 	
 	//UTILS
 	

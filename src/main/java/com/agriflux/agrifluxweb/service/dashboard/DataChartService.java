@@ -3,6 +3,7 @@ package com.agriflux.agrifluxweb.service.dashboard;
 import java.util.List;
 import java.util.Map;
 
+import com.agriflux.agrifluxshared.dto.ambiente.VariazioneValoriParametriAmbienteDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
@@ -72,5 +73,13 @@ public interface DataChartService {
 	 * @return Map di ProduzioneMorfologiaColturaDTO
 	 */
 	Map<Long, ProduzioneParticellaColturaOrtaggioDTO> findProduzioneParticellaColturaOrtaggio();
+	
+	/**
+	 * Metodo che restituisce una mappa con in chiave i nomi dei parametri calcolati sull'Ambiente e come valore una lista di oggetti
+	 * contenente il valore del campo, la data di rilevazione e la percentuale di variazione rispetto l'anno precedente
+	 * 
+	 * @return
+	 */
+	Map<String, List<VariazioneValoriParametriAmbienteDTO>> getVariazioneValoriParametriAmbiente();
 	
 }

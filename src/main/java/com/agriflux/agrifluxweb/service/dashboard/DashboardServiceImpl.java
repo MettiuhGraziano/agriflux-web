@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
+import com.agriflux.agrifluxshared.dto.ambiente.VariazioneValoriParametriAmbienteDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.ortaggio.OrtaggioDTO;
@@ -31,7 +32,7 @@ public class DashboardServiceImpl implements DashboardService {
 	private final DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService;
 	private final DatiProduzioneClientServiceImpl datiProduzioneService;
 	private final DatiOrtaggioClientServiceImpl datiOrtaggioService;
-	private final DatiAmbienteClientServiceImpl datiAmbienteClientService;
+	private final DatiAmbienteClientServiceImpl datiAmbienteService;
 
 	public DashboardServiceImpl(DatiColturaClientServiceImpl datiColturaService,
 			DatiParticellaClientServiceImpl datiParticellaService,
@@ -42,7 +43,7 @@ public class DashboardServiceImpl implements DashboardService {
 		this.datiRilevazioneTerrenoService = datiRilevazioneTerrenoService;
 		this.datiProduzioneService = datiProduzioneService;
 		this.datiOrtaggioService = datiOrtaggioService;
-		this.datiAmbienteClientService = datiAmbienteClientService;
+		this.datiAmbienteService = datiAmbienteClientService;
 	}
 	
 	//PARTICELLA
@@ -112,11 +113,25 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Override
 	public List<AmbienteDTO> findAllAmbienteSortById() {
-		return datiAmbienteClientService.findAllAmbienteSortById();
+		return datiAmbienteService.findAllAmbienteSortById();
 	}
+	
+	@Override
+	public List<String> getListaParametriAmbiente() {
+		return datiAmbienteService.getListaParametriAmbiente();
+	}
+	
+	@Override
+	public Map<String, List<VariazioneValoriParametriAmbienteDTO>> getVariazioneValoriParametriAmbiente() {
+		return datiAmbienteService.getVariazioneValoriParametriAmbiente();
+	}
+	
+	//ORTAGGIO
 
 	public List<OrtaggioDTO> findAllOrtaggioSortById() {
 		return datiOrtaggioService.findAllOrtaggioSortById();
 	}
+
+
 
 }

@@ -49,4 +49,11 @@ public interface DashboardService extends DataChartService {
 	 */
 	List<AmbienteDTO> findAllAmbienteSortById();
 	
+	/**
+	 * Metodo che restituisce la lista dei parametri calcolati relativi ai Dati Ambientali
+	 * 
+	 * @return
+	 */
+	List<String> getListaParametriAmbiente();
+	
 }
