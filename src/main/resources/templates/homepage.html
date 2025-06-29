@@ -23,11 +23,13 @@
 		<nav class="navbar nav-tabs navbar-expand-lg nav-justified navbar-custom fixed-top nav-bg-green-custom">
 			<div class="container-fluid">
 	
-				<div class="col-1 d-flex align-items-center me-2">
+				<div class="col-1 d-flex justify-content-center align-items-center p-0 m-0">
 					<a class="navbar-brand">
-						<img class="border rounded" data-th-src="@{/images/logo.png}" alt="Logo" style="height: 60px;">
+						<img class="border rounded" data-th-src="@{/images/logo.png}" alt="Logo" style="height: 65px;">
 					</a>
 				</div>
+				
+				<div class="vr me-2"></div>
 	
 				<div class="col-9 nav-tabs collapse navbar-collapse d-flex mx-auto me-2" role="tablist">
 				
@@ -59,49 +61,49 @@
 					<div class="nav-item p-2 flex-fill" role="presentation">
 						<button id="ambiente-tab" class="nav-link btn custom-btn-navbar" type="button" data-bs-toggle="tab"
 							data-bs-target="#tab-ambiente" role="tab" aria-controls="tab-ambiente" aria-selected="false"><i
-								class="fa-solid fa-wind me-2"></i><span data-th-text="Ambiente"></span></button>
+								class="fa-solid fa-cloud-sun-rain me-2"></i></i><span data-th-text="Ambiente"></span></button>
 					</div>
 				
 					<div class="nav-item p-2 flex-fill" role="presentation">
-						<button id="kpi-tab" class="nav-link btn custom-btn-navbar" data-bs-toggle="tab" data-bs-target="#tab-kpi"
-							type="button" role="tab" aria-controls="tab-kpi" aria-selected="false"><i
-								class="fa-solid fa-timeline me-2"></i><span data-th-text="KPI"></span></button>
+						<button id="fatturato-tab" class="nav-link btn custom-btn-navbar" data-bs-toggle="tab" data-bs-target="#tab-fatturato"
+							type="button" role="tab" aria-controls="tab-fatturato" aria-selected="false"><i
+								class="fa-solid fa-scale-balanced me-2"></i><span data-th-text="Fatturato"></span></button>
 					</div>
 				</div>
-	
-				<!-- <span class="navbar-text">
-				<a data-th-text="'Utente: ' + ${session.username}"></a>
-				</span> -->
+				
+				<div class="vr"></div>
+				
 				<div class="col-1 nav-item" role="presentation">
-					<a id="logout-tab" class="nav-link custom-btn-sidebar" data-th-href="@{/logout}" role="tab"
-						data-th-text="Logout"></a>
+					<form th:action="@{/logout}" method="post">
+						<button class="btn custom-btn-navbar" type="submit">
+							<i class="fa-solid fa-right-from-bracket"></i>
+						</button>
+					</form>
 				</div>
+				
+				<!-- <a class="dropdown-item navbar-text" data-th-text="'Utente: ' + ${session.username}"></a> -->
 	
-	
-				<!-- <footer class="navbar-text p-3 text-center border-top border-secondary">
-																									© 2025 AgriFlux – Dati agricoli </br> Tutti diritti riservati
-																								</footer> -->
 			</div>
 		</nav>
 	
 		<div class="tab-content">
 			<div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel"
 				th:insert="~{fragments/dashboard :: dashboardPage}" tabindex="0"></div>
-	
+		
 			<div class="tab-pane fade" id="tab-colture" role="tabpanel" aria-labelledby="colture-tab"
 				th:insert="~{fragments/coltura :: colturaPage}" tabindex="0"></div>
-	
+		
 			<div class="tab-pane fade" id="tab-produzione" role="tabpanel" aria-labelledby="produzione-tab"
 				th:insert="~{fragments/produzione :: produzionePage}" tabindex="0"></div>
-	
+		
 			<div class="tab-pane fade" id="tab-terreno" role="tabpanel" aria-labelledby="terreno-tab"
 				th:insert="~{fragments/terreno :: terrenoPage}" tabindex="0"></div>
-	
+		
 			<div class="tab-pane fade" id="tab-ambiente" role="tabpanel" aria-labelledby="ambiente-tab"
 				th:insert="~{fragments/ambiente :: ambientePage}" tabindex="0"></div>
-	
-			<div class="tab-pane fade" id="tab-kpi" role="tabpanel" aria-labelledby="kpi-tab" tabindex="0">
-				KPI </div>
+		
+			<div class="tab-pane fade" id="tab-fatturato" role="tabpanel" aria-labelledby="fatturato-tab" tabindex="0">
+				FATTURATO </div>
 		</div>
 	
 	</div>
@@ -115,6 +117,7 @@
 	<script defer src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
 	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+	<script data-th-src="@{/js/utils.js}"></script>
 	<script data-th-src="@{/js/chart/coltura.js}"></script>
 	<script data-th-src="@{/js/chart/produzione.js}"></script>
 	<script data-th-src="@{/js/chart/terreno.js}"></script>

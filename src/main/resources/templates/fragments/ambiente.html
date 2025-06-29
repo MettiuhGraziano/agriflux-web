@@ -11,9 +11,13 @@
 		
 		<div class="card mb-3">
 			<div class="card-body">
-				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaAmbiente"
+				<div class="card-header d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaAmbiente"
 					aria-expanded="false" aria-controls="collapseTabellaAmbiente">
-					Tabella Dati Ambientali
+					<span><i class="fa-solid fa-table me-2"></i>Tabella Dati Ambientali</span>
+					<div class="btn" data-bs-toggle="tooltip" data-bs-placement="left"
+						title="Tabella nella quale vengono mostrati i dati storici relativi alle rilevazioni Ambientali">
+						<i class="fa-solid fa-question"></i>
+					</div>
 				</div>
 				<div class="collapse" id="collapseTabellaAmbiente">
 					<div class="card-body">
@@ -53,9 +57,13 @@
 		
 		<div class="card mb-3">
 			<div class="card-body">
-				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAmbienteLineChart"
+				<div class="card-header d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAmbienteLineChart"
 					aria-expanded="false" aria-controls="collapseAmbienteLineChart">
-					Andamento Parametri Ambientali
+					<span><i class="fa-solid fa-chart-line me-2"></i>Andamento Parametri Ambientali</span>
+					<div class="btn" data-bs-toggle="tooltip" data-bs-placement="left"
+						title="Grafico dell'andamento storico dei valori dei parametri ambientali">
+						<i class="fa-solid fa-question"></i>
+					</div>
 				</div>
 				<div class="collapse" id="collapseAmbienteLineChart">
 					<select id="parameterSelect" class="form-select card-header mb-3 mt-3">

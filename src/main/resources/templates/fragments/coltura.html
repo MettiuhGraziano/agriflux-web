@@ -11,9 +11,12 @@
 		
 		<div class="card mb-3">
 			<div class="card-body">
-				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaColture"
+				<div class="card-header d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTabellaColture"
 					aria-expanded="false" aria-controls="collapseTabellaColture">
-					Tabella Colture
+					<span><i class="fa-solid fa-table me-2"></i>Tabella Colture</span>
+					<div class="btn" data-bs-toggle="tooltip" data-bs-placement="left" title="Tabella nella quale vengono mostrati i dati storici relativi alle Colture">
+						<i class="fa-solid fa-question"></i>
+					</div>
 				</div>
 				<div class="collapse" id="collapseTabellaColture">
 					<div class="card-body">
@@ -49,9 +52,13 @@
 	
 		<div class="card mb-3">
 			<div class="card-body">
-				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColturaLineChart"
-					aria-expanded="false" aria-controls="collapseColturaLineChart">
-					Andamento Prezzo Prodotti Coltivati
+				<div class="card-header d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse"
+					data-bs-target="#collapseColturaLineChart" aria-expanded="false" aria-controls="collapseColturaLineChart">
+					<span><i class="fa-solid fa-chart-line me-2"></i>Andamento Prezzi</span>
+					<div class="btn" data-bs-toggle="tooltip" data-bs-placement="left"
+						title="Grafico dell'andamento dei prezzi dei singoli ortaggi rilevati ad ogni raccolto">
+						<i class="fa-solid fa-question"></i>
+					</div>
 				</div>
 				<div class="collapse" id="collapseColturaLineChart">
 					<select id="productSelect" class="form-select card-header mb-3 mt-3">
@@ -73,25 +80,25 @@
 		
 		<div class="card mb-3">
 			<div class="card-body">
-				<div class="card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColturaCharts"
+				<div class="card-header d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColturaCharts"
 					aria-expanded="false" aria-controls="collapseColturaCharts">
-					Storico Numero Coltivazioni
+					<span><i class="fa-solid fa-chart-column me-2"></i><i class="fa-solid fa-chart-pie me-2"></i>Storico Colture</span>
+					<div class="btn" data-bs-toggle="tooltip" data-bs-placement="left"
+						title="Grafici a barre e torta con le numeriche storiche relative rispettivamente ai singoli ortaggi coltivati e alle loro famiglie">
+						<i class="fa-solid fa-question"></i>
+					</div>
 				</div>
 				<div class="collapse" id="collapseColturaCharts">
 					<div class="row g-2 mb-3 px-2 mt-3">
 						<div class="col-sm-6">
-							<div class="card">
-								<div id="coltura-chart-container2" class="chart-container border rounded">
-									<canvas id="colturaBarChart"></canvas>
-								</div>
+							<div id="coltura-chart-container2" class="chart-container border rounded">
+								<canvas id="colturaBarChart"></canvas>
 							</div>
 						</div>
-		
+					
 						<div class="col-sm-6">
-							<div class="card">
-								<div id="coltura-chart-container3" class="chart-container border rounded">
-									<canvas id="colturaPieChart"></canvas>
-								</div>
+							<div id="coltura-chart-container3" class="chart-container border rounded">
+								<canvas id="colturaPieChart"></canvas>
 							</div>
 						</div>
 					</div>
