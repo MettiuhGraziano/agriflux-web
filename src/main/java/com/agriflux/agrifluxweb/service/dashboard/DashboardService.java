@@ -3,6 +3,7 @@ package com.agriflux.agrifluxweb.service.dashboard;
 import java.util.List;
 
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
+import com.agriflux.agrifluxshared.dto.azienda.AziendaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
@@ -55,5 +56,12 @@ public interface DashboardService extends DataChartService {
 	 * @return
 	 */
 	List<String> getListaParametriAmbiente();
+	
+	/**
+	 * Metodo che resitutisce i dati dell'Azienda
+	 * 
+	 * @return AziendaDTO
+	 */
+	AziendaDTO findAzienda();
 	
 }

@@ -73,6 +73,11 @@ html, body {
 	background-color: rgb(255, 255, 255) !important;
 }
 
+.card-text-custom {
+	width: 100%;
+	word-wrap: break-word;
+}
+
 .chart-container {
 	background-color: rgb(255, 255, 255);
 	padding: 20px;

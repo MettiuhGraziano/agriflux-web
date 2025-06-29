@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.ambiente.VariazioneValoriParametriAmbienteDTO;
+import com.agriflux.agrifluxshared.dto.azienda.AziendaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.ortaggio.OrtaggioDTO;
@@ -18,6 +19,7 @@ import com.agriflux.agrifluxshared.dto.produzione.ProduzioneParticellaColturaOrt
 import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
 import com.agriflux.agrifluxweb.service.ambiente.DatiAmbienteClientServiceImpl;
+import com.agriflux.agrifluxweb.service.azienda.DatiAziendaClientServiceImpl;
 import com.agriflux.agrifluxweb.service.coltura.DatiColturaClientServiceImpl;
 import com.agriflux.agrifluxweb.service.ortaggio.DatiOrtaggioClientServiceImpl;
 import com.agriflux.agrifluxweb.service.particella.DatiParticellaClientServiceImpl;
@@ -33,17 +35,20 @@ public class DashboardServiceImpl implements DashboardService {
 	private final DatiProduzioneClientServiceImpl datiProduzioneService;
 	private final DatiOrtaggioClientServiceImpl datiOrtaggioService;
 	private final DatiAmbienteClientServiceImpl datiAmbienteService;
+	private final DatiAziendaClientServiceImpl datiAziendaService;
 
 	public DashboardServiceImpl(DatiColturaClientServiceImpl datiColturaService,
 			DatiParticellaClientServiceImpl datiParticellaService,
 			DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService,
-			DatiProduzioneClientServiceImpl datiProduzioneService, DatiOrtaggioClientServiceImpl datiOrtaggioService, DatiAmbienteClientServiceImpl datiAmbienteClientService) {
+			DatiProduzioneClientServiceImpl datiProduzioneService, DatiOrtaggioClientServiceImpl datiOrtaggioService,
+			DatiAmbienteClientServiceImpl datiAmbienteClientService, DatiAziendaClientServiceImpl datiAziendaService) {
 		this.datiColturaService = datiColturaService;
 		this.datiParticellaService = datiParticellaService;
 		this.datiRilevazioneTerrenoService = datiRilevazioneTerrenoService;
 		this.datiProduzioneService = datiProduzioneService;
 		this.datiOrtaggioService = datiOrtaggioService;
 		this.datiAmbienteService = datiAmbienteClientService;
+		this.datiAziendaService = datiAziendaService;
 	}
 	
 	//PARTICELLA
@@ -132,6 +137,9 @@ public class DashboardServiceImpl implements DashboardService {
 		return datiOrtaggioService.findAllOrtaggioSortById();
 	}
 
-
+	@Override
+	public AziendaDTO findAzienda() {
+		return datiAziendaService.findAzienda();
+	}
 
 }

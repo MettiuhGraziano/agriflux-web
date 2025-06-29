@@ -14,39 +14,84 @@
 			<div class="homepage-card-body card-body">
 		
 				<div class="row">
-					<div class="col-sm-12 mb-3 mb-sm-0">
-						<div class="card h-100">
-							<p class="card-text">TEST TEST TEST TEST TEST TEST</p>
+					<div class="col-sm-12 mb-3">
+						<div class="card mx-auto p-2">
+							<p class="card-text card-text-custom" th:text="${#strings.concat('Benvenuto/a ', session.username , ' nella Dashboard Agriflux')}"></p>
 						</div>
 					</div>
 				</div>
-		
+				
 				<div class="row mt-3">
 					<div class="col-sm-6 mb-3 mb-sm-0">
 						<div class="card h-100">
 							<div class="card-header">
-								Dati Aziendali
+								<p class="fw-bolder fs-3 card-text-custom m-0">Dati Aziendali</p>
 							</div>
 							<div class="card-body card-body-custom">
-								<p class="card-text">TEST TEST TEST TEST TEST TEST</p>
+								
+								<div class="row mt-3">
+									<div class="col-sm-3 mb-3 d-inline-flex p-2">
+										<p class="card-text card-text-custom"><strong>Ragione Sociale:</strong></p>
+									</div>
+									<div class="col-sm-3 mb-3 mb-sm-0 d-inline-flex p-2">
+										<p class="card-text card-text-custom" th:text="${{azienda.ragioneSociale}}"></p>
+									</div>
+									<div class="col-sm-3 mb-3 d-inline-flex p-2">
+										<p class="card-text card-text-custom"><strong>Anno Fondazione:</strong></p>
+									</div>
+									<div class="col-sm-3 mb-3 mb-sm-0 d-inline-flex p-2">
+										<p class="card-text card-text-custom" th:text="${{azienda.annoFondazione}}"></p>
+									</div>
+								</div>
+								
+								<div class="row mt-3">
+									<div class="col-sm-3 mb-3">
+										<p class="card-text card-text-custom"><strong>Ateco:</strong></p>
+									</div>
+									<div class="col-sm-3 mb-3 mb-sm-0">
+										<p class="card-text card-text-custom" th:text="${{azienda.ateco}}"></p>
+									</div>
+									<div class="col-sm-3 mb-3">
+										<p class="card-text card-text-custom"><strong>Tipologia:</strong></p>
+									</div>
+									<div class="col-sm-3 mb-3 mb-sm-0">
+										<p class="card-text card-text-custom" th:text="${{azienda.tipologia}}"></p>
+									</div>
+								</div>
+								
+								<div class="row mt-3">
+									<div class="col-sm-3 mb-3">
+										<p class="card-text card-text-custom"><strong>Numero Dipendenti:</strong></p>
+									</div>
+									<div class="col-sm-3 mb-3 mb-sm-0">
+										<p class="card-text card-text-custom" th:text="${{azienda.numDipendenti}}"></p>
+									</div>
+								</div>
+								
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="card h-100">
 							<div class="card-header">
-								Simulazione
+								<p class="fw-bolder fs-3 card-text-custom m-0">Simulazione</p>
 							</div>
 							<div class="card-body card-body-custom">
 								<p class="card-text">TEST TEST TEST TEST TEST TEST</p>
 								
-								<button id="batchButton" class="btn btn-primary">Avvia Simulazione</button>
-								<div class="progress mt-3" style="height: 25px;">
-									<div id="batchProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-										style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-										0%
+								<div class="row align-items-center">
+									<div class="col-auto p-2"><button id="batchButton" class="btn btn-dark">Avvia Simulazione</button></div>
+								
+									<div class="col p-2">
+										<div class="progress" style="height: 25px;">
+											<div id="batchProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+												style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+												0%
+											</div>
+										</div>
 									</div>
 								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -54,8 +99,8 @@
 				
 			</div>
 		
-			<div class="card-footer text-body-secondary">
-				© 2025 AgriFlux – Dati Agricoli </br> Tutti diritti riservati
+			<div class="card-footer text-body-dark text-center">
+				<p class="card-text">© 2025 AgriFlux – Dati Agricoli & Aziendali </br> Tutti diritti riservati</p>
 			</div>
 		</div>
 		

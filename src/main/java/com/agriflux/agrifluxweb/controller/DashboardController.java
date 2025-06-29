@@ -53,13 +53,15 @@ public class DashboardController implements DataChartService {
 	}
 	
 	@PostMapping("/dashboard")
-	public String dashboard(@RequestParam() String username, HttpSession session) {
+	public String dashboard(@RequestParam() String username, HttpSession session, Model model) {
 		session.setAttribute("username", username);
+		model.addAttribute("azienda", dashboardServiceImpl.findAzienda());
 	    return "dashboard";
 	}
 	
 	@GetMapping("/homepage")
-	public String homepage() {
+	public String homepage(Model model) {
+		model.addAttribute("azienda", dashboardServiceImpl.findAzienda());
 	    return "fragments/homepage :: homepagePage";
 	}
 	

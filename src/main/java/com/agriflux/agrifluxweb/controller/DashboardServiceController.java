@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.ambiente.VariazioneValoriParametriAmbienteDTO;
+import com.agriflux.agrifluxshared.dto.azienda.AziendaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
 import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
@@ -147,6 +148,13 @@ public class DashboardServiceController implements DashboardService {
 			+ " una lista di oggetti contenenti il valore del parametro, la data di rilevazione ambientale e la variazione percentuale rispetto all'anno precedente")
 	public Map<String, List<VariazioneValoriParametriAmbienteDTO>> getVariazioneValoriParametriAmbiente() {
 		return dashboardServiceImpl.getVariazioneValoriParametriAmbiente();
+	}
+
+	@Override
+	@GetMapping("/aziendaApi")
+	@Operation(summary = "Recupera i dati Aziendali", description = "Restituisce un DTO contenente i dati Aziendali")
+	public AziendaDTO findAzienda() {
+		return dashboardServiceImpl.findAzienda();
 	}
 
 }
