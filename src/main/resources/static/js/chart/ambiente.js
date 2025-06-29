@@ -130,7 +130,7 @@ function ambienteLineChartDinamico() {
 												
 												var unitaMisura;
 												if (parametroSelezionato == 'TEMPERATURA') {
-													unitaMisura = '°';
+													unitaMisura = '°C';
 												} else if (parametroSelezionato == 'UMIDITA') {
 													unitaMisura = '%';
 												} else if (parametroSelezionato == 'PRECIPITAZIONI') {

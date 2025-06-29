@@ -444,7 +444,6 @@ function aggiornaTabella(dto) {
 	const tabellaUpdate = document.getElementById("produzione-chart-datatable");
 	const bodyTabella = tabellaUpdate.querySelector("tbody");
 	
-	console.log(bodyTabella);
 	bodyTabella.innerHTML = '';
 
 	const prodottoRow = document.createElement("tr");
@@ -459,12 +458,12 @@ function aggiornaTabella(dto) {
 
 	const estensioneRow = document.createElement("tr");
 	estensioneRow.innerHTML = `<td class="text-center">Estensione Terreno</td>
-						    <td class="text-center">${dto.estensioneTerreno}</td>`;
+						    <td class="text-center">${dto.estensioneTerreno} m²</td>`;
 	bodyTabella.appendChild(estensioneRow);
 
 	const pendenzaRow = document.createElement("tr");
 	pendenzaRow.innerHTML = `<td class="text-center">Pendenza</td>
-						    <td class="text-center">${dto.pendenza}</td>`;
+						    <td class="text-center">${dto.pendenza} %</td>`;
 	bodyTabella.appendChild(pendenzaRow);
 
 	const esposizione = document.createElement("tr");

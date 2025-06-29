@@ -43,9 +43,9 @@
 								<tbody class="table-group-divider">
 									<tr th:each="particella : ${particelle}">
 										<td class="text-center" th:text="${{particella.idParticella}}"></td>
-										<td class="text-center" th:text="${{particella.costo}}"></td>
-										<td class="text-center" th:text="${{particella.estensione}}"></td>
-										<td class="text-center" th:text="${{particella.pendenza}}"></td>
+										<td class="text-center" th:text="${{particella.costo}}  + ' €'"></td>
+										<td class="text-center" th:text="${{particella.estensione}} + ' m²'"></td>
+										<td class="text-center" th:text="${{particella.pendenza}} + ' %'"></td>
 										<td class="text-center" th:text="${{particella.tipologiaLitologia}}"></td>
 										<td class="text-center" th:text="${{particella.annoInstallazione}}"></td>
 										<td class="text-center" th:text="${{particella.esposizione}}"></td>
@@ -94,10 +94,10 @@
 									<tr th:each="terreno : ${rilevazioniTerreno}">
 										<td class="text-center" th:text="${{terreno.idRilevazioneTerreno}}"></td>
 										<td class="text-center" th:text="${{terreno.phSuolo}}"></td>
-										<td class="text-center" th:text="${{terreno.umidita}}"></td>
-										<td class="text-center" th:text="${{terreno.capacitaAssorbente}}"></td>
-										<td class="text-center" th:text="${{terreno.porosita}}"></td>
-										<td class="text-center" th:text="${{terreno.temperatura}}"></td>
+										<td class="text-center" th:text="${{terreno.umidita}} + ' %'"></td>
+										<td class="text-center" th:text="${{terreno.capacitaAssorbente}} + ' %'"></td>
+										<td class="text-center" th:text="${{terreno.porosita}} + ' %'"></td>
+										<td class="text-center" th:text="${{terreno.temperatura}} + ' °C'"></td>
 										<td class="text-center" th:text="${{terreno.dataRilevazione}}"></td>
 										<td class="text-center" th:text="${{terreno.idParticellaParticella}}"></td>
 									</tr>
@@ -132,9 +132,11 @@
 							<button id="ricercaTerreno" type="submit" class="btn btn-primary mb-3" disabled>Invio</button>
 						</div>
 					</div>
-		
-					<div id="terreno-chart-container1" class="chart-container border rounded">
-						<canvas id="rotazioneColtureBarChart"></canvas>
+					
+					<div class="row align-items-center">
+						<div id="terreno-chart-container1" class="chart-container col-auto p-2 mx-auto border rounded">
+							<canvas id="rotazioneColtureBarChart"></canvas>
+						</div>
 					</div>
 				</div>
 			</div>

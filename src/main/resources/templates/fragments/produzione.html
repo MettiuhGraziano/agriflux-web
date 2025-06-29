@@ -32,6 +32,7 @@
 										<th class="text-center" th:text="#{produzione.raccoltoMarcio}"></th>
 										<th class="text-center" th:text="#{produzione.raccoltoTerzi}"></th>
 										<th class="text-center" th:text="#{produzione.fatturatoRaccolto}"></th>
+										<th class="text-center" th:text="#{produzione.consumoIdrico}"></th>
 										<th class="text-center" th:text="#{produzione.numLavoratori}"></th>
 										<th class="text-center" th:text="#{produzione.speseProduzione}"></th>
 										<th class="text-center" th:text="#{utils.idColtura}"></th>
@@ -41,13 +42,14 @@
 								<tbody class="table-group-divider">
 									<tr th:each="produzione : ${produzioni}">
 										<td class="text-center" th:text="${{produzione.idProduzione}}"></td>
-										<td class="text-center" th:text="${{produzione.quantitaRaccolto}}"></td>
-										<td class="text-center" th:text="${{produzione.quantitaRaccoltoVenduto}}"></td>
-										<td class="text-center" th:text="${{produzione.quantitaRaccoltoMarcio}}"></td>
-										<td class="text-center" th:text="${{produzione.quantitaRaccoltoTerzi}}"></td>
-										<td class="text-center" th:text="${{produzione.fatturatoRaccolto}}"></td>
+										<td class="text-center" th:text="${{produzione.quantitaRaccolto}} + ' Kg'"></td>
+										<td class="text-center" th:text="${{produzione.quantitaRaccoltoVenduto}} + ' Kg'"></td>
+										<td class="text-center" th:text="${{produzione.quantitaRaccoltoMarcio}} + ' Kg'"></td>
+										<td class="text-center" th:text="${{produzione.quantitaRaccoltoTerzi}} + ' Kg'"></td>
+										<td class="text-center" th:text="${{produzione.fatturatoRaccolto}} + ' €'"></td>
+										<td class="text-center" th:text="${{produzione.consumoIdrico}} + ' m³'"></td>
 										<td class="text-center" th:text="${{produzione.numLavoratori}}"></td>
-										<td class="text-center" th:text="${{produzione.speseProduzione}}"></td>
+										<td class="text-center" th:text="${{produzione.speseProduzione}} + ' €'"></td>
 										<td class="text-center" th:text="${{produzione.idColturaColtura}}"></td>
 									</tr>
 								</tbody>
@@ -86,7 +88,7 @@
 						</div>
 					</div>
 		
-					<div class="row g-2 mb-3 px-2">
+					<div class="row g-2 align-items-center mb-3 px-2">
 						<div class="col-sm-7">
 							<div id="produzione-chart-container1" class="chart-container border rounded">
 								<canvas id="produzioneMultipleLineChart"></canvas>
@@ -211,9 +213,11 @@
 					<select id="annoRiferimentoSelect" class="form-select card-header mb-3 mt-3">
 						<option selected disabled>Seleziona anno riferimento...</option>
 					</select>
-		
-					<div id="produzione-chart-container3" class="chart-container border rounded">
-						<canvas id="produzioneBarChartHorizontal"></canvas>
+					
+					<div class="row align-items-center">
+						<div id="produzione-chart-container3" class="chart-container col-auto p-2 mx-auto border rounded">
+							<canvas id="produzioneBarChartHorizontal"></canvas>
+						</div>
 					</div>
 					
 					<div class="d-flex justify-content-start mt-2 mb-3">
