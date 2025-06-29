@@ -34,40 +34,39 @@
 				<div class="col-9 nav-tabs collapse navbar-collapse d-flex mx-auto me-2" role="tablist">
 				
 					<div class="nav-item p-2 flex-fill" role="presentation">
-						<button id="dashboard-tab" class="nav-link btn custom-btn-navbar active" data-bs-toggle="tab"
-							data-bs-target="#tab-dashboard" type="button" role="tab" aria-controls="tab-dashboard"
-							aria-selected="true"><i class="fa-solid fa-house-chimney-window me-2"></i><span
-								data-th-text="Homepage"></span></button>
+						<button id="homepage-tab" class="nav-link btn custom-btn-navbar active" data-bs-toggle="tab"
+							data-bs-target="#tab-homepage" type="button" role="tab" aria-controls="tab-homepage" aria-selected="true"><i
+								class="fa-solid fa-house-chimney-window me-2"></i><span data-th-text="Homepage"></span></button>
 					</div>
 				
 					<div class="nav-item p-2 flex-fill" role="presentation">
 						<button id="colture-tab" class="nav-link btn custom-btn-navbar" type="button" data-bs-toggle="tab"
-							data-bs-target="#tab-colture" role="tab" aria-controls="tab-colture" aria-selected="false"><i
+							data-bs-target="#tab-colture" role="tab" aria-controls="tab-colture" aria-selected="false" disabled><i
 								class="fa-solid fa-seedling me-2"></i><span data-th-text="Colture"></span></button>
 					</div>
 				
 					<div class="nav-item p-2 flex-fill" role="presentation">
 						<button id="produzione-tab" class="nav-link btn custom-btn-navbar" type="button" data-bs-toggle="tab"
-							data-bs-target="#tab-produzione" role="tab" aria-controls="tab-produzione" aria-selected="false"><i
+							data-bs-target="#tab-produzione" role="tab" aria-controls="tab-produzione" aria-selected="false" disabled><i
 								class="fa-solid fa-industry me-2"></i><span data-th-text="Produzione"></span></button>
-						</div>
+					</div>
 				
 					<div class="nav-item p-2 flex-fill" role="presentation">
 						<button id="terreno-tab" class="nav-link btn custom-btn-navbar" type="button" data-bs-toggle="tab"
-							data-bs-target="#tab-terreno" role="tab" aria-controls="tab-terreno" aria-selected="false"><i
+							data-bs-target="#tab-terreno" role="tab" aria-controls="tab-terreno" aria-selected="false" disabled><i
 								class="fa-solid fa-layer-group me-2"></i><span data-th-text="Terreno"></span></button>
 					</div>
 				
 					<div class="nav-item p-2 flex-fill" role="presentation">
 						<button id="ambiente-tab" class="nav-link btn custom-btn-navbar" type="button" data-bs-toggle="tab"
-							data-bs-target="#tab-ambiente" role="tab" aria-controls="tab-ambiente" aria-selected="false"><i
+							data-bs-target="#tab-ambiente" role="tab" aria-controls="tab-ambiente" aria-selected="false" disabled><i
 								class="fa-solid fa-cloud-sun-rain me-2"></i></i><span data-th-text="Ambiente"></span></button>
 					</div>
 				
 					<div class="nav-item p-2 flex-fill" role="presentation">
-						<button id="fatturato-tab" class="nav-link btn custom-btn-navbar" data-bs-toggle="tab" data-bs-target="#tab-fatturato"
-							type="button" role="tab" aria-controls="tab-fatturato" aria-selected="false"><i
-								class="fa-solid fa-scale-balanced me-2"></i><span data-th-text="Fatturato"></span></button>
+						<button id="fatturato-tab" class="nav-link btn custom-btn-navbar" data-bs-toggle="tab"
+							data-bs-target="#tab-fatturato" type="button" role="tab" aria-controls="tab-fatturato" aria-selected="false"
+							disabled><i class="fa-solid fa-scale-balanced me-2"></i><span data-th-text="Fatturato"></span></button>
 					</div>
 				</div>
 				
@@ -87,8 +86,8 @@
 		</nav>
 	
 		<div class="tab-content">
-			<div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel"
-				th:insert="~{fragments/dashboard :: dashboardPage}" tabindex="0"></div>
+			<div class="tab-pane fade show active" id="tab-homepage" role="tabpanel"
+				th:insert="~{fragments/homepage :: homepagePage}" tabindex="0"></div>
 		
 			<div class="tab-pane fade" id="tab-colture" role="tabpanel" aria-labelledby="colture-tab"
 				th:insert="~{fragments/coltura :: colturaPage}" tabindex="0"></div>

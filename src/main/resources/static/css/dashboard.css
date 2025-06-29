@@ -69,6 +69,10 @@ html, body {
 	background-color: rgb(187, 240, 162) !important;
 }
 
+.card-body-custom {
+	background-color: rgb(255, 255, 255) !important;
+}
+
 .chart-container {
 	background-color: rgb(255, 255, 255);
 	padding: 20px;

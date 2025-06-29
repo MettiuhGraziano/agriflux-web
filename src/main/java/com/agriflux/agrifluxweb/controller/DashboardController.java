@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import com.agriflux.agrifluxshared.dto.produzione.ProduzioneParticellaColturaOrt
 import com.agriflux.agrifluxshared.dto.terreno.ParticellaColturaTerrenoDTO;
 import com.agriflux.agrifluxweb.service.dashboard.DashboardServiceImpl;
 import com.agriflux.agrifluxweb.service.dashboard.DataChartService;
+import com.agriflux.agrifluxweb.service.job.JobLauncherClientServiceImpl;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -32,8 +34,11 @@ public class DashboardController implements DataChartService {
 	
 	private final DashboardServiceImpl dashboardServiceImpl;
 	
-	public DashboardController(DashboardServiceImpl dashboardService) {
+	private final JobLauncherClientServiceImpl jobLauncherServiceImpl;
+	
+	public DashboardController(DashboardServiceImpl dashboardService, JobLauncherClientServiceImpl jobLauncherServiceImpl) {
 		this.dashboardServiceImpl = dashboardService;
+		this.jobLauncherServiceImpl = jobLauncherServiceImpl;
 	}
 	
 	@GetMapping("/login")
@@ -47,15 +52,20 @@ public class DashboardController implements DataChartService {
 	    return "redirect:/login";
 	}
 	
-	@PostMapping("/homepage")
-	public String homepage(@RequestParam() String username, HttpSession session) {
+	@PostMapping("/dashboard")
+	public String dashboard(@RequestParam() String username, HttpSession session) {
 		session.setAttribute("username", username);
-	    return "homepage";
+	    return "dashboard";
 	}
 	
-	@GetMapping("/dashboard")
-	public String dashboard() {
-	    return "fragments/dashboard :: dashboardPage";
+	@GetMapping("/homepage")
+	public String homepage() {
+	    return "fragments/homepage :: homepagePage";
+	}
+	
+	@PostMapping("/startSimulationJob")
+	public ResponseEntity<Void> startSimulationJob() {
+		return jobLauncherServiceImpl.startSimulationJob();
 	}
 	
 	//COLTURA
