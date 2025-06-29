@@ -10,6 +10,7 @@ import com.agriflux.agrifluxshared.dto.ambiente.VariazioneValoriParametriAmbient
 import com.agriflux.agrifluxshared.dto.azienda.AziendaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
+import com.agriflux.agrifluxshared.dto.fatturato.FatturatoDTO;
 import com.agriflux.agrifluxshared.dto.ortaggio.OrtaggioDTO;
 import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
@@ -21,6 +22,7 @@ import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
 import com.agriflux.agrifluxweb.service.ambiente.DatiAmbienteClientServiceImpl;
 import com.agriflux.agrifluxweb.service.azienda.DatiAziendaClientServiceImpl;
 import com.agriflux.agrifluxweb.service.coltura.DatiColturaClientServiceImpl;
+import com.agriflux.agrifluxweb.service.fatturato.DatiFatturatoClientServiceImpl;
 import com.agriflux.agrifluxweb.service.ortaggio.DatiOrtaggioClientServiceImpl;
 import com.agriflux.agrifluxweb.service.particella.DatiParticellaClientServiceImpl;
 import com.agriflux.agrifluxweb.service.produzione.DatiProduzioneClientServiceImpl;
@@ -36,12 +38,13 @@ public class DashboardServiceImpl implements DashboardService {
 	private final DatiOrtaggioClientServiceImpl datiOrtaggioService;
 	private final DatiAmbienteClientServiceImpl datiAmbienteService;
 	private final DatiAziendaClientServiceImpl datiAziendaService;
+	private final DatiFatturatoClientServiceImpl datiFatturatoService;
 
 	public DashboardServiceImpl(DatiColturaClientServiceImpl datiColturaService,
 			DatiParticellaClientServiceImpl datiParticellaService,
 			DatiRilevazioneTerrenoClientServiceImpl datiRilevazioneTerrenoService,
 			DatiProduzioneClientServiceImpl datiProduzioneService, DatiOrtaggioClientServiceImpl datiOrtaggioService,
-			DatiAmbienteClientServiceImpl datiAmbienteClientService, DatiAziendaClientServiceImpl datiAziendaService) {
+			DatiAmbienteClientServiceImpl datiAmbienteClientService, DatiAziendaClientServiceImpl datiAziendaService, DatiFatturatoClientServiceImpl datiFatturatoService) {
 		this.datiColturaService = datiColturaService;
 		this.datiParticellaService = datiParticellaService;
 		this.datiRilevazioneTerrenoService = datiRilevazioneTerrenoService;
@@ -49,6 +52,7 @@ public class DashboardServiceImpl implements DashboardService {
 		this.datiOrtaggioService = datiOrtaggioService;
 		this.datiAmbienteService = datiAmbienteClientService;
 		this.datiAziendaService = datiAziendaService;
+		this.datiFatturatoService = datiFatturatoService;
 	}
 	
 	//PARTICELLA
@@ -140,6 +144,13 @@ public class DashboardServiceImpl implements DashboardService {
 	@Override
 	public AziendaDTO findAzienda() {
 		return datiAziendaService.findAzienda();
+	}
+	
+	//FATTURATO
+	
+	@Override
+	public List<FatturatoDTO> findAllFatturatoSortById() {
+		return datiFatturatoService.findAllFatturatoSortById();
 	}
 
 }

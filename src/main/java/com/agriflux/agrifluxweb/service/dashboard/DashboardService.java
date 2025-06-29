@@ -5,6 +5,7 @@ import java.util.List;
 import com.agriflux.agrifluxshared.dto.ambiente.AmbienteDTO;
 import com.agriflux.agrifluxshared.dto.azienda.AziendaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
+import com.agriflux.agrifluxshared.dto.fatturato.FatturatoDTO;
 import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneDTO;
 import com.agriflux.agrifluxshared.dto.terreno.TerrenoDTO;
@@ -63,5 +64,12 @@ public interface DashboardService extends DataChartService {
 	 * @return AziendaDTO
 	 */
 	AziendaDTO findAzienda();
+	
+	/**
+	 * Metodo che restituisce la lista di Fatturati ordinati in modo ASCENDENTE tramite l'ID
+	 * 
+	 * @return List di FatturatoDTO
+	 */
+	List<FatturatoDTO> findAllFatturatoSortById();
 	
 }

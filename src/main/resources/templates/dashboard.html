@@ -99,8 +99,8 @@
 			<div class="tab-pane fade" id="tab-ambiente" role="tabpanel" aria-labelledby="ambiente-tab"
 				th:insert="~{fragments/ambiente :: ambientePage}" tabindex="0"></div>
 		
-			<div class="tab-pane fade" id="tab-fatturato" role="tabpanel" aria-labelledby="fatturato-tab" tabindex="0">
-				FATTURATO </div>
+			<div class="tab-pane fade" id="tab-fatturato" role="tabpanel" aria-labelledby="fatturato-tab"
+				th:insert="~{fragments/fatturato :: fatturatoPage}" tabindex="0"></div>
 		</div>
 	
 	</div>
@@ -119,6 +119,7 @@
 	<script data-th-src="@{/js/chart/produzione.js}"></script>
 	<script data-th-src="@{/js/chart/terreno.js}"></script>
 	<script data-th-src="@{/js/chart/ambiente.js}"></script>
+	<script data-th-src="@{/js/chart/fatturato.js}"></script>
 	<script data-th-src="@{/js/chart/dashboard.js}"></script>
 </body>
 

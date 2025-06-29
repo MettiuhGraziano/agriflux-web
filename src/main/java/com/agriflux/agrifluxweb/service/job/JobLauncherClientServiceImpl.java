@@ -39,4 +39,17 @@ public class JobLauncherClientServiceImpl {
 		
 		return response;
 	}
+	
+	public Boolean isJobExecuted() {
+		String url = batchUrl + "/isJobExecuted";
+
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+		HttpEntity<Void> httpHentity = new HttpEntity<>(httpHeaders);
+		
+		ResponseEntity<Boolean> response = restTemplate.exchange(url, HttpMethod.GET, httpHentity, Boolean.class);
+		
+		return response.getBody();
+	}
+	
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Dati Fatturato</title>
+</head>
+
+<body>
+	<div class="container-fluid py-4" th:fragment="fatturatoPage">
+		
+		<div class="card mb-3">
+			<div class="card-body">
+				<div class="card-header d-flex justify-content-between align-items-center" type="button"
+					data-bs-toggle="collapse" data-bs-target="#collapseTabellaFatturato" aria-expanded="false"
+					aria-controls="collapseTabellaFatturato">
+					<span><i class="fa-solid fa-table me-2"></i>Tabella Fatturato</span>
+					<div class="btn" data-bs-toggle="tooltip" data-bs-placement="left"
+						title="Tabella nella quale vengono mostrati i dati annuali relativi al Fatturato delle singole Particelle">
+						<i class="fa-solid fa-question"></i>
+					</div>
+				</div>
+				<div class="collapse" id="collapseTabellaFatturato">
+					<div class="card-body">
+						<div class="table-responsive" th:unless="${#lists.isEmpty(fatturati)}">
+		
+							<table id="fatturato-datatable" class="table table-bordered table-hover table-sm">
+								<thead>
+									<tr>
+										<th class="text-center" th:text="#{utils.id}"></th>
+										<th class="text-center" th:text="#{fatturato.annoRiferimento}"></th>
+										<th class="text-center" th:text="#{fatturato.ricaviVendita}"></th>
+										<th class="text-center" th:text="#{fatturato.speseGenerali}"></th>
+										<th class="text-center" th:text="#{fatturato.interessiAttivi}"></th>
+										<th class="text-center" th:text="#{fatturato.interessiPassivi}"></th>
+										<th class="text-center" th:text="#{utils.idParticellaParticella}"></th>
+									</tr>
+								</thead>
+								
+								<tbody class="table-group-divider">
+									<tr th:each="fatturato : ${fatturati}">
+										<td class="text-center" th:text="${{fatturato.idFatturato}}"></td>
+										<td class="text-center" th:text="${{fatturato.annoRiferimento}}"></td>
+										<td class="text-center" th:text="${{fatturato.ricaviVendita}} + ' €'"></td>
+										<td class="text-center" th:text="${{fatturato.speseGenerali}} + ' €'"></td>
+										<td class="text-center" th:text="${{fatturato.interessiAttivi}} + ' €'"></td>
+										<td class="text-center" th:text="${{fatturato.interessiPassivi}} + ' €'"></td>
+										<td class="text-center" th:text="${{fatturato.idParticellaParticella}}"></td>
+									</tr>
+								</tbody>
+							</table>
+		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+
+</html>

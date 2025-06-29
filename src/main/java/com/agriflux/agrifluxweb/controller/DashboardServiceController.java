@@ -11,6 +11,7 @@ import com.agriflux.agrifluxshared.dto.ambiente.VariazioneValoriParametriAmbient
 import com.agriflux.agrifluxshared.dto.azienda.AziendaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaDTO;
 import com.agriflux.agrifluxshared.dto.coltura.ColturaListPrezzoDataRaccoltoDTO;
+import com.agriflux.agrifluxshared.dto.fatturato.FatturatoDTO;
 import com.agriflux.agrifluxshared.dto.particella.DatiParticellaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaDTO;
 import com.agriflux.agrifluxshared.dto.produzione.ProduzioneColturaTempiDTO;
@@ -155,6 +156,15 @@ public class DashboardServiceController implements DashboardService {
 	@Operation(summary = "Recupera i dati Aziendali", description = "Restituisce un DTO contenente i dati Aziendali")
 	public AziendaDTO findAzienda() {
 		return dashboardServiceImpl.findAzienda();
+	}
+	
+	//FATTURATO
+	
+	@Override
+	@GetMapping("/fatturatoApi")
+	@Operation(summary = "Recupera i dati relativi al Fatturato", description = "Restituisce una lista di DTO contenenti i dati relativi al Fatturato")
+	public List<FatturatoDTO> findAllFatturatoSortById() {
+		return dashboardServiceImpl.findAllFatturatoSortById();
 	}
 
 }

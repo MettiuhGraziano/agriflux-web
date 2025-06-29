@@ -55,19 +55,24 @@ public class DashboardController implements DataChartService {
 	@PostMapping("/dashboard")
 	public String dashboard(@RequestParam() String username, HttpSession session, Model model) {
 		session.setAttribute("username", username);
-		model.addAttribute("azienda", dashboardServiceImpl.findAzienda());
+		session.setAttribute("azienda", dashboardServiceImpl.findAzienda());
 	    return "dashboard";
 	}
 	
 	@GetMapping("/homepage")
 	public String homepage(Model model) {
-		model.addAttribute("azienda", dashboardServiceImpl.findAzienda());
 	    return "fragments/homepage :: homepagePage";
 	}
 	
 	@PostMapping("/startSimulationJob")
 	public ResponseEntity<Void> startSimulationJob() {
 		return jobLauncherServiceImpl.startSimulationJob();
+	}
+	
+	@GetMapping("/isJobExecuted")
+	@ResponseBody
+	public Boolean isJobExecuted() {
+		return jobLauncherServiceImpl.isJobExecuted();
 	}
 	
 	//COLTURA
@@ -166,6 +171,14 @@ public class DashboardController implements DataChartService {
 	@ResponseBody
 	public Map<String, List<VariazioneValoriParametriAmbienteDTO>> getVariazioneValoriParametriAmbiente() {
 		return dashboardServiceImpl.getVariazioneValoriParametriAmbiente();
+	}
+	
+	//FATTURATO
+	
+	@GetMapping("/fatturato")
+	public String getFatturatoDataModel(Model model) {
+		model.addAttribute("fatturati", dashboardServiceImpl.findAllFatturatoSortById());
+	    return "fragments/fatturato :: fatturatoPage";
 	}
 	
 	
